@@ -1,6 +1,7 @@
 #pragma once
 
 #include "entity.h"
+#include <iostream>
 
 class Entity;
 
@@ -18,4 +19,5 @@ public:
 	virtual void onStateChange(bool state);
 	bool isActive();
 	void setActive(bool state);
+	virtual ~Component();
 };

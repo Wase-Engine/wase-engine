@@ -4,7 +4,7 @@ EntityManager* EntityManager::instance = nullptr;
 
 void EntityManager::events()
 {
-	for (std::pair<std::string, Entity*> entity : entities)
+	for (std::pair<const char*, Entity*> entity : entities)
 	{
 		entity.second->events();
 	}
@@ -12,7 +12,7 @@ void EntityManager::events()
 
 void EntityManager::update()
 {
-	for (std::pair<std::string, Entity*> entity : entities)
+	for (std::pair<const char*, Entity*> entity : entities)
 	{
 		entity.second->update();
 	}
@@ -20,13 +20,13 @@ void EntityManager::update()
 
 void EntityManager::render()
 {
-	for (std::pair<std::string, Entity*> entity : entities)
+	for (std::pair<const char*, Entity*> entity : entities)
 	{
 		entity.second->render();
 	}
 }
 
-Entity* EntityManager::addEntity(const std::string& name)
+Entity* EntityManager::addEntity(const char* name)
 {
 	Entity* entity = new Entity(name);
 
@@ -35,7 +35,7 @@ Entity* EntityManager::addEntity(const std::string& name)
 	return entity;
 }
 
-Entity* EntityManager::getEntity(const std::string& name)
+Entity* EntityManager::getEntity(const char* name)
 {
 	return entities[name];
 }
@@ -47,7 +47,7 @@ EntityManager* EntityManager::getInstance()
 
 EntityManager::~EntityManager()
 {
-	for (std::pair<std::string, Entity*> entity : entities)
+	for (std::pair<const char*, Entity*> entity : entities)
 	{
 		delete entity.second;
 	}

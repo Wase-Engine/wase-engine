@@ -5,6 +5,7 @@
 
 #include "../ecs/components/transform.h"
 #include "../ecs/components/sprite_renderer.h"
+#include "../ecs/components/audio_source.h"
 
 #include <iostream>
 
@@ -49,10 +50,11 @@ void Engine::init()
 
 	noa = EntityManager::getInstance()->addEntity("Noa");
 	noa->addComponent<SpriteRenderer>("assets/sprites/cube.png", 32, 32);
+	noa->addComponent<AudioSource>("assets/audio/music.ogg", false, 25, true);
 
 	Transform* transform = noa->getComponent<Transform>();
-
-	std::cout << "X: " << transform->x << ", Y: " << transform->y << "\n";
+	transform->x = 300;
+	transform->y = 400;
 
 	isRunning = true;
 }

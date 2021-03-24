@@ -30,3 +30,7 @@ void Component::setActive(bool state)
 	active = state;
 	onStateChange(state);
 }
+
+Component::~Component()
+{
+}

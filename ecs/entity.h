@@ -11,12 +11,12 @@ class Component;
 class Entity
 {
 private:
-	std::string name;
+	const char* name;
 	bool enabled = true;
 	std::map<const char*, Component*> components;
 
 public:
-	Entity(const std::string& name);
+	Entity(const char* name);
 	~Entity();
 
 	void events();
