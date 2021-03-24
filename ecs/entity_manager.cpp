@@ -2,14 +2,6 @@
 
 EntityManager* EntityManager::instance = nullptr;
 
-void EntityManager::init()
-{
-	for (std::pair<std::string, Entity*> entity : entities)
-	{
-		entity.second->init();
-	}
-}
-
 void EntityManager::events()
 {
 	for (std::pair<std::string, Entity*> entity : entities)

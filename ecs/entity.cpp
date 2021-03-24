@@ -1,8 +1,11 @@
 #include "entity.h"
 
+#include "components/transform.h"
+
 Entity::Entity(const std::string& name)
 {
 	this->name = name;
+	this->addComponent<Transform>(0, 0);
 }
 
 Entity::~Entity()
@@ -13,14 +16,6 @@ Entity::~Entity()
 	}
 
 	components.clear();
-}
-
-void Entity::init()
-{
-	for (std::pair<const char*, Component*> component : components)
-	{
-		component.second->init();
-	}
 }
 
 void Entity::events()

@@ -4,6 +4,7 @@
 #include "../ecs/entity_manager.h"
 
 #include "../ecs/components/transform.h"
+#include "../ecs/components/sprite_renderer.h"
 
 #include <iostream>
 
@@ -47,7 +48,7 @@ void Engine::init()
 	Renderer::getInstance();
 
 	noa = EntityManager::getInstance()->addEntity("Noa");
-	noa->addComponent<Transform>(100, 150);
+	noa->addComponent<SpriteRenderer>("assets/sprites/cube.png", 32, 32);
 
 	Transform* transform = noa->getComponent<Transform>();
 
