@@ -1,6 +1,9 @@
 #include "engine.h"
 #include "window.h"
 #include "renderer.h"
+#include "../ecs/entity_manager.h"
+
+#include "../ecs/components/transform.h"
 
 #include <iostream>
 
@@ -9,6 +12,8 @@
 #include <SDL_image.h>
 
 Engine* Engine::instance = nullptr;
+
+Entity* noa;
 
 Engine::Engine()
 {
@@ -41,6 +46,13 @@ void Engine::init()
 	Window::getInstance();
 	Renderer::getInstance();
 
+	noa = EntityManager::getInstance()->addEntity("Noa");
+	noa->addComponent<Transform>(100, 150);
+
+	Transform* transform = noa->getComponent<Transform>();
+
+	std::cout << "X: " << transform->x << ", Y: " << transform->y << "\n";
+
 	isRunning = true;
 }
 
@@ -63,13 +75,15 @@ void Engine::events()
 
 void Engine::update()
 {
-
+	EntityManager::getInstance()->update();
 }
 
 void Engine::render()
 {
 	SDL_SetRenderDrawColor(Renderer::getRenderer(), 21, 21, 21, 255);
 	SDL_RenderClear(Renderer::getRenderer());
+
+	EntityManager::getInstance()->render();
 
 	SDL_RenderPresent(Renderer::getRenderer());
 }
@@ -82,6 +96,7 @@ void Engine::destroy()
 	Mix_Quit();
 	IMG_Quit();
 
+	delete EntityManager::getInstance();
 	delete Window::getInstance();
 	delete Renderer::getInstance();
 	delete this;
