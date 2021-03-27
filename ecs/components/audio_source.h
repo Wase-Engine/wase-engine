@@ -4,6 +4,7 @@
 
 #include <SDL.h>
 #include <SDL_mixer.h>
+#include <iostream>
 
 class AudioSource : public Component
 {
@@ -15,7 +16,7 @@ private:
 public:
 	bool loop;
 
-	AudioSource(const char* path, bool loop, float volume, bool playOnAwake)
+	AudioSource(const char* path, bool loop, Uint8 volume, bool playOnAwake)
 	{
 		this->loop = loop;
 
@@ -92,7 +93,9 @@ public:
 			volume = (volume / 100) * 128;
 		}
 
-		audioClip->volume = volume;
+		std::cout << volume;
+
+		audioClip->volume = (Uint8) volume;
 	}
 
 	~AudioSource()

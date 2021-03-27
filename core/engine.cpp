@@ -53,8 +53,8 @@ void Engine::init()
 	noa->addComponent<AudioSource>("assets/audio/music.ogg", false, 25, true);
 
 	Transform* transform = noa->getComponent<Transform>();
-	transform->x = 300;
-	transform->y = 400;
+	transform->x = 0;
+	transform->y = 0;
 
 	isRunning = true;
 }
