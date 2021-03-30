@@ -5,10 +5,7 @@
 
 namespace input 
 {
-	std::map<int, bool> keys;
-	std::map<int, bool> keysPressed;
-	std::map<int, bool> mouseButtons;
-	std::map<int, bool> mouseButtonsPressed;
+	std::map<int, bool> keys, keysPressed, mouseButtons, mouseButtonsPressed;
 
 	namespace events
 	{

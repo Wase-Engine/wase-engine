@@ -16,8 +16,6 @@
 
 Engine* Engine::instance = nullptr;
 
-Entity* noa;
-
 Engine::Engine()
 {
 	init();
@@ -48,14 +46,6 @@ void Engine::init()
 
 	Window::getInstance();
 	Renderer::getInstance();
-
-	noa = EntityManager::getInstance()->addEntity("Noa");
-	noa->addComponent<SpriteRenderer>("assets/sprites/cube.png", 32, 32);
-	noa->addComponent<AudioSource>("assets/audio/music.ogg", false, 25, true);
-
-	Transform* transform = noa->getComponent<Transform>();
-	transform->x = 0;
-	transform->y = 0;
 
 	isRunning = true;
 }

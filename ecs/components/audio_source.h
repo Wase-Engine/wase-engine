@@ -5,15 +5,16 @@
 #include <SDL.h>
 #include <SDL_mixer.h>
 #include <iostream>
+#include <map>
 
 class AudioSource : public Component
 {
 private:
 	Mix_Chunk* audioClip;
 	int channel = -1;
-	bool playing = false;
 
 public:
+	bool playing = false;
 	bool loop;
 
 	AudioSource(const char* path, bool loop, Uint8 volume, bool playOnAwake)
@@ -46,7 +47,6 @@ public:
 
 	void update() override
 	{
-
 	}
 
 	void render() override
@@ -56,11 +56,7 @@ public:
 
 	void play()
 	{
-		if (!playing)
-		{
-			channel = Mix_PlayChannel(-1, audioClip, loop);
-			playing = true;
-		}
+		channel = Mix_PlayChannel(-1, audioClip, loop);
 	}
 
 	void onStateChange(bool state) override
