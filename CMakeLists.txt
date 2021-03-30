@@ -15,6 +15,23 @@ include_directories(${SDL2_INCLUDE_DIR}
 
 add_executable(sdl-game-engine
     main.cpp
+    core/engine.h
+    core/engine.cpp
+    core/renderer.h
+    core/renderer.cpp
+    core/window.h
+    core/window.cpp
+    core/input.h
+    core/input.cpp
+    ecs/component.h
+    ecs/component.cpp
+    ecs/entity.h
+    ecs/entity.cpp
+    ecs/entity_manager.h
+    ecs/entity_manager.cpp
+    ecs/components/transform.h
+    ecs/components/sprite_renderer.h
+    ecs/components/audio_source.h
 )
 
 target_link_libraries(sdl-game-engine ${SDL2_LIBRARY}

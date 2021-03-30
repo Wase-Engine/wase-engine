@@ -93,8 +93,6 @@ public:
 			volume = (volume / 100) * 128;
 		}
 
-		std::cout << volume;
-
 		audioClip->volume = (Uint8) volume;
 	}
 

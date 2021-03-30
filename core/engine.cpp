@@ -2,6 +2,7 @@
 #include "window.h"
 #include "renderer.h"
 #include "../ecs/entity_manager.h"
+#include "input.h"
 
 #include "../ecs/components/transform.h"
 #include "../ecs/components/sprite_renderer.h"
@@ -69,6 +70,18 @@ void Engine::events()
 		{
 		case SDL_QUIT:
 			isRunning = false;
+			break;
+		case SDL_KEYDOWN:
+			input::events::keyDownEvent(event.key.keysym.sym);
+			break;
+		case SDL_KEYUP:
+			input::events::keyUpEvent(event.key.keysym.sym);
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			input::events::mouseButtonDownEvent(event.button.button);
+			break;
+		case SDL_MOUSEBUTTONUP:
+			input::events::mouseButtonUpEvent(event.button.button);
 			break;
 		default:
 			break;
