@@ -1,10 +1,10 @@
 #pragma once
 
 #include "../../core/renderer.h"
+#include "../../core/utils/log_utils.h"
 #include "../component.h"
 #include "transform.h"
 
-#include <iostream>
 #include <string>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -29,7 +29,7 @@ public:
 		texture = IMG_LoadTexture(Renderer::getRenderer(), path);
 		if (!texture)
 		{
-			std::cerr << IMG_GetError() << "\n";
+			log_utils::error(IMG_GetError());
 			return;
 		}
 	}

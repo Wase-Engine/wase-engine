@@ -1,10 +1,10 @@
 #pragma once
 
 #include "../component.h"
+#include "../../core/utils/log_utils.h"
 
 #include <SDL.h>
 #include <SDL_mixer.h>
-#include <iostream>
 #include <map>
 
 class AudioSource : public Component
@@ -24,7 +24,7 @@ public:
 		audioClip = Mix_LoadWAV(path);
 		if (!audioClip)
 		{
-			std::cerr << Mix_GetError() << "\n";
+			log_utils::error(Mix_GetError());
 			return;
 		}
 

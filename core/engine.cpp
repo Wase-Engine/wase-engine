@@ -3,16 +3,17 @@
 #include "renderer.h"
 #include "../ecs/entity_manager.h"
 #include "input.h"
+#include "utils/log_utils.h"
 
 #include "../ecs/components/transform.h"
 #include "../ecs/components/sprite_renderer.h"
 #include "../ecs/components/audio_source.h"
 
-#include <iostream>
-
 #include <SDL.h>
 #include <SDL_mixer.h>
 #include <SDL_image.h>
+
+#include <chrono>
 
 Engine* Engine::instance = nullptr;
 
@@ -34,13 +35,13 @@ void Engine::init()
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 	{
-		std::cerr << "Could not initialize SDL\n";
+		log_utils::error("Could not initialize SDL");
 		return;
 	}
 
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
 	{
-		std::cerr << "Could not initialize SDL Mixer\n";
+		log_utils::error("Could not initialize SDL Mixer");
 		return;
 	}
 
