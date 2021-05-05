@@ -21,5 +21,5 @@ SDL_Window* Window::getWindow()
 
 Window* Window::getInstance()
 {
-	return instance = (instance != nullptr) ? instance : new Window();
+	return instance = (instance != nullptr) ? instance : new Window;
 }

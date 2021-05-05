@@ -5,8 +5,6 @@ class Engine
 private:
 	static Engine* instance;
 
-	bool isRunning = false;
-
 	Engine();
 	void init();
 	void events();
@@ -16,4 +14,6 @@ private:
 
 public:
 	static Engine* getInstance();
+
+	bool isRunning = false;
 };

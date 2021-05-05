@@ -1,67 +1,94 @@
 #include "input.h"
 #include "engine.h"
 
-#include <map>
+#include <iostream>
 
 namespace input 
 {
-	std::map<int, bool> keys, keysPressed, mouseButtons, mouseButtonsPressed;
+	bool keys[263], keysNoRepeat[263], keysUp[263] = { false };
 
 	namespace events
 	{
-		void keyDownEvent(int keyCode)
+		void keyDown(const SDL_KeyboardEvent* event);
+		void keyUp(const SDL_KeyboardEvent* event);
+
+		void update()
 		{
-			keys[keyCode] = true;
+			SDL_Event event;
+
+			while (SDL_PollEvent(&event))
+			{
+				switch (event.type)
+				{
+				case SDL_QUIT:
+					Engine::getInstance()->isRunning = false;
+					break;
+				case SDL_KEYDOWN:
+				case SDL_KEYUP:
+					input::events::keyEvent(&event.key);
+					break;
+				}
+			}
 		}
 
-		void keyUpEvent(int keyCode)
+		void keyEvent(const SDL_KeyboardEvent* event)
 		{
-			keys[keyCode] = false;
-			keysPressed[keyCode] = false;
+			const int keycode = event->keysym.scancode;
+
+			if (sizeof(keys) / sizeof(keys[0]) - 1 < keycode)
+				return;
+
+			if (event->type == SDL_KEYDOWN)
+			{
+				keyDown(event);
+			}
+			else if (event->type == SDL_KEYUP)
+			{
+				keyUp(event);
+			}
 		}
 
-		void mouseButtonDownEvent(int button)
+		void keyDown(const SDL_KeyboardEvent* event)
 		{
-			mouseButtons[button - 1] = true;
+			const int keycode = event->keysym.scancode;
+
+			keys[keycode] = true;
+
+			if (!event->repeat)
+			{
+				keysNoRepeat[keycode] = true;
+			}
 		}
 
-		void mouseButtonUpEvent(int button)
+		void keyUp(const SDL_KeyboardEvent* event)
 		{
-			button--;
-			mouseButtons[button] = false;
-			mouseButtonsPressed[button] = false;
+			const int keycode = event->keysym.scancode;
+
+			keys[keycode] = false;
+			keysUp[keycode] = true;
 		}
 	}
 
-	bool keyPressed(int keyCode)
+	bool getKey(const int keycode)
 	{
-		if (!keysPressed[keyCode] && keys[keyCode])
-		{
-			keysPressed[keyCode] = true;
-			return true;
-		}
-
-		return false;
+		return keys[keycode];
 	}
 
-	bool keyDown(int keyCode)
+	bool getKeyDown(const int keycode)
 	{
-		return keys[keyCode];
+		bool keyDown = keysNoRepeat[keycode];
+
+		keysNoRepeat[keycode] = false;
+
+		return keyDown;
 	}
 
-	bool mouseButtonPressed(int button)
+	bool getKeyUp(const int keycode)
 	{
-		if (!mouseButtonsPressed[button] && mouseButtons[button])
-		{
-			mouseButtonsPressed[button] = true;
-			return true;
-		}
+		bool keyUp = keysUp[keycode];
 
-		return false;
-	}
+		keysUp[keycode] = false;
 
-	bool mouseButtonDown(int button)
-	{
-		return mouseButtons[button];
+		return keyUp;
 	}
 }

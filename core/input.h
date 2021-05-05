@@ -4,16 +4,13 @@
 
 namespace input 
 {
-	namespace events 
+	namespace events
 	{
-		void keyDownEvent(int keyCode);
-		void keyUpEvent(int keyCode);
-		void mouseButtonDownEvent(int button);
-		void mouseButtonUpEvent(int button);
+		void update();
+		void keyEvent(const SDL_KeyboardEvent* event);
 	}
 
-	bool keyPressed(int keyCode);
-	bool keyDown(int keyCode);
-	bool mouseButtonPressed(int button);
-	bool mouseButtonDown(int button);
+	bool getKey(const int keycode);
+	bool getKeyDown(const int keycode);
+	bool getKeyUp(const int keycode);
 }

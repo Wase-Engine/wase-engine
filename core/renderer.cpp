@@ -22,5 +22,5 @@ SDL_Renderer* Renderer::getRenderer()
 
 Renderer* Renderer::getInstance()
 {
-	return instance = (instance != nullptr) ? instance : new Renderer();
+	return instance = (instance != nullptr) ? instance : new Renderer;
 }

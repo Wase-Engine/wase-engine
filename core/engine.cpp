@@ -5,20 +5,18 @@
 #include "input.h"
 #include "utils/log_utils.h"
 
-#include "../ecs/components/transform.h"
-#include "../ecs/components/sprite_renderer.h"
-#include "../ecs/components/audio_source.h"
-
 #include <SDL.h>
 #include <SDL_mixer.h>
 #include <SDL_image.h>
 
-#include <chrono>
+#include <iostream>
 
 Engine* Engine::instance = nullptr;
 
 Engine::Engine()
 {
+	instance = this;
+
 	init();
 
 	while (isRunning)
@@ -53,31 +51,7 @@ void Engine::init()
 
 void Engine::events()
 {
-	SDL_Event event;
-
-	while (SDL_PollEvent(&event))
-	{
-		switch (event.type)
-		{
-		case SDL_QUIT:
-			isRunning = false;
-			break;
-		case SDL_KEYDOWN:
-			input::events::keyDownEvent(event.key.keysym.sym);
-			break;
-		case SDL_KEYUP:
-			input::events::keyUpEvent(event.key.keysym.sym);
-			break;
-		case SDL_MOUSEBUTTONDOWN:
-			input::events::mouseButtonDownEvent(event.button.button);
-			break;
-		case SDL_MOUSEBUTTONUP:
-			input::events::mouseButtonUpEvent(event.button.button);
-			break;
-		default:
-			break;
-		}
-	}
+	input::events::update();
 }
 
 void Engine::update()
@@ -111,5 +85,5 @@ void Engine::destroy()
 
 Engine* Engine::getInstance()
 {
-	return instance = (instance != nullptr) ? instance : new Engine();
+	return instance = (instance != nullptr) ? instance : new Engine;
 }
