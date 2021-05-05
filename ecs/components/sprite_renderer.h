@@ -5,7 +5,6 @@
 #include "../component.h"
 #include "transform.h"
 
-#include <string>
 #include <SDL.h>
 #include <SDL_image.h>
 

@@ -1,4 +1,5 @@
 #include "engine.h"
+
 #include "window.h"
 #include "renderer.h"
 #include "../ecs/entity_manager.h"
@@ -8,8 +9,6 @@
 #include <SDL.h>
 #include <SDL_mixer.h>
 #include <SDL_image.h>
-
-#include <iostream>
 
 Engine* Engine::instance = nullptr;
 
@@ -86,4 +85,9 @@ void Engine::destroy()
 Engine* Engine::getInstance()
 {
 	return instance = (instance != nullptr) ? instance : new Engine;
+}
+
+void Engine::quit()
+{
+	isRunning = false;
 }

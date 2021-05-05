@@ -1,7 +1,7 @@
 #include "renderer.h"
-#include "window.h"
 
-#include <iostream>
+#include "window.h"
+#include "utils/log_utils.h"
 
 Renderer* Renderer::instance = nullptr;
 
@@ -10,7 +10,7 @@ Renderer::Renderer()
 	renderer = SDL_CreateRenderer(Window::getWindow(), -1, NULL);
 	if (!renderer)
 	{
-		std::cerr << "Could not initialize SDL Renderer\n";
+		log_utils::error("Could not initialize SDL Renderer");
 		return;
 	}
 }

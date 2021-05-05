@@ -1,7 +1,6 @@
 #include "input.h"
-#include "engine.h"
 
-#include <iostream>
+#include "engine.h"
 
 namespace input 
 {
@@ -21,7 +20,7 @@ namespace input
 				switch (event.type)
 				{
 				case SDL_QUIT:
-					Engine::getInstance()->isRunning = false;
+					Engine::getInstance()->quit();
 					break;
 				case SDL_KEYDOWN:
 				case SDL_KEYUP:
