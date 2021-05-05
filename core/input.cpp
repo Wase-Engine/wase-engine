@@ -2,9 +2,11 @@
 
 #include "engine.h"
 
+#include <map>
+
 namespace input 
 {
-	bool keys[263], keysNoRepeat[263], keysUp[263] = { false };
+	std::map<int, bool> keys, keysNoRepeat, keysUp;
 
 	namespace events
 	{
@@ -32,10 +34,7 @@ namespace input
 
 		void keyEvent(const SDL_KeyboardEvent* event)
 		{
-			const int keycode = event->keysym.scancode;
-
-			if (sizeof(keys) / sizeof(keys[0]) - 1 < keycode)
-				return;
+			const int keycode = event->keysym.sym;
 
 			if (event->type == SDL_KEYDOWN)
 			{
@@ -49,7 +48,7 @@ namespace input
 
 		void keyDown(const SDL_KeyboardEvent* event)
 		{
-			const int keycode = event->keysym.scancode;
+			const int keycode = event->keysym.sym;
 
 			keys[keycode] = true;
 
@@ -61,7 +60,7 @@ namespace input
 
 		void keyUp(const SDL_KeyboardEvent* event)
 		{
-			const int keycode = event->keysym.scancode;
+			const int keycode = event->keysym.sym;
 
 			keys[keycode] = false;
 			keysUp[keycode] = true;
