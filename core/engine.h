@@ -4,6 +4,12 @@
 
 class Engine
 {
+public:
+	static Engine* getInstance();
+
+	void run(const char* sceneName);
+	void quit();
+
 private:
 	static Engine* instance;
 
@@ -16,10 +22,4 @@ private:
 	void update();
 	void render();
 	void destroy();
-
-public:
-	static Engine* getInstance();
-
-	void run(const char* sceneName);
-	void quit();
 };

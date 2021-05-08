@@ -9,14 +9,11 @@
 
 class AudioSource : public Component
 {
-private:
-	Mix_Chunk* audioClip;
-	int channel = -1;
-
 public:
 	bool playing = false;
 	bool loop;
 
+public:
 	AudioSource(const char* path, bool loop, Uint8 volume, bool playOnAwake)
 	{
 		this->loop = loop;
@@ -84,11 +81,15 @@ public:
 			volume = (volume / 100) * 128;
 		}
 
-		audioClip->volume = (Uint8) volume;
+		audioClip->volume = (Uint8)volume;
 	}
 
 	~AudioSource()
 	{
 		Mix_FreeChunk(audioClip);
 	}
+
+private:
+	Mix_Chunk* audioClip;
+	int channel = -1;
 };

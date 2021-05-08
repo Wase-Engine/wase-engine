@@ -10,15 +10,10 @@
 
 class SpriteRenderer : public Component
 {
-private:
-	Transform* transform;
-	SDL_Texture* texture;
-	SDL_Rect rect;
-	const char* path;
-
 public:
 	int sizeX, sizeY;
 
+public:
 	SpriteRenderer(const char* path, const int sizeX, const int sizeY)
 	{
 		this->path = path;
@@ -50,4 +45,10 @@ public:
 	{
 		SDL_RenderCopy(Renderer::getRenderer(), texture, NULL, &rect);
 	}
+
+private:
+	Transform* transform;
+	SDL_Texture* texture;
+	SDL_Rect rect;
+	const char* path;
 };

@@ -7,6 +7,7 @@ class Transform : public Component
 public:
 	int x, y;
 
+public:
 	Transform(const int x, int y)
 	{
 		this->x = x;

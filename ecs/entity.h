@@ -9,11 +9,6 @@ class Component;
 
 class Entity
 {
-private:
-	const char* name;
-	bool enabled = true;
-	std::map<const char*, Component*> components;
-
 public:
 	Entity(const char* name);
 	~Entity();
@@ -51,4 +46,9 @@ public:
 
 		return component;
 	}
+
+private:
+	const char* name;
+	bool enabled = true;
+	std::map<const char*, Component*> components;
 };

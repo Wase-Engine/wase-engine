@@ -4,9 +4,6 @@
 
 class EntityManager
 {
-private:
-	std::map<const char*, Entity*> entities;
-
 public:
 	void update();
 	void render();
@@ -15,4 +12,7 @@ public:
 	Entity* getEntity(const char* name);
 
 	~EntityManager();
+
+private:
+	std::map<const char*, Entity*> entities;
 };

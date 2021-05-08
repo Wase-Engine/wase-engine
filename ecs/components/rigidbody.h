@@ -6,7 +6,6 @@
 
 class Rigidbody : public Component
 {
-
 public:
 	Rigidbody()
 	{
