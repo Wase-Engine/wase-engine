@@ -17,10 +17,6 @@ public:
 	{
 	}
 
-	void events() override
-	{
-	}
-
 	void update() override
 	{
 	}
