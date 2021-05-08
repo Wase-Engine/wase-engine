@@ -8,17 +8,6 @@ Entity::Entity(const char* name)
 	this->addComponent<Transform>(0, 0);
 }
 
-void Entity::events()
-{
-	for (std::pair<const char*, Component*> component : components)
-	{
-		if (component.second->isActive())
-		{
-			component.second->events();
-		}
-	}
-}
-
 void Entity::update()
 {
 	for (std::pair<const char*, Component*> component : components)

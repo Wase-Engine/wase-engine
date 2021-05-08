@@ -18,7 +18,6 @@ public:
 	Entity(const char* name);
 	~Entity();
 
-	void events();
 	void update();
 	void render();
 

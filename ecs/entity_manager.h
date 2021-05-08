@@ -5,12 +5,9 @@
 class EntityManager
 {
 private:
-	static EntityManager* instance;
-
 	std::map<const char*, Entity*> entities;
 
 public:
-	void events();
 	void update();
 	void render();
 
@@ -18,6 +15,4 @@ public:
 	Entity* getEntity(const char* name);
 
 	~EntityManager();
-
-	static EntityManager* getInstance();
 };

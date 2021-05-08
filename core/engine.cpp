@@ -2,7 +2,7 @@
 
 #include "window.h"
 #include "renderer.h"
-#include "../ecs/entity_manager.h"
+#include "scene_manager.h"
 #include "input.h"
 #include "utils/log_utils.h"
 
@@ -15,6 +15,11 @@ Engine* Engine::instance = nullptr;
 Engine::Engine()
 {
 	instance = this;
+}
+
+void Engine::run(const char* sceneName)
+{
+	SceneManager::setActiveScene(sceneName);
 
 	init();
 
@@ -55,15 +60,14 @@ void Engine::events()
 
 void Engine::update()
 {
-	EntityManager::getInstance()->update();
+	SceneManager::getActiveScene()->updateScene();
 }
 
 void Engine::render()
 {
-	SDL_SetRenderDrawColor(Renderer::getRenderer(), 21, 21, 21, 255);
 	SDL_RenderClear(Renderer::getRenderer());
 
-	EntityManager::getInstance()->render();
+	SceneManager::getActiveScene()->renderScene();
 
 	SDL_RenderPresent(Renderer::getRenderer());
 }
@@ -76,18 +80,18 @@ void Engine::destroy()
 	Mix_Quit();
 	IMG_Quit();
 
-	delete EntityManager::getInstance();
+	delete SceneManager::getInstance();
 	delete Window::getInstance();
 	delete Renderer::getInstance();
 	delete this;
 }
 
-Engine* Engine::getInstance()
-{
-	return instance = (instance != nullptr) ? instance : new Engine;
-}
-
 void Engine::quit()
 {
 	isRunning = false;
+}
+
+Engine* Engine::getInstance()
+{
+	return instance = (instance != nullptr) ? instance : new Engine;
 }

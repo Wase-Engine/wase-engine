@@ -1,5 +1,7 @@
 #pragma once
 
+#include "scene.h"
+
 class Engine
 {
 private:
@@ -18,5 +20,6 @@ private:
 public:
 	static Engine* getInstance();
 
+	void run(const char* sceneName);
 	void quit();
 };

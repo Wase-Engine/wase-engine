@@ -38,11 +38,6 @@ public:
 		transform = owner->getComponent<Transform>();
 	}
 
-	void events() override
-	{
-
-	}
-
 	void update() override
 	{
 		rect.x = transform->x;

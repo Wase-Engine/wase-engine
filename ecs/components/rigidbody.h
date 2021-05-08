@@ -17,11 +17,6 @@ public:
 
 	}
 
-	void events()
-	{
-
-	}
-
 	void update()
 	{
 
