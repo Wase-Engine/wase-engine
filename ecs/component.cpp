@@ -4,10 +4,6 @@ void Component::init()
 {
 }
 
-void Component::events()
-{
-}
-
 void Component::update()
 {
 }
