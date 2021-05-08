@@ -21,5 +21,5 @@ cmake build .
 ```
 
 ## Documentation
-You can head over to the [wiki](https://github.com/JelleVos1/sdl-game-engine/wiki) for more information about the SDL Game Engine. In the [wiki](https://github.com/JelleVos1/sdl-game-engine/wiki) there is a detailed description about how the SDL Game Engine works.
+You can head over to the [documentation](https://github.com/JelleVos1/sdl-game-engine/blob/master/documentation.md) for more information about SDL Game Engine. In the [documentation](https://github.com/JelleVos1/sdl-game-engine/blob/master/documentation.md) there is a detailed description about how SDL Game Engine works.
 

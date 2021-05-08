@@ -2,7 +2,7 @@
 
 #include "components/transform.h"
 
-Entity::Entity(const char* name)
+Entity::Entity(const std::string& name)
 {
 	this->name = name;
 	this->addComponent<Transform>(0, 0);

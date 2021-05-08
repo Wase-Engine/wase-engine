@@ -2,7 +2,7 @@
 
 SceneManager* SceneManager::instance = nullptr;
 
-void SceneManager::addScene(const char* name, Scene* scene)
+void SceneManager::addScene(const std::string& name, Scene* scene)
 {
 	getInstance()->scenes[name] = scene;
 }
@@ -12,7 +12,7 @@ Scene* SceneManager::getActiveScene()
 	return getInstance()->activeScene;
 }
 
-void SceneManager::setActiveScene(const char* name)
+void SceneManager::setActiveScene(const std::string& name)
 {
 	getInstance()->activeScene = getInstance()->scenes[name];
 	getInstance()->activeScene->startScene();
@@ -20,7 +20,7 @@ void SceneManager::setActiveScene(const char* name)
 
 SceneManager::~SceneManager()
 {
-	for (std::pair<const char*, Scene*> scene : scenes)
+	for (std::pair<std::string, Scene*> scene : scenes)
 	{
 		delete scene.second;
 	}

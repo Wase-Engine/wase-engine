@@ -10,7 +10,7 @@ class Component;
 class Entity
 {
 public:
-	Entity(const char* name);
+	Entity(const std::string& name);
 	~Entity();
 
 	void update();
@@ -48,7 +48,7 @@ public:
 	}
 
 private:
-	const char* name;
+	std::string name;
 	bool enabled = true;
 	std::map<const char*, Component*> components;
 };

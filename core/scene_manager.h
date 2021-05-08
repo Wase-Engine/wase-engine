@@ -3,6 +3,7 @@
 #include "scene.h"
 
 #include <map>
+#include <string>
 
 class SceneManager
 {
@@ -11,15 +12,15 @@ public:
 
 	static SceneManager* getInstance();
 
-	static void addScene(const char* name, Scene* scene);
+	static void addScene(const std::string& name, Scene* scene);
 
 	static Scene* getActiveScene();
-	static void setActiveScene(const char* name);
+	static void setActiveScene(const std::string& name);
 
 private:
 	static SceneManager* instance;
 	
-	std::map<const char*, Scene*> scenes;
+	std::map<std::string, Scene*> scenes;
 
 	Scene* activeScene;
 };

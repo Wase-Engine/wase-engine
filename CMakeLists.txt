@@ -14,7 +14,7 @@ include_directories(${SDL2_INCLUDE_DIR}
         ${SDL2_MIXER_INCLUDE_DIR})
 
 add_executable(sdl-game-engine
-    main.cpp
+    example-game/main.cpp
     core/engine.h
     core/engine.cpp
     core/renderer.h
@@ -23,6 +23,12 @@ add_executable(sdl-game-engine
     core/window.cpp
     core/input.h
     core/input.cpp
+    core/scene.h
+    core/scene.cpp
+    core/scene_manager.h
+    core/scene_manager.cpp
+    core/utils/log_utils.h
+    core/utils/log_utils.cpp
     ecs/component.h
     ecs/component.cpp
     ecs/entity.h
@@ -32,6 +38,9 @@ add_executable(sdl-game-engine
     ecs/components/transform.h
     ecs/components/sprite_renderer.h
     ecs/components/audio_source.h
+    ecs/components/rigidbody.h
+    example-game/scenes/example_scene.h
+    example-game/scenes/example_scene.cpp
 )
 
 target_link_libraries(sdl-game-engine ${SDL2_LIBRARY}

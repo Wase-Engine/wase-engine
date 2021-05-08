@@ -2,17 +2,19 @@
 
 #include "entity.h"
 
+#include <string>
+
 class EntityManager
 {
 public:
 	void update();
 	void render();
 
-	Entity* addEntity(const char* name);
-	Entity* getEntity(const char* name);
+	Entity* addEntity(const std::string& name);
+	Entity* getEntity(const std::string& name);
 
 	~EntityManager();
 
 private:
-	std::map<const char*, Entity*> entities;
+	std::map<std::string, Entity*> entities;
 };
