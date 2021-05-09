@@ -24,3 +24,5 @@ cmake build .
 ## Documentation
 You can head over to the [documentation](https://github.com/JelleVos1/sdl-game-engine/blob/master/documentation.md) for more information about SDL Game Engine. In the [documentation](https://github.com/JelleVos1/sdl-game-engine/blob/master/documentation.md) there is a detailed description about how SDL Game Engine works.
 
+## Contributing
+If you want to contribute to SDL Game Engine you can head over to the [contributing](https://github.com/JelleVos1/sdl-game-engine/blob/master/CONTRIBUTING.md) page for more information.
