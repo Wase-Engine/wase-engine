@@ -97,7 +97,7 @@ You can change the state on a component using the setActive method.
 exampleEntity->getComponent<AudioSource>().setActive(false);
 ```
 
-[here]() you can find a list of all the available components.
+[Here](#components-list) you can find a list of all the available components.
 
 ### List of components <a name="components-list"></a>
 - [Transform](#transform)
