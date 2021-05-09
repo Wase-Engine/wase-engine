@@ -7,6 +7,7 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include <memory>
 
 class SpriteRenderer : public Component
 {
@@ -47,7 +48,7 @@ public:
 	}
 
 private:
-	Transform* transform;
+	std::shared_ptr<Transform> transform;
 	SDL_Texture* texture;
 	SDL_Rect rect;
 	const char* path;
