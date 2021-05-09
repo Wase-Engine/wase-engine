@@ -10,12 +10,7 @@
 #include <SDL_mixer.h>
 #include <SDL_image.h>
 
-Engine* Engine::instance = nullptr;
-
-Engine::Engine()
-{
-	instance = this;
-}
+std::shared_ptr<Engine> Engine::instance = nullptr;
 
 void Engine::run(const char* sceneName)
 {
@@ -79,11 +74,6 @@ void Engine::destroy()
 	SDL_Quit();
 	Mix_Quit();
 	IMG_Quit();
-
-	delete SceneManager::getInstance();
-	delete Window::getInstance();
-	delete Renderer::getInstance();
-	delete this;
 }
 
 void Engine::quit()
@@ -91,7 +81,7 @@ void Engine::quit()
 	isRunning = false;
 }
 
-Engine* Engine::getInstance()
+std::shared_ptr<Engine> Engine::getInstance()
 {
-	return instance = (instance != nullptr) ? instance : new Engine;
+	return instance = (instance != nullptr) ? instance : std::make_shared<Engine>();
 }

@@ -4,23 +4,22 @@
 
 #include <map>
 #include <string>
+#include <memory>
 
 class SceneManager
 {
 public:
-	~SceneManager();
+	static std::shared_ptr<SceneManager> getInstance();
 
-	static SceneManager* getInstance();
+	static void addScene(const std::string& name, std::shared_ptr<Scene> scene);
 
-	static void addScene(const std::string& name, Scene* scene);
-
-	static Scene* getActiveScene();
+	static std::shared_ptr<Scene> getActiveScene();
 	static void setActiveScene(const std::string& name);
 
 private:
-	static SceneManager* instance;
+	static std::shared_ptr<SceneManager> instance;
 	
-	std::map<std::string, Scene*> scenes;
+	std::map<std::string, std::shared_ptr<Scene>> scenes;
 
-	Scene* activeScene;
+	std::shared_ptr<Scene> activeScene;
 };

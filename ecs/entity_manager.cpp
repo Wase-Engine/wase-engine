@@ -2,40 +2,30 @@
 
 void EntityManager::update()
 {
-	for (std::pair<std::string, Entity*> entity : entities)
+	for (const auto&[entityName, entityPtr] : entities)
 	{
-		entity.second->update();
+		entityPtr->update();
 	}
 }
 
 void EntityManager::render()
 {
-	for (std::pair<std::string, Entity*> entity : entities)
+	for (const auto& [entityName, entityPtr] : entities)
 	{
-		entity.second->render();
+		entityPtr->render();
 	}
 }
 
-Entity* EntityManager::addEntity(const std::string& name)
+std::shared_ptr<Entity> EntityManager::addEntity(const std::string& name)
 {
-	Entity* entity = new Entity(name);
+	std::shared_ptr<Entity> entity = std::make_shared<Entity>(name);
 
 	entities[name] = entity;
 
 	return entity;
 }
 
-Entity* EntityManager::getEntity(const std::string& name)
+std::shared_ptr<Entity> EntityManager::getEntity(const std::string& name)
 {
 	return entities[name];
-}
-
-EntityManager::~EntityManager()
-{
-	for (std::pair<std::string, Entity*> entity : entities)
-	{
-		delete entity.second;
-	}
-
-	entities.clear();
 }

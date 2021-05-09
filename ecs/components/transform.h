@@ -8,7 +8,7 @@ public:
 	int x, y;
 
 public:
-	Transform(const int x, int y)
+	Transform(const int x, const int y)
 	{
 		this->x = x;
 		this->y = y;

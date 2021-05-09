@@ -14,7 +14,7 @@ public:
 	bool loop;
 
 public:
-	AudioSource(const char* path, bool loop, Uint8 volume, bool playOnAwake)
+	AudioSource(const char* path, const bool loop, const Uint8 volume, const bool playOnAwake)
 	{
 		this->loop = loop;
 
@@ -51,7 +51,7 @@ public:
 		channel = Mix_PlayChannel(-1, audioClip, loop);
 	}
 
-	void onStateChange(bool state) override
+	void onStateChange(const bool state) override
 	{
 		if (channel != -1)
 		{

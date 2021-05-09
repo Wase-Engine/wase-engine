@@ -1,18 +1,19 @@
 #pragma once
 
 #include <SDL.h>
+#include <memory>
 
 class Renderer
 {
 public:
+	static std::shared_ptr<Renderer> getInstance();
 	static SDL_Renderer* getRenderer();
-	static Renderer* getInstance();
+
+public:
+	Renderer();
 
 private:
-	static Renderer* instance;
+	static std::shared_ptr<Renderer> instance;
 
 	SDL_Renderer* renderer;
-
-private:
-	Renderer();
 };

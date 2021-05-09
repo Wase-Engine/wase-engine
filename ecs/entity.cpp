@@ -2,6 +2,8 @@
 
 #include "components/transform.h"
 
+#include <string>
+
 Entity::Entity(const std::string& name)
 {
 	this->name = name;
@@ -10,32 +12,22 @@ Entity::Entity(const std::string& name)
 
 void Entity::update()
 {
-	for (std::pair<const char*, Component*> component : components)
+	for (const auto&[componentName, componentPtr] : components)
 	{
-		if (component.second->isActive())
+		if (componentPtr->isActive())
 		{
-			component.second->update();
+			componentPtr->update();
 		}
 	}
 }
 
 void Entity::render()
 {
-	for (std::pair<const char*, Component*> component : components)
+	for (const auto& [componentName, componentPtr] : components)
 	{
-		if (component.second->isActive())
+		if (componentPtr->isActive())
 		{
-			component.second->render();
+			componentPtr->render();
 		}
 	}
-}
-
-Entity::~Entity()
-{
-	for (std::pair<const char*, Component*> component : components)
-	{
-		delete component.second;
-	}
-
-	components.clear();
 }

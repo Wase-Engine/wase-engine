@@ -2,7 +2,7 @@
 
 #include "utils/log_utils.h"
 
-Window* Window::instance = nullptr;
+std::shared_ptr<Window> Window::instance = nullptr;
 
 Window::Window()
 {
@@ -19,7 +19,7 @@ SDL_Window* Window::getWindow()
 	return getInstance()->window;
 }
 
-Window* Window::getInstance()
+std::shared_ptr<Window> Window::getInstance()
 {
-	return instance = (instance != nullptr) ? instance : new Window;
+	return instance = (instance != nullptr) ? instance : std::make_shared<Window>();
 }

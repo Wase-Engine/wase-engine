@@ -1,22 +1,21 @@
 #pragma once
 
-#include "scene.h"
+#include <memory>
 
 class Engine
 {
 public:
-	static Engine* getInstance();
+	static std::shared_ptr<Engine> getInstance();
 
 	void run(const char* sceneName);
 	void quit();
 
 private:
-	static Engine* instance;
+	static std::shared_ptr<Engine> instance;
 
 	bool isRunning = false;
 
 private:
-	Engine();
 	void init();
 	void events();
 	void update();

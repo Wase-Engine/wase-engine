@@ -12,7 +12,7 @@ void Component::render()
 {
 }
 
-void Component::onStateChange(bool state)
+void Component::onStateChange(const bool state)
 {
 }
 
@@ -21,7 +21,7 @@ bool Component::isActive()
 	return active;
 }
 
-void Component::setActive(bool state)
+void Component::setActive(const bool state)
 {
 	active = state;
 	onStateChange(state);
