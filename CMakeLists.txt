@@ -38,7 +38,6 @@ add_executable(sdl-game-engine
     ecs/components/transform.h
     ecs/components/sprite_renderer.h
     ecs/components/audio_source.h
-    ecs/components/rigidbody.h
     example-game/scenes/example_scene.h
     example-game/scenes/example_scene.cpp
 )

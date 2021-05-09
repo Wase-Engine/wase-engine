@@ -1,13 +1,13 @@
 #include "scene_manager.h"
 
-SceneManager* SceneManager::instance = nullptr;
+std::shared_ptr<SceneManager> SceneManager::instance = nullptr;
 
-void SceneManager::addScene(const std::string& name, Scene* scene)
+void SceneManager::addScene(const std::string& name, std::shared_ptr<Scene> scene)
 {
 	getInstance()->scenes[name] = scene;
 }
 
-Scene* SceneManager::getActiveScene()
+std::shared_ptr<Scene> SceneManager::getActiveScene()
 {
 	return getInstance()->activeScene;
 }
@@ -18,15 +18,7 @@ void SceneManager::setActiveScene(const std::string& name)
 	getInstance()->activeScene->startScene();
 }
 
-SceneManager::~SceneManager()
+std::shared_ptr<SceneManager> SceneManager::getInstance()
 {
-	for (const auto&[sceneName, scenePtr] : scenes)
-	{
-		delete scenePtr;
-	}
-}
-
-SceneManager* SceneManager::getInstance()
-{
-	return instance = (instance != nullptr) ? instance : new SceneManager;
+	return instance = (instance != nullptr) ? instance : std::make_shared<SceneManager>();
 }

@@ -1,18 +1,19 @@
 #pragma once
 
 #include <SDL.h>
+#include <memory>
 
 class Window
 {
 public:
-	static Window* getInstance();
+	static std::shared_ptr<Window> getInstance();
 	static SDL_Window* getWindow();
 
+public:
+	Window();
+
 private:
-	static Window* instance;
+	static std::shared_ptr<Window> instance;
 
 	SDL_Window* window;
-
-private:
-	Window();
 };

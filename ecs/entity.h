@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <memory>
 
 class Component;
 
@@ -12,7 +13,6 @@ class Entity
 {
 public:
 	Entity(const std::string& name);
-	~Entity();
 
 	void update();
 	void render();
@@ -26,7 +26,7 @@ public:
 			return;
 		}
 
-		T* component = new T(std::forward<TArgs>(args)...);
+		std::shared_ptr<T> component = std::make_shared<T>(T(std::forward<TArgs>(args)...));
 
 		component->owner = this;
 		component->init();
@@ -35,9 +35,9 @@ public:
 	}
 
 	template<typename T>
-	inline T* getComponent()
+	inline std::shared_ptr<T> getComponent()
 	{
-		T* component = static_cast<T*>(components[typeid(T).name()]);
+		std::shared_ptr<T> component = std::static_pointer_cast<T>(components[typeid(T).name()]);
 
 		if (component == nullptr) {
 			std::cerr << "Entity " << name << " does not have a " << typeid(T).name() << "\n";
@@ -51,5 +51,5 @@ public:
 private:
 	std::string name;
 	bool enabled = true;
-	std::map<std::string, Component*> components;
+	std::map<std::string, std::shared_ptr<Component>> components;
 };

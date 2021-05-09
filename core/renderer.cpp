@@ -3,7 +3,7 @@
 #include "window.h"
 #include "utils/log_utils.h"
 
-Renderer* Renderer::instance = nullptr;
+std::shared_ptr<Renderer> Renderer::instance = nullptr;
 
 Renderer::Renderer()
 {
@@ -20,7 +20,7 @@ SDL_Renderer* Renderer::getRenderer()
 	return getInstance()->renderer;
 }
 
-Renderer* Renderer::getInstance()
+std::shared_ptr<Renderer> Renderer::getInstance()
 {
-	return instance = (instance != nullptr) ? instance : new Renderer;
+	return instance = (instance != nullptr) ? instance : std::make_shared<Renderer>();
 }
