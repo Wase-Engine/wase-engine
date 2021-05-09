@@ -20,9 +20,9 @@ void SceneManager::setActiveScene(const std::string& name)
 
 SceneManager::~SceneManager()
 {
-	for (std::pair<std::string, Scene*> scene : scenes)
+	for (const auto&[sceneName, scenePtr] : scenes)
 	{
-		delete scene.second;
+		delete scenePtr;
 	}
 }
 

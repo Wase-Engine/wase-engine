@@ -11,6 +11,7 @@ Requirements:
  - SDL2
  - SDL2 image
  - SDL2 mixer
+ - C++17 or higher
 
 You can use the CMake GUI or you can run the following commands in the commandline:
 ```

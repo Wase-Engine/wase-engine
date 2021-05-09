@@ -2,17 +2,17 @@
 
 void EntityManager::update()
 {
-	for (std::pair<std::string, Entity*> entity : entities)
+	for (const auto&[entityName, entityPtr] : entities)
 	{
-		entity.second->update();
+		entityPtr->update();
 	}
 }
 
 void EntityManager::render()
 {
-	for (std::pair<std::string, Entity*> entity : entities)
+	for (const auto& [entityName, entityPtr] : entities)
 	{
-		entity.second->render();
+		entityPtr->render();
 	}
 }
 
@@ -32,9 +32,9 @@ Entity* EntityManager::getEntity(const std::string& name)
 
 EntityManager::~EntityManager()
 {
-	for (std::pair<std::string, Entity*> entity : entities)
+	for (const auto&[entityName, entityPtr] : entities)
 	{
-		delete entity.second;
+		delete entityPtr;
 	}
 
 	entities.clear();

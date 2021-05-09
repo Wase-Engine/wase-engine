@@ -3,6 +3,7 @@
 #include "component.h"
 
 #include <iostream>
+#include <string>
 #include <map>
 
 class Component;
@@ -50,5 +51,5 @@ public:
 private:
 	std::string name;
 	bool enabled = true;
-	std::map<const char*, Component*> components;
+	std::map<std::string, Component*> components;
 };
