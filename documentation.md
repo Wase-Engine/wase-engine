@@ -41,7 +41,7 @@ The run method takes 1 parameter, this is the name of the scene that will be use
 
 ### Scene management <a name="scene-management"></a>
 To create a scene you will need to create a class that extends from the Scene class.
-```
+```c++
 class ExampleScene : public Scene
 {
 private:
@@ -53,7 +53,7 @@ private:
 You can use the start, update and render methods from the Scene class. The start method will be run when it becomes the active scene. The update method will run once every frame and in the render method you can handle custom rendering.
 
 When you have created your custom scene you can add it in the main function before the run method.
-```
+```c++
 #include "engine.h"
 #include "scene_manager.h"
 #include "example_scene.h"
@@ -70,7 +70,7 @@ Now your engine is set up and your game is ready to be run.
 
 ### Creating entities <a name="creating-entities"></a>
 To create an entity in your scene you can use the entity manager that is part of the Scene class.
-```
+```c++
 #include "entity.h"
 #include "entity_manager.h"
 
@@ -85,15 +85,15 @@ Every entity has a transform component by default.
 
 ### Working with components <a name="components"></a>
 You can add and get components from entities. First you will have to [create an entity](#creating-entities) to work with. Every entity has a transform component by default. You can get components with the getComponent method.
-```
+```c++
 exampleEntity->getComponent<Transform>()
 ```
 To add other components you can use the addComponent method.
-```
+```c++
 exampleEntity->addComponent<ComponentName>(componentArguments);
 ```
 You can change the state on a component using the setActive method.
-```
+```c++
 exampleEntity->getComponent<AudioSource>().setActive(false);
 ```
 
@@ -121,7 +121,7 @@ There are 3 different kind of log types:
 - error
 
 You can use these by importing the log_utils header.
-```
+```c++
 log_utils::info("This is an example.");
 ```
 
