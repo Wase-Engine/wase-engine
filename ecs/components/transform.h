@@ -5,24 +5,24 @@
 class Transform : public Component
 {
 public:
-	int x, y;
+	float x, y;
 
 public:
-	Transform(const int x, const int y)
+	Transform(const float x, const float y)
 	{
 		this->x = x;
 		this->y = y;
 	}
 
-	void init() override
+	void init()
 	{
 	}
 
-	void update() override
+	void update(float dt)
 	{
 	}
 
-	void render() override
+	void render()
 	{
 	}
 };

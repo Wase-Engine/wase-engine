@@ -6,7 +6,7 @@ class Scene
 {
 public:
 	void startScene();
-	void updateScene();
+	void updateScene(float dt);
 	void renderScene();
 
 protected:
@@ -14,6 +14,6 @@ protected:
 
 protected:
 	virtual void start();
-	virtual void update();
+	virtual void update(float dt);
 	virtual void render();
 };

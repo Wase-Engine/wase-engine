@@ -8,7 +8,7 @@
 class EntityManager
 {
 public:
-	void update();
+	void update(float dt);
 	void render();
 
 	std::shared_ptr<Entity> addEntity(const std::string& name);

@@ -7,16 +7,16 @@
 Entity::Entity(const std::string& name)
 {
 	this->name = name;
-	this->addComponent<Transform>(0, 0);
+	this->addComponent<Transform>(0.0f, 0.0f);
 }
 
-void Entity::update()
+void Entity::update(float dt)
 {
 	for (const auto&[componentName, componentPtr] : components)
 	{
 		if (componentPtr->isActive())
 		{
-			componentPtr->update();
+			componentPtr->update(dt);
 		}
 	}
 }
