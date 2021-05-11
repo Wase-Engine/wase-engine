@@ -106,12 +106,26 @@ exampleEntity->getComponent<AudioSource>().setActive(false);
 
 #### Transform <a name="transform"></a>
 The Transform handles the position of an entity.
+|Properties||
+|--|--|
+| X | The x position |
+| Y | The y position |
 
 #### SpriteRenderer <a name="spriterenderer"></a>
 The SpriteRenderer handles the rendering of an entity. You can assign a sprite to the SpriteRenderer and then it will be drawn on the screen at the [Transform](#transform) position.
 
 #### AudioSource <a name="audiosource"></a>
 The AudioSource handles the audio of an entity. You can assign an audioclip to the AudioSource and then this can be played.
+|Properties||
+|--|--|
+| playing | A boolean value to pause of unpause the audioclip |
+| loop | A boolean value if the clip must loop or not |
+<br>
+
+|Methods| |
+|--|--|
+| play() | Play the audioclip |
+| setVolume(float volume) | Adjust the volume in a range from 0 to 100 |
 
 ### Logging <a name="logging"></a>
 To print messages to the console you can make use of the log utils.

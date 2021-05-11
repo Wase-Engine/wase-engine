@@ -7,11 +7,11 @@ class Entity;
 class Component
 {
 public:
-	Entity* owner;
+	Entity* owner = nullptr;
 
 public:
 	virtual void init() = 0;
-	virtual void update() = 0;
+	virtual void update(float dt) = 0;
 	virtual void render() = 0;
 
 	virtual void onStateChange(const bool state);

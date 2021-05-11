@@ -11,8 +11,12 @@
 
 class SpriteRenderer : public Component
 {
-public:
+private:
+	std::shared_ptr<Transform> transform;
+	SDL_Texture* texture;
+	SDL_Rect rect {};
 	int sizeX, sizeY;
+	const char* path;
 
 public:
 	SpriteRenderer(const char* path, const int sizeX, const int sizeY)
@@ -29,27 +33,21 @@ public:
 		}
 	}
 
-	void init() override
+	void init()
 	{
 		transform = owner->getComponent<Transform>();
 	}
 
-	void update() override
+	void update(float dt)
 	{
-		rect.x = transform->x;
-		rect.y = transform->y;
+		rect.x = (int)transform->x;
+		rect.y = (int)transform->y;
 		rect.w = sizeX;
 		rect.h = sizeY;
 	}
 
-	void render() override
+	void render()
 	{
 		SDL_RenderCopy(Renderer::getRenderer(), texture, NULL, &rect);
 	}
-
-private:
-	std::shared_ptr<Transform> transform;
-	SDL_Texture* texture;
-	SDL_Rect rect;
-	const char* path;
 };

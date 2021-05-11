@@ -5,10 +5,10 @@ void Scene::startScene()
 	start();
 }
 
-void Scene::updateScene()
+void Scene::updateScene(float dt)
 {
-	entityManager.update();
-	update();
+	entityManager.update(dt);
+	update(dt);
 }
 
 void Scene::renderScene()
@@ -22,7 +22,7 @@ void Scene::start()
 
 }
 
-void Scene::update()
+void Scene::update(float dt)
 {
 
 }

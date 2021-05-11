@@ -14,7 +14,7 @@ class Entity
 public:
 	Entity(const std::string& name);
 
-	void update();
+	void update(float dt);
 	void render();
 
 	template<typename T, typename... TArgs>

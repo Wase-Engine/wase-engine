@@ -18,7 +18,7 @@ private:
 private:
 	void init();
 	void events();
-	void update();
+	void update(float dt);
 	void render();
 	void destroy();
 };

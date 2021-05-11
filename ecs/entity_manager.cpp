@@ -1,10 +1,10 @@
 #include "entity_manager.h"
 
-void EntityManager::update()
+void EntityManager::update(float dt)
 {
 	for (const auto&[entityName, entityPtr] : entities)
 	{
-		entityPtr->update();
+		entityPtr->update(dt);
 	}
 }
 

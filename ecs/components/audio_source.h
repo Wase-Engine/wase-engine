@@ -13,6 +13,10 @@ public:
 	bool playing = false;
 	bool loop;
 
+private:
+	Mix_Chunk* audioClip;
+	int channel = -1;
+
 public:
 	AudioSource(const char* path, const bool loop, const Uint8 volume, const bool playOnAwake)
 	{
@@ -33,17 +37,16 @@ public:
 		}
 	}
 
-	void init() override
+	void init()
 	{
 	}
 
-	void update() override
+	void update(float dt)
 	{
 	}
 
-	void render() override
+	void render()
 	{
-
 	}
 
 	void play()
@@ -51,7 +54,7 @@ public:
 		channel = Mix_PlayChannel(-1, audioClip, loop);
 	}
 
-	void onStateChange(const bool state) override
+	void onStateChange(const bool state)
 	{
 		if (channel != -1)
 		{
@@ -88,8 +91,4 @@ public:
 	{
 		Mix_FreeChunk(audioClip);
 	}
-
-private:
-	Mix_Chunk* audioClip;
-	int channel = -1;
 };

@@ -5,24 +5,30 @@
 #include "scene_manager.h"
 #include "input.h"
 #include "utils/log_utils.h"
+#include "timer.h"
 
 #include <SDL.h>
 #include <SDL_mixer.h>
 #include <SDL_image.h>
 
+#include <iostream>
+
 std::shared_ptr<Engine> Engine::instance = nullptr;
 
 void Engine::run(const char* sceneName)
 {
+	init();
+
 	SceneManager::setActiveScene(sceneName);
 
-	init();
+	Timer timer;
 
 	while (isRunning)
 	{
 		events();
-		update();
+		update(timer.getDeltaTime());
 		render();
+		timer.tick();
 	}
 
 	destroy();
@@ -53,9 +59,9 @@ void Engine::events()
 	input::events::update();
 }
 
-void Engine::update()
+void Engine::update(float dt)
 {
-	SceneManager::getActiveScene()->updateScene();
+	SceneManager::getActiveScene()->updateScene(dt);
 }
 
 void Engine::render()
