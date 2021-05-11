@@ -32,7 +32,6 @@ cmake ..
 cmake build .
 ```
 
-
 ### Setting up the engine <a name="setup-engine"></a>
 To run the engine you can simply call the run method on the Engine instance in the main function.<br>
 `Engine::getInstance()->run("example");`
@@ -46,7 +45,7 @@ class ExampleScene : public Scene
 {
 private:
     void start(); // Not required
-    void update(); // Not required
+    void update(float dt); // Not required
     void render(); // Not required
 };
 ```
@@ -108,8 +107,8 @@ exampleEntity->getComponent<AudioSource>().setActive(false);
 The Transform handles the position of an entity.
 |Properties||
 |--|--|
-| X | The x position |
-| Y | The y position |
+| x | The x position |
+| y | The y position |
 
 #### SpriteRenderer <a name="spriterenderer"></a>
 The SpriteRenderer handles the rendering of an entity. You can assign a sprite to the SpriteRenderer and then it will be drawn on the screen at the [Transform](#transform) position.
