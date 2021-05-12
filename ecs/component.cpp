@@ -12,6 +12,10 @@ void Component::render()
 {
 }
 
+void Component::destroy()
+{
+}
+
 void Component::onStateChange(const bool state)
 {
 }

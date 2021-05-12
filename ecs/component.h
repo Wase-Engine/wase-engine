@@ -10,9 +10,10 @@ public:
 	Entity* owner = nullptr;
 
 public:
-	virtual void init() = 0;
-	virtual void update(float dt) = 0;
-	virtual void render() = 0;
+	virtual void init();
+	virtual void update(float dt);
+	virtual void render();
+	virtual void destroy();
 
 	virtual void onStateChange(const bool state);
 

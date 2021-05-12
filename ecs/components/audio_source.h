@@ -7,6 +7,8 @@
 #include <SDL_mixer.h>
 #include <map>
 
+#include <iostream>
+
 class AudioSource : public Component
 {
 public:
@@ -35,18 +37,6 @@ public:
 		{
 			play();
 		}
-	}
-
-	void init()
-	{
-	}
-
-	void update(float dt)
-	{
-	}
-
-	void render()
-	{
 	}
 
 	void play()
@@ -87,7 +77,7 @@ public:
 		audioClip->volume = (Uint8)volume;
 	}
 
-	~AudioSource()
+	void destroy()
 	{
 		Mix_FreeChunk(audioClip);
 	}
