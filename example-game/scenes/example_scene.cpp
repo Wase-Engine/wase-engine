@@ -12,11 +12,11 @@
 #include <memory>
 
 // Entities
-std::shared_ptr<Entity> cube;
+Entity* cube;
 
 // Components
-std::shared_ptr<Transform> transform;
-std::shared_ptr<AudioSource> audioSource;
+Transform* transform;
+AudioSource* audioSource;
 
 void ExampleScene::start()
 {

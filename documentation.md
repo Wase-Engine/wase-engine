@@ -77,7 +77,7 @@ To create an entity in your scene you can use the entity manager that is part of
 
 void ExampleScene::start()
 {
-    std::shared_ptr<Entity> exampleEntity = entityManager.addEntity("exampleEntity");
+    Entity* exampleEntity = entityManager.addEntity("exampleEntity");
 }
 ```
 Every entity has a transform component by default.

@@ -36,7 +36,7 @@ public:
 	}
 
 	template<typename T>
-	inline std::shared_ptr<T> getComponent()
+	inline T* getComponent()
 	{
 		std::shared_ptr<T> component = std::static_pointer_cast<T>(components[typeid(T).name()]);
 
@@ -46,7 +46,7 @@ public:
 			exit(0);
 		}
 
-		return component;
+		return component.get();
 	}
 
 private:

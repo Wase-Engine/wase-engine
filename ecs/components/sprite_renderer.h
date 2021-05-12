@@ -12,7 +12,7 @@
 class SpriteRenderer : public Component
 {
 private:
-	std::shared_ptr<Transform> transform;
+	Transform* transform;
 	SDL_Texture* texture;
 	SDL_Rect rect {};
 	int sizeX, sizeY;

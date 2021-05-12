@@ -16,16 +16,16 @@ void EntityManager::render()
 	}
 }
 
-std::shared_ptr<Entity> EntityManager::addEntity(const std::string& name)
+Entity* EntityManager::addEntity(const std::string& name)
 {
 	std::shared_ptr<Entity> entity = std::make_shared<Entity>(name);
 
 	entities[name] = entity;
 
-	return entity;
+	return entity.get();
 }
 
-std::shared_ptr<Entity> EntityManager::getEntity(const std::string& name)
+Entity* EntityManager::getEntity(const std::string& name)
 {
-	return entities[name];
+	return entities[name].get();
 }
