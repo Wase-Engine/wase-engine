@@ -117,7 +117,7 @@ The SpriteRenderer handles the rendering of an entity. You can assign a sprite t
 The AudioSource handles the audio of an entity. You can assign an audioclip to the AudioSource and then this can be played.
 |Properties||
 |--|--|
-| playing | A boolean value to pause of unpause the audioclip |
+| playing | A boolean value to pause or unpause the audioclip |
 | loop | A boolean value if the clip must loop or not |
 <br>
 

@@ -13,6 +13,7 @@ class Entity
 {
 public:
 	Entity(const std::string& name);
+	~Entity();
 
 	void update(float dt);
 	void render();

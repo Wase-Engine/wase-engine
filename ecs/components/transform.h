@@ -13,16 +13,4 @@ public:
 		this->x = x;
 		this->y = y;
 	}
-
-	void init()
-	{
-	}
-
-	void update(float dt)
-	{
-	}
-
-	void render()
-	{
-	}
 };

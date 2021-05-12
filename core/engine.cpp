@@ -11,8 +11,6 @@
 #include <SDL_mixer.h>
 #include <SDL_image.h>
 
-#include <iostream>
-
 std::shared_ptr<Engine> Engine::instance = nullptr;
 
 void Engine::run(const char* sceneName)
