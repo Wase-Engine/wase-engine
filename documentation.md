@@ -111,6 +111,7 @@ The Transform handles the position of an entity.
 | y | The y position |
 | scaleX | The x scale |
 | scaleY | The y scale |
+| depth | The depth of the entity. This can be used to decide the render order of the SpriteRenderer. |
 
 #### SpriteRenderer <a name="spriterenderer"></a>
 The SpriteRenderer handles the rendering of an entity. You can assign a sprite to the SpriteRenderer and then it will be drawn on the screen at the [Transform](#transform) position.
