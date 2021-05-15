@@ -42,8 +42,8 @@ public:
 	{
 		rect.x = (int)transform->x;
 		rect.y = (int)transform->y;
-		rect.w = sizeX;
-		rect.h = sizeY;
+		rect.w = (int)(sizeX * transform->scaleX);
+		rect.h = (int)(sizeY * transform->scaleY);
 	}
 
 	void render()

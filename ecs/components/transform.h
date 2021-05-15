@@ -6,11 +6,14 @@ class Transform : public Component
 {
 public:
 	float x, y;
+	float scaleX, scaleY;
 
 public:
-	Transform(const float x, const float y)
+	Transform(const float x = 0, const float y = 0, const float scaleX = 1, const float scaleY = 1)
 	{
 		this->x = x;
 		this->y = y;
+		this->scaleX = scaleX;
+		this->scaleY = scaleY;
 	}
 };

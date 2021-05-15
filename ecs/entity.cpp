@@ -7,7 +7,7 @@
 Entity::Entity(const std::string& name)
 {
 	this->name = name;
-	this->addComponent<Transform>(0.0f, 0.0f);
+	this->addComponent<Transform>();
 }
 
 void Entity::update(float dt)
