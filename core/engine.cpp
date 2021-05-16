@@ -6,6 +6,7 @@
 #include "input.h"
 #include "utils/log_utils.h"
 #include "timer.h"
+#include "debug_draw.h"
 
 #include <SDL.h>
 #include <SDL_mixer.h>
@@ -65,6 +66,10 @@ void Engine::render()
 	SDL_RenderClear(Renderer::getRenderer());
 
 	SceneManager::getActiveScene()->renderScene();
+
+	DebugDraw::render();
+
+	SDL_SetRenderDrawColor(Renderer::getRenderer(), 21, 21, 21, 255);
 
 	SDL_RenderPresent(Renderer::getRenderer());
 }

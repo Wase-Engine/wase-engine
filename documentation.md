@@ -1,3 +1,4 @@
+
 # Table of contents
 1. [Introduction](#introduction)
 2. [Building SDL Game Engine](#setup)
@@ -148,6 +149,7 @@ exampleEntity->getComponent<ComponentName>().setActive(false);
 - [Transform](#transform)
 - [SpriteRenderer](#spriterenderer)
 - [AudioSource](#audiosource)
+- [BoxCollider2D](#boxcollider2d)
 
 ### Transform <a name="transform"></a>
 The Transform handles the position of an entity.
@@ -201,6 +203,24 @@ The AudioSource handles the audio of an entity. You can assign an audioclip to t
 |--|--|--|
 | play() | void | Play the audioclip |
 | setVolume(float volume) | void | Adjust the volume in a range from 0 to 100 |
+<br>
+
+### BoxCollider2D <a name="boxcollider2d"></a>
+Registers a collision area as a rectangle.
+
+| Constructor argument | default | description |
+|--|--|--|
+| width|  | The width of the collision rectangle |
+| height | | The height of the collision rectangle  |
+<br>
+
+| Properties | description |
+|--|--|
+| width | The width of the collision rectangle |
+| height | The height of the collision rectangle |
+| offsetX | The x position offset of the collision area |
+| offsetY | The y position offset of the collision area |
+| showCollider | If true it shows a green rectangle outline representing the BoxCollider2d |
 <br>
 
 ## Logging <a name="logging"></a>

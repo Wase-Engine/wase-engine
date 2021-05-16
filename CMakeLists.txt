@@ -29,6 +29,8 @@ add_executable(sdl-game-engine
     core/scene.cpp
     core/timer.h
     core/timer.cpp
+    core/debug_draw.h
+    core/debug_draw.cpp
     core/utils/log_utils.h
     core/utils/log_utils.cpp
     core/managers/scene_manager.h
@@ -44,6 +46,7 @@ add_executable(sdl-game-engine
     ecs/components/transform.h
     ecs/components/sprite_renderer.h
     ecs/components/audio_source.h
+    ecs/components/box_collider_2d.h
     example-game/main.cpp
     example-game/scenes/example_scene.h
     example-game/scenes/example_scene.cpp
@@ -63,6 +66,8 @@ source_group(core FILES
     core/scene.cpp
     core/timer.h
     core/timer.cpp
+    core/debug_draw.h
+    core/debug_draw.cpp
     core/managers/scene_manager.h
     core/managers/scene_manager.cpp
     core/managers/resource_manager.h
@@ -88,6 +93,7 @@ source_group(ecs/components FILES
     ecs/components/transform.h
     ecs/components/sprite_renderer.h
     ecs/components/audio_source.h
+    ecs/components/box_collider_2d.h
 )
 
 # Group the example-game files

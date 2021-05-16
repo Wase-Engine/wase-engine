@@ -55,8 +55,3 @@ void ExampleScene::update(float dt)
 		audioSource->play();
 	}
 }
-
-void ExampleScene::render()
-{
-	SDL_SetRenderDrawColor(Renderer::getRenderer(), 21, 21, 21, 255);
-}
