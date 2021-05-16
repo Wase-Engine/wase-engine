@@ -11,6 +11,7 @@
     - [Transform](#transform)
     - [SpriteRenderer](#spriterenderer)
     - [AudioSource](#audiosource)
+    - [BoxCollider2D](#boxcollider2d)
 9. [Logging](#logging)
 10. [Contributing](#contributing)
 
