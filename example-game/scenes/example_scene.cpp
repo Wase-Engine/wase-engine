@@ -9,7 +9,6 @@
 #include "../../ecs/components/audio_source.h"
 
 #include <SDL.h>
-#include <memory>
 
 // Entities
 Entity* cube;
@@ -21,8 +20,8 @@ AudioSource* audioSource;
 void ExampleScene::start()
 {
 	cube = entityManager.addEntity("Cube");
-	cube->addComponent<SpriteRenderer>("example-game/assets/sprites/cube.png", 32, 32);
-	cube->addComponent<AudioSource>("example-game/assets/audio/hop.wav", false, 35, false);
+	cube->addComponent<SpriteRenderer>("cube", 32, 32);
+	cube->addComponent<AudioSource>("hop", 35);
 	
 	transform = cube->getComponent<Transform>();
 	audioSource = cube->getComponent<AudioSource>();

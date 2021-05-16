@@ -5,7 +5,7 @@
 namespace log_utils
 {
 	std::string timestamp();
-	void info(const char* message);
-	void success(const char* message);
-	void error(const char* message);
+	void info(const std::string& message);
+	void success(const std::string& message);
+	void error(const std::string& message);
 }
