@@ -2,12 +2,12 @@
 
 #include "../component.h"
 #include "../../core/utils/log_utils.h"
+#include "../../core/managers/resource_manager.h"
 
 #include <SDL.h>
 #include <SDL_mixer.h>
 #include <map>
-
-#include <iostream>
+#include <string>
 
 class AudioSource : public Component
 {
@@ -20,14 +20,13 @@ private:
 	int channel = -1;
 
 public:
-	AudioSource(const char* path, const bool loop, const Uint8 volume, const bool playOnAwake)
+	AudioSource(const std::string& name, const Uint8 volume = 100, const bool loop = false, const bool playOnAwake = false)
 	{
 		this->loop = loop;
 
-		audioClip = Mix_LoadWAV(path);
+		audioClip = ResourceManager::getAudio(name);
 		if (!audioClip)
 		{
-			log_utils::error(Mix_GetError());
 			return;
 		}
 

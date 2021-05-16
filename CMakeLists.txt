@@ -27,12 +27,14 @@ add_executable(sdl-game-engine
     core/input.cpp
     core/scene.h
     core/scene.cpp
-    core/scene_manager.h
-    core/scene_manager.cpp
     core/timer.h
     core/timer.cpp
     core/utils/log_utils.h
     core/utils/log_utils.cpp
+    core/managers/scene_manager.h
+    core/managers/scene_manager.cpp
+    core/managers/resource_manager.h
+    core/managers/resource_manager.cpp
     ecs/component.h
     ecs/component.cpp
     ecs/entity.h
@@ -59,10 +61,12 @@ source_group(core FILES
     core/input.cpp
     core/scene.h
     core/scene.cpp
-    core/scene_manager.h
-    core/scene_manager.cpp
     core/timer.h
     core/timer.cpp
+    core/managers/scene_manager.h
+    core/managers/scene_manager.cpp
+    core/managers/resource_manager.h
+    core/managers/resource_manager.cpp
 )
 
 source_group(core/utils FILES

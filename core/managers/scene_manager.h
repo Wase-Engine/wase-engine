@@ -1,6 +1,6 @@
 #pragma once
 
-#include "scene.h"
+#include "../scene.h"
 
 #include <map>
 #include <string>
@@ -9,8 +9,6 @@
 class SceneManager
 {
 public:
-	static std::shared_ptr<SceneManager> getInstance();
-
 	static void addScene(const std::string& name, std::shared_ptr<Scene> scene);
 
 	static std::shared_ptr<Scene> getActiveScene();
@@ -22,4 +20,7 @@ private:
 	std::map<std::string, std::shared_ptr<Scene>> scenes;
 
 	std::shared_ptr<Scene> activeScene;
+
+private:
+	static std::shared_ptr<SceneManager> getInstance();
 };

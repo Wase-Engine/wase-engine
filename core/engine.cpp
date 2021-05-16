@@ -2,7 +2,7 @@
 
 #include "window.h"
 #include "renderer.h"
-#include "scene_manager.h"
+#include "managers/scene_manager.h"
 #include "input.h"
 #include "utils/log_utils.h"
 #include "timer.h"
@@ -15,8 +15,6 @@ std::shared_ptr<Engine> Engine::instance = nullptr;
 
 void Engine::run(const char* sceneName)
 {
-	init();
-
 	SceneManager::setActiveScene(sceneName);
 
 	Timer timer;

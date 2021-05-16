@@ -2,12 +2,14 @@
 
 #include "../../core/renderer.h"
 #include "../../core/utils/log_utils.h"
+#include "../../core/managers/resource_manager.h"
 #include "../component.h"
 #include "transform.h"
 
 #include <SDL.h>
 #include <SDL_image.h>
 #include <memory>
+#include <string>
 
 class SpriteRenderer : public Component
 {
@@ -16,21 +18,14 @@ private:
 	SDL_Texture* texture;
 	SDL_Rect rect {};
 	int sizeX, sizeY;
-	const char* path;
 
 public:
-	SpriteRenderer(const char* path, const int sizeX, const int sizeY)
+	SpriteRenderer(const std::string& name, const int sizeX, const int sizeY)
 	{
-		this->path = path;
 		this->sizeX = sizeX;
 		this->sizeY = sizeY;
 
-		texture = IMG_LoadTexture(Renderer::getRenderer(), path);
-		if (!texture)
-		{
-			log_utils::error(IMG_GetError());
-			return;
-		}
+		texture = ResourceManager::getTexture(name);
 	}
 
 	void init()
