@@ -43,10 +43,13 @@ add_executable(sdl-game-engine
     ecs/entity.cpp
     ecs/entity_manager.h
     ecs/entity_manager.cpp
+    ecs/components/collider.h
+    ecs/components/collider.cpp
     ecs/components/transform.h
     ecs/components/sprite_renderer.h
     ecs/components/audio_source.h
     ecs/components/box_collider_2d.h
+    ecs/components/box_collider_2d.cpp
     example-game/main.cpp
     example-game/scenes/example_scene.h
     example-game/scenes/example_scene.cpp
@@ -90,10 +93,13 @@ source_group(ecs FILES
 )
 
 source_group(ecs/components FILES
+    ecs/components/collider.h
+    ecs/components/collider.cpp
     ecs/components/transform.h
     ecs/components/sprite_renderer.h
     ecs/components/audio_source.h
     ecs/components/box_collider_2d.h
+    ecs/components/box_collider_2d.cpp
 )
 
 # Group the example-game files
