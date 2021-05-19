@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../component.h"
+#include "collider.h"
 
 #include "../../core/renderer.h"
 #include "../../core/debug_draw.h"
@@ -8,44 +8,25 @@
 
 #include <SDL.h>
 
-class BoxCollider2D : public Component
+class BoxCollider2D : public Collider
 {
 public:
-	float width, height;
+	int width, height;
 	float offsetX = 0, offsetY = 0;
 	bool showCollider = false;
 
 private:
 	float x, y;
+	float mouseX, mouseY;
 
 	SDL_Rect rectToDraw;
-	Transform* transform;
 
 public:
-	BoxCollider2D(const float width, const float height)
-	{
-		this->width = width;
-		this->height = height;
-	}
+	BoxCollider2D(const int width, const int height);
 
-	void init()
-	{
-		transform = owner->getComponent<Transform>();
-	}
+	void update(float dt);
+	void render();
 
-	void update(float dt)
-	{
-		this->x = owner->getComponent<Transform>()->x;
-		this->y = owner->getComponent<Transform>()->y;
-
-		rectToDraw = { (int)x + (int)offsetX, (int)y + (int)offsetY, (int)width, (int)height };
-	}
-
-	void render()
-	{
-		if (showCollider)
-		{
-			DebugDraw::rectangle(rectToDraw, 0, 255, 0, 255);
-		}
-	}
+	bool onMouseEnter();
+	bool onMouseExit();
 };

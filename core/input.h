@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SDL.h"
+#include "vector2.h"
 
 namespace input 
 {
@@ -10,6 +11,7 @@ namespace input
 		void keyEvent(const SDL_KeyboardEvent* event);
 		void mouseButtonEvent(const SDL_MouseButtonEvent* event);
 		void mouseScrollWheelEvent(const SDL_MouseWheelEvent* event);
+		void mouseMotionEvent(const SDL_MouseMotionEvent* event);
 	}
 
 	bool getKey(const int keycode);
@@ -21,4 +23,6 @@ namespace input
 	bool getMouseButtonUp(const int button);
 
 	short getMouseScrollWheel();
+	
+	Vector2 getMousePos();
 }

@@ -8,12 +8,19 @@ namespace input
 {
 	std::map<int, bool> keys, keysNoRepeat, keysUp;
 	std::map<int, bool> buttons, buttonsNoRepeat, buttonsUp;
+	
 	short mouseScrollWheel = 0;
+	Vector2 mousePos;
 
 	namespace events
 	{
 		void update()
 		{
+			for (const auto& [button, pressed] : buttonsUp)
+			{
+				buttonsUp[button] = false;
+			}
+
 			mouseScrollWheel = 0;
 
 			SDL_Event event;
@@ -38,6 +45,10 @@ namespace input
 
 				case SDL_MOUSEWHEEL:
 					mouseScrollWheelEvent(&event.wheel);
+					break;
+
+				case SDL_MOUSEMOTION:
+					mouseMotionEvent(&event.motion);
 					break;
 				}
 			}
@@ -82,6 +93,12 @@ namespace input
 		void mouseScrollWheelEvent(const SDL_MouseWheelEvent* event)
 		{
 			mouseScrollWheel = event->y;
+		}
+
+		void mouseMotionEvent(const SDL_MouseMotionEvent* event)
+		{
+			mousePos.x = (float)event->x;
+			mousePos.y = (float)event->y;
 		}
 	}
 
@@ -137,5 +154,10 @@ namespace input
 	short getMouseScrollWheel()
 	{
 		return mouseScrollWheel;
+	}
+
+	Vector2 getMousePos()
+	{
+		return mousePos;
 	}
 }
