@@ -32,6 +32,7 @@ bool BoxCollider2D::onMouseEnter()
 	if (mouseHover)
 		return false;
 
+	// Check if the mouse is in between the edges of the box
 	if (!(mouseX < transform->x + width && mouseX > transform->x - width))
 		return false;
 
@@ -48,6 +49,7 @@ bool BoxCollider2D::onMouseExit()
 	if (!mouseHover)
 		return false;
 
+	// Check if the mouse is outside the box
 	if (mouseX < transform->x + width &&
 		mouseX > transform->x - width &&
 		mouseY < transform->y + height &&

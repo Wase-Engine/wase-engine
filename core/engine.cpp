@@ -3,6 +3,7 @@
 #include "window.h"
 #include "renderer.h"
 #include "managers/scene_manager.h"
+#include "events.h"
 #include "input.h"
 #include "utils/log_utils.h"
 #include "timer.h"
@@ -33,12 +34,14 @@ void Engine::run(const char* sceneName)
 
 void Engine::init()
 {
+	// Initialize SDL
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 	{
 		log_utils::error("Could not initialize SDL");
 		return;
 	}
 
+	// Initialize SDL_Mixer
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
 	{
 		log_utils::error("Could not initialize SDL Mixer");
@@ -54,6 +57,7 @@ void Engine::init()
 void Engine::events()
 {
 	input::events::update();
+	events::update();
 }
 
 void Engine::update(float dt)

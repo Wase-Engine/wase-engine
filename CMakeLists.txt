@@ -25,6 +25,8 @@ add_executable(sdl-game-engine
     core/window.cpp
     core/input.h
     core/input.cpp
+    core/events.h
+    core/events.cpp
     core/scene.h
     core/scene.cpp
     core/timer.h
@@ -65,6 +67,8 @@ source_group(core FILES
     core/window.cpp
     core/input.h
     core/input.cpp
+    core/events.h
+    core/events.cpp
     core/scene.h
     core/scene.cpp
     core/timer.h

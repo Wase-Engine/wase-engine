@@ -1,7 +1,5 @@
 #include "input.h"
 
-#include "engine.h"
-
 #include <map>
 
 namespace input 
@@ -22,36 +20,6 @@ namespace input
 			}
 
 			mouseScrollWheel = 0;
-
-			SDL_Event event;
-
-			while (SDL_PollEvent(&event))
-			{
-				switch (event.type)
-				{
-				case SDL_QUIT:
-					Engine::getInstance()->quit();
-					break;
-
-				case SDL_KEYDOWN:
-				case SDL_KEYUP:
-					keyEvent(&event.key);
-					break;
-
-				case SDL_MOUSEBUTTONDOWN:
-				case SDL_MOUSEBUTTONUP:
-					mouseButtonEvent(&event.button);
-					break;
-
-				case SDL_MOUSEWHEEL:
-					mouseScrollWheelEvent(&event.wheel);
-					break;
-
-				case SDL_MOUSEMOTION:
-					mouseMotionEvent(&event.motion);
-					break;
-				}
-			}
 		}
 
 		void keyEvent(const SDL_KeyboardEvent* event)
