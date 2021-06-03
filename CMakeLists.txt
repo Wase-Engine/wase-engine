@@ -47,13 +47,13 @@ add_executable(sdl-game-engine
     ecs/entity.cpp
     ecs/entity_manager.h
     ecs/entity_manager.cpp
-    ecs/components/collider.h
-    ecs/components/collider.cpp
     ecs/components/transform.h
     ecs/components/sprite_renderer.h
     ecs/components/audio_source.h
-    ecs/components/box_collider_2d.h
-    ecs/components/box_collider_2d.cpp
+    ecs/components/colliders/collider.h
+    ecs/components/colliders/collider.cpp
+    ecs/components/colliders/box_collider_2d.h
+    ecs/components/colliders/box_collider_2d.cpp
     example-game/main.cpp
     example-game/scenes/example_scene.h
     example-game/scenes/example_scene.cpp
@@ -99,13 +99,13 @@ source_group(ecs FILES
 )
 
 source_group(ecs/components FILES
-    ecs/components/collider.h
-    ecs/components/collider.cpp
     ecs/components/transform.h
     ecs/components/sprite_renderer.h
     ecs/components/audio_source.h
-    ecs/components/box_collider_2d.h
-    ecs/components/box_collider_2d.cpp
+    ecs/components/colliders/collider.h
+    ecs/components/colliders/collider.cpp
+    ecs/components/colliders/box_collider_2d.h
+    ecs/components/colliders/box_collider_2d.cpp
 )
 
 # Group the example-game files
@@ -121,6 +121,7 @@ source_group(example-game/scenes FILES
 # Copy the assets folder from the example-game
 install(DIRECTORY DESTINATION ${CMAKE_BINARY_DIR}/example-game)
 file(COPY example-game/assets DESTINATION ${CMAKE_BINARY_DIR}/example-game)
+file(COPY assets DESTINATION ${CMAKE_BINARY_DIR}/)
 
 target_link_libraries(sdl-game-engine ${SDL2_LIBRARY}
         ${SDL2_IMAGE_LIBRARIES}

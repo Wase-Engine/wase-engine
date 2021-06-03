@@ -17,6 +17,11 @@ void Scene::renderScene()
 	render();
 }
 
+EntityManager* Scene::getEntityManager()
+{
+	return &entityManager;
+}
+
 void Scene::start()
 {
 

@@ -3,9 +3,15 @@
 #include "../renderer.h"
 #include "../utils/log_utils.h"
 
+#include <SDL.h>
 #include <SDL_image.h>
 
 std::shared_ptr<ResourceManager> ResourceManager::instance = nullptr;
+
+void ResourceManager::initEngineResources()
+{
+	ResourceManager::loadFont("engine_font_opensans", "assets/ui/fonts/opensans/OpenSans-Regular.ttf");
+}
 
 SDL_Texture* ResourceManager::getTexture(const std::string& name)
 {
@@ -29,6 +35,19 @@ Mix_Chunk* ResourceManager::getAudio(const std::string& name)
 	catch (std::exception)
 	{
 		log_utils::error("Audio " + name + " not found.");
+		return nullptr;
+	}
+}
+
+TTF_Font* ResourceManager::getFont(const std::string& name)
+{
+	try
+	{
+		return std::any_cast<TTF_Font*>(getInstance()->resources[name]);
+	}
+	catch (std::exception)
+	{
+		log_utils::error("Font " + name + " not found.");
 		return nullptr;
 	}
 }
@@ -57,6 +76,19 @@ void ResourceManager::loadAudio(const std::string& name, const char* path)
 	}
 
 	getInstance()->resources[name] = audio;
+}
+
+void ResourceManager::loadFont(const std::string& name, const char* path)
+{
+	TTF_Font* font = TTF_OpenFont(path, 16);
+
+	if (!font)
+	{
+		log_utils::error(TTF_GetError());
+		return;
+	}
+
+	getInstance()->resources[name] = font;
 }
 
 std::shared_ptr<ResourceManager> ResourceManager::getInstance()

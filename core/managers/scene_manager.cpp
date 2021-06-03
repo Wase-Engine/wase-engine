@@ -7,9 +7,9 @@ void SceneManager::addScene(const std::string& name, std::shared_ptr<Scene> scen
 	getInstance()->scenes[name] = scene;
 }
 
-std::shared_ptr<Scene> SceneManager::getActiveScene()
+Scene* SceneManager::getActiveScene()
 {
-	return getInstance()->activeScene;
+	return getInstance()->activeScene.get();
 }
 
 void SceneManager::setActiveScene(const std::string& name)

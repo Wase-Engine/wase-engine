@@ -9,6 +9,8 @@ public:
 	void updateScene(float dt);
 	void renderScene();
 
+	EntityManager* getEntityManager();
+
 protected:
 	EntityManager entityManager;
 

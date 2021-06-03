@@ -1,6 +1,6 @@
 #include "collider.h"
 
-#include "../../core/input.h"
+#include "../../../core/input.h"
 
 Collider::Collider()
 {

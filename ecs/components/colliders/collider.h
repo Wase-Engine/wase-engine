@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../component.h"
-#include "transform.h"
+#include "../../component.h"
+#include "../transform.h"
 
 class Collider : public Component
 {

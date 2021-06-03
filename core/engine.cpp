@@ -3,6 +3,7 @@
 #include "window.h"
 #include "renderer.h"
 #include "managers/scene_manager.h"
+#include "managers/resource_manager.h"
 #include "events.h"
 #include "input.h"
 #include "utils/log_utils.h"
@@ -48,8 +49,15 @@ void Engine::init()
 		return;
 	}
 
+	if (TTF_Init() < 0)
+	{
+		log_utils::error("Could not initialize TTF");
+		return;
+	}
+
 	Window::getInstance();
 	Renderer::getInstance();
+	ResourceManager::initEngineResources();
 
 	isRunning = true;
 }

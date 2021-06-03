@@ -1,6 +1,6 @@
 #include "box_collider_2d.h"
 
-#include "../../core/input.h"
+#include "../../../core/input.h"
 
 BoxCollider2D::BoxCollider2D(const int width, const int height)
 {

@@ -11,7 +11,7 @@ class SceneManager
 public:
 	static void addScene(const std::string& name, std::shared_ptr<Scene> scene);
 
-	static std::shared_ptr<Scene> getActiveScene();
+	static Scene* getActiveScene();
 	static void setActiveScene(const std::string& name);
 
 private:
