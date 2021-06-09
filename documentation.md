@@ -1,4 +1,5 @@
 
+
 # Table of contents
 1. [Introduction](#introduction)
 2. [Building SDL Game Engine](#setup)
@@ -25,6 +26,7 @@ To set up SDL Game Engine you will need to install the following items:
 - SDL2
 - SDL2 image
 - SDL2 mixer
+- SDL2 TTF
 
 When you have all of them installed you can choose to build using the commandline or with the CMake gui.
 You will first need to clone this repository or your own fork, after this you can decide if you want to use the CMake gui or run the following commands:
@@ -151,6 +153,7 @@ exampleEntity->getComponent<ComponentName>().setActive(false);
 - [SpriteRenderer](#spriterenderer)
 - [AudioSource](#audiosource)
 - [BoxCollider2D](#boxcollider2d)
+- [Label](#label)
 
 ### Transform <a name="transform"></a>
 The Transform handles the position of an entity.
@@ -222,6 +225,24 @@ Registers a collision area as a rectangle.
 | offsetX | The x position offset of the collision area |
 | offsetY | The y position offset of the collision area |
 | showCollider | If true it shows a green rectangle outline representing the BoxCollider2d |
+<br>
+
+### Label<a name="label"></a>
+With the label component you can draw text to the screen.
+
+| Constructor argument | default | description |
+|--|--|--|
+| text |  | The text that will be displayed |
+| font | | The name of the font  |
+| color | | The text color  |
+
+<br>
+
+| Method | description |
+|--|--|--|
+| setText() | Set the text that will be displayed |
+| setFont() | Set the name of the font  |
+| setColor() | Set the text color  |
 <br>
 
 ## Logging <a name="logging"></a>

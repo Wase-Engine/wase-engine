@@ -10,7 +10,6 @@ std::shared_ptr<ResourceManager> ResourceManager::instance = nullptr;
 
 void ResourceManager::initEngineResources()
 {
-	ResourceManager::loadFont("engine_font_opensans", "assets/ui/fonts/opensans/OpenSans-Regular.ttf");
 }
 
 SDL_Texture* ResourceManager::getTexture(const std::string& name)
@@ -78,9 +77,9 @@ void ResourceManager::loadAudio(const std::string& name, const char* path)
 	getInstance()->resources[name] = audio;
 }
 
-void ResourceManager::loadFont(const std::string& name, const char* path)
+void ResourceManager::loadFont(const std::string& name, const char* path, unsigned int fontSize)
 {
-	TTF_Font* font = TTF_OpenFont(path, 16);
+	TTF_Font* font = TTF_OpenFont(path, fontSize);
 
 	if (!font)
 	{
