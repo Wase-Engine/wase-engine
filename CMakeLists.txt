@@ -54,6 +54,8 @@ add_executable(sdl-game-engine
     ecs/components/colliders/collider.cpp
     ecs/components/colliders/box_collider_2d.h
     ecs/components/colliders/box_collider_2d.cpp
+    ecs/components/ui/label.h
+    ecs/components/ui/label.cpp
     example-game/main.cpp
     example-game/scenes/example_scene.h
     example-game/scenes/example_scene.cpp
@@ -106,6 +108,8 @@ source_group(ecs/components FILES
     ecs/components/colliders/collider.cpp
     ecs/components/colliders/box_collider_2d.h
     ecs/components/colliders/box_collider_2d.cpp
+    ecs/components/ui/label.h
+    ecs/components/ui/label.cpp
 )
 
 # Group the example-game files

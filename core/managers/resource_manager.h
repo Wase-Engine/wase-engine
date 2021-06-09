@@ -21,7 +21,7 @@ public:
 
 	static void loadTexture(const std::string& name, const char* path);
 	static void loadAudio(const std::string& name, const char* path);
-	static void loadFont(const std::string& name, const char* path);
+	static void loadFont(const std::string& name, const char* path, unsigned int fontSize);
 
 private:
 	static std::shared_ptr<ResourceManager> instance;
