@@ -13,6 +13,7 @@
     - [SpriteRenderer](#spriterenderer)
     - [AudioSource](#audiosource)
     - [BoxCollider2D](#boxcollider2d)
+    - [Label](#label)
 9. [Logging](#logging)
 10. [Contributing](#contributing)
 
