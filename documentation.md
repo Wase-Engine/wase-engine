@@ -240,7 +240,7 @@ With the label component you can draw text to the screen.
 <br>
 
 | Method | description |
-|--|--|--|
+|--|--|
 | setText() | Set the text that will be displayed |
 | setFont() | Set the name of the font  |
 | setColor() | Set the text color  |
