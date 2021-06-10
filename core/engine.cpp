@@ -10,7 +10,6 @@
 #include "timer.h"
 #include "draw.h"
 
-#include <SDL.h>
 #include <SDL_mixer.h>
 #include <SDL_image.h>
 
@@ -33,7 +32,7 @@ void Engine::run(const char* sceneName)
 	destroy();
 }
 
-void Engine::init()
+void Engine::init(const char* title, const int x, const int y, const unsigned int w, const unsigned int h, const Uint32 flags)
 {
 	// Initialize SDL
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
@@ -55,8 +54,8 @@ void Engine::init()
 		return;
 	}
 
-	Window::getInstance();
-	Renderer::getInstance();
+	Window::init(title, x, y, w, h, flags);
+	Renderer::init();
 	ResourceManager::initEngineResources();
 
 	isRunning = true;

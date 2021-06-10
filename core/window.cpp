@@ -4,10 +4,10 @@
 
 std::shared_ptr<Window> Window::instance = nullptr;
 
-Window::Window()
+void Window::init(const char* title, const int x, const int y, const unsigned int w, const unsigned int h, const Uint32 flags)
 {
-	window = SDL_CreateWindow("Game Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, NULL);
-	if (!window)
+	getInstance()->window = SDL_CreateWindow(title, x, y, w, h, flags);
+	if (!getInstance()->window)
 	{
 		log_utils::error("Could not initialize SDL Window");
 		return;

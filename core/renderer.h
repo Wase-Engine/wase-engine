@@ -6,11 +6,11 @@
 class Renderer
 {
 public:
-	static std::shared_ptr<Renderer> getInstance();
+	static void init();
 	static SDL_Renderer* getRenderer();
 
-public:
-	Renderer();
+private:
+	static std::shared_ptr<Renderer> getInstance();
 
 private:
 	static std::shared_ptr<Renderer> instance;

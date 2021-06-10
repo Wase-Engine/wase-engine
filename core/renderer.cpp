@@ -5,10 +5,10 @@
 
 std::shared_ptr<Renderer> Renderer::instance = nullptr;
 
-Renderer::Renderer()
+void Renderer::init()
 {
-	renderer = SDL_CreateRenderer(Window::getWindow(), -1, NULL);
-	if (!renderer)
+	getInstance()->renderer = SDL_CreateRenderer(Window::getWindow(), -1, NULL);
+	if (!getInstance()->renderer)
 	{
 		log_utils::error("Could not initialize SDL Renderer");
 		return;

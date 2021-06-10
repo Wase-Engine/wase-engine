@@ -6,11 +6,11 @@
 class Window
 {
 public:
-	static std::shared_ptr<Window> getInstance();
+	static void init(const char* title, const int x, const int y, const unsigned int w, const unsigned int h, const Uint32 flags);
 	static SDL_Window* getWindow();
 
-public:
-	Window();
+private:
+	static std::shared_ptr<Window> getInstance();
 
 private:
 	static std::shared_ptr<Window> instance;

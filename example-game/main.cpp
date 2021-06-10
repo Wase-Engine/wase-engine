@@ -9,7 +9,7 @@
 int main(int argc, char* argv[])
 {
 	// Initialize SDL
-	Engine::getInstance()->init();
+	Engine::getInstance()->init("Example game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, NULL);
 
 	// Load resources
 	ResourceManager::loadTexture("cube", "example-game/assets/sprites/cube.png");

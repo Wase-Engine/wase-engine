@@ -68,7 +68,7 @@ When you have created your custom scene you can add it in the main function befo
 int main(int argc, char* argv[])
 {
     // Initialize SDL
-    Engine::getInstance()->init();
+	Engine::getInstance()->init("Example game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, NULL);
 
     // Load scenes
     SceneManager::addScene("example", std::make_shared<ExampleScene>());
