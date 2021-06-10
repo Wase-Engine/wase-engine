@@ -8,14 +8,14 @@ struct Rectangle
 {
 	int r, g, b, a;
 	bool fill;
-	SDL_Rect* rect;
+	SDL_Rect rect;
 };
 
 class Draw
 {
 public:
 	static void render();
-	static void rectangle(SDL_Rect& rect, const int r, const int g, const int b, const int a, bool fill = true);
+	static Rectangle* rectangle(const SDL_Rect& rect, const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a, const bool fill = true);
 
 private:
 	static std::shared_ptr<Draw> instance;

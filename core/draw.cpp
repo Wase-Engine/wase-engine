@@ -12,17 +12,17 @@ void Draw::render()
 
 		if (rectangle->fill)
 		{
-			SDL_RenderFillRect(Renderer::getRenderer(), rectangle->rect);
+			SDL_RenderFillRect(Renderer::getRenderer(), &rectangle->rect);
 		}
 
-		SDL_RenderDrawRect(Renderer::getRenderer(), rectangle->rect);
+		SDL_RenderDrawRect(Renderer::getRenderer(), &rectangle->rect);
 	}
 }
 
-void Draw::rectangle(SDL_Rect& rect, const int r, const int g, const int b, const int a, bool fill)
+Rectangle* Draw::rectangle(const SDL_Rect& rect, const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a, const bool fill)
 {
 	std::shared_ptr<Rectangle> rectangle = std::make_shared<Rectangle>();
-	rectangle->rect = &rect;
+	rectangle->rect = rect;
 	rectangle->fill = fill;
 	rectangle->r = r;
 	rectangle->g = g;
@@ -30,6 +30,8 @@ void Draw::rectangle(SDL_Rect& rect, const int r, const int g, const int b, cons
 	rectangle->a = a;
 
 	getInstance()->rectangles.push_back(rectangle);
+
+	return rectangle.get();
 }
 
 std::shared_ptr<Draw> Draw::getInstance()
