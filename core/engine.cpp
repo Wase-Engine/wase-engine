@@ -8,7 +8,7 @@
 #include "input.h"
 #include "utils/log_utils.h"
 #include "timer.h"
-#include "debug_draw.h"
+#include "draw.h"
 
 #include <SDL.h>
 #include <SDL_mixer.h>
@@ -79,7 +79,7 @@ void Engine::render()
 
 	SceneManager::getActiveScene()->renderScene();
 
-	DebugDraw::render();
+	Draw::render();
 
 	SDL_SetRenderDrawColor(Renderer::getRenderer(), 21, 21, 21, 255);
 

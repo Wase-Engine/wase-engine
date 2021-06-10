@@ -33,8 +33,8 @@ add_executable(sdl-game-engine
     core/scene.cpp
     core/timer.h
     core/timer.cpp
-    core/debug_draw.h
-    core/debug_draw.cpp
+    core/draw.h
+    core/draw.cpp
     core/utils/log_utils.h
     core/utils/log_utils.cpp
     core/managers/scene_manager.h
@@ -77,8 +77,8 @@ source_group(core FILES
     core/scene.cpp
     core/timer.h
     core/timer.cpp
-    core/debug_draw.h
-    core/debug_draw.cpp
+    core/draw.h
+    core/draw.cpp
     core/managers/scene_manager.h
     core/managers/scene_manager.cpp
     core/managers/resource_manager.h

@@ -3,7 +3,7 @@
 #include "collider.h"
 
 #include "../../../core/renderer.h"
-#include "../../../core/debug_draw.h"
+#include "../../../core/draw.h"
 #include "../../../ecs/components/transform.h"
 
 #include <SDL.h>

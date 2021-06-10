@@ -7,7 +7,6 @@
 #include "../../ecs/components/transform.h"
 #include "../../ecs/components/sprite_renderer.h"
 #include "../../ecs/components/audio_source.h"
-#include "../../ecs/components/ui/label.h"
 
 #include <SDL.h>
 

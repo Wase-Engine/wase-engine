@@ -23,7 +23,7 @@ void BoxCollider2D::render()
 {
 	if (showCollider)
 	{
-		DebugDraw::rectangle(rectToDraw, 0, 255, 0, 255);
+		Draw::rectangle(rectToDraw, 0, 255, 0, 255, false);
 	}
 }
 
