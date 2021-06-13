@@ -6,7 +6,8 @@
 class Collider : public Component
 {
 public:
-	void init();
+	void start();
+	virtual bool onMouseHold(const int button);
 	virtual bool onMouseDown(const int button);
 	virtual bool onMouseUp(const int button);
 	virtual bool onMouseEnter() = 0;
@@ -15,7 +16,7 @@ public:
 protected:
 	Transform* transform;
 
-	bool mouseHover = false;
+	bool mouseHover, entered, exited;
 
 protected:
 	Collider();

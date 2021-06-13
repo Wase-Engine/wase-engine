@@ -28,7 +28,7 @@ public:
 		texture = ResourceManager::getTexture(name);
 	}
 
-	void init()
+	void start()
 	{
 		transform = owner->getComponent<Transform>();
 	}

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "component.h"
+#include "entity_manager.h"
 
 #include <iostream>
 #include <string>
@@ -8,9 +9,13 @@
 #include <memory>
 
 class Component;
+class EntityManager;
 
 class Entity
 {
+public:
+	EntityManager* entityManager;
+
 public:
 	Entity(const std::string& name);
 	~Entity();
@@ -19,20 +24,22 @@ public:
 	void render();
 
 	template<typename T, typename... TArgs>
-	inline void addComponent(TArgs&&... args)
+	inline T* addComponent(TArgs&&... args)
 	{
 		if (components[typeid(T).name()] != nullptr)
 		{
 			std::cerr << "The entity " << name << " already has the " << typeid(T).name() << " component\n";
-			return;
+			return nullptr;
 		}
 
 		std::shared_ptr<T> component = std::make_shared<T>(T(std::forward<TArgs>(args)...));
 
 		component->owner = this;
-		component->init();
+		component->start();
 
 		components[typeid(T).name()] = component;
+
+		return component.get();
 	}
 
 	template<typename T>

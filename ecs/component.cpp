@@ -1,6 +1,6 @@
 #include "component.h"
 
-void Component::init()
+void Component::start()
 {
 }
 

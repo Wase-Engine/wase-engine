@@ -17,6 +17,8 @@ void BoxCollider2D::update(float dt)
 	mouseY = input::getMousePos().y;
 
 	rectToDraw = { (int)x + (int)offsetX, (int)y + (int)offsetY, (int)width, (int)height };
+
+	checkMouseHover();
 }
 
 void BoxCollider2D::render()
@@ -29,34 +31,42 @@ void BoxCollider2D::render()
 
 bool BoxCollider2D::onMouseEnter()
 {
+	if (entered)
+		return false;
+
 	if (mouseHover)
-		return false;
+		entered = true;
 
-	// Check if the mouse is in between the edges of the box
-	if (!(mouseX < transform->x + width && mouseX > transform->x - width))
-		return false;
-
-	if (!(mouseY < transform->y + height && mouseY > transform->y - height))
-		return false;
-
-	mouseHover = true;
-
-	return true;
+	return mouseHover;
 }
 
 bool BoxCollider2D::onMouseExit()
 {
+	if (exited)
+		return false;
+
 	if (!mouseHover)
-		return false;
+		exited = true;
 
-	// Check if the mouse is outside the box
-	if (mouseX < transform->x + width &&
-		mouseX > transform->x - width &&
-		mouseY < transform->y + height &&
-		mouseY > transform->y - height)
-		return false;
+	return !mouseHover;
+}
 
-	mouseHover = false;
+void BoxCollider2D::checkMouseHover()
+{
+	if (!(mouseX < transform->x + width && mouseX > transform->x))
+	{
+		entered = false;
+		mouseHover = false;
+		return;
+	}
 
-	return true;
+	if (!(mouseY < transform->y + height && mouseY > transform->y))
+	{
+		entered = false;
+		mouseHover = false;
+		return;
+	}
+
+	mouseHover = true;
+	exited = false;
 }

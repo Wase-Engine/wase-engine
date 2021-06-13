@@ -15,12 +15,6 @@ public:
 	float offsetX = 0, offsetY = 0;
 	bool showCollider = false;
 
-private:
-	float x, y;
-	float mouseX, mouseY;
-
-	SDL_Rect rectToDraw;
-
 public:
 	BoxCollider2D(const int width, const int height);
 
@@ -29,4 +23,13 @@ public:
 
 	bool onMouseEnter();
 	bool onMouseExit();
+
+private:
+	float x, y;
+	float mouseX, mouseY;
+
+	SDL_Rect rectToDraw;
+
+private:
+	void checkMouseHover();
 };

@@ -1,8 +1,7 @@
 #include "entity_manager.h"
 
 #include "components/transform.h"
-
-#include <map>
+#include "component.h"
 
 void EntityManager::update(float dt)
 {
@@ -32,6 +31,7 @@ void EntityManager::render()
 Entity* EntityManager::addEntity(const std::string& name)
 {
 	std::shared_ptr<Entity> entity = std::make_shared<Entity>(name);
+	entity->entityManager = this;
 
 	entities[name] = entity;
 

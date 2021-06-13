@@ -4,6 +4,9 @@
 
 #include <string>
 #include <memory>
+#include <map>
+
+class Entity;
 
 class EntityManager
 {

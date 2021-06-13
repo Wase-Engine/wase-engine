@@ -10,7 +10,7 @@ public:
 	Entity* owner = nullptr;
 
 public:
-	virtual void init();
+	virtual void start();
 	virtual void update(float dt);
 	virtual void render();
 	virtual void destroy();

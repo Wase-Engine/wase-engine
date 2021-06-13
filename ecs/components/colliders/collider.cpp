@@ -7,23 +7,22 @@ Collider::Collider()
 
 }
 
-void Collider::init()
+void Collider::start()
 {
 	transform = owner->getComponent<Transform>();
 }
 
+bool Collider::onMouseHold(const int button)
+{
+	return mouseHover && input::getMouseButton(button);
+}
+
 bool Collider::onMouseDown(const int button)
 {
-	if (!mouseHover)
-		return false;
-
-	return input::getMouseButtonDown(button);
+	return mouseHover && input::getMouseButtonDown(button);
 }
 
 bool Collider::onMouseUp(const int button)
 {
-	if (!mouseHover)
-		return false;
-
-	return input::getMouseButtonUp(button);
+	return mouseHover && input::getMouseButtonUp(button);
 }

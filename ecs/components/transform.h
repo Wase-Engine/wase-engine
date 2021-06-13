@@ -19,4 +19,10 @@ public:
 		this->scaleY = scaleY;
 		this->depth = depth;
 	}
+
+	void setPosition(float x, float y)
+	{
+		this->x = x;
+		this->y = y;
+	}
 };

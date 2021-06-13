@@ -5,7 +5,7 @@
 
 #include <SDL_ttf.h>
 
-Label::Label(const char* text, const char* font, SDL_Color& color)
+Label::Label(const std::string& text, const char* font, const SDL_Color& color)
 {
 	this->text = text;
 	this->font = font;
@@ -13,7 +13,7 @@ Label::Label(const char* text, const char* font, SDL_Color& color)
 	updateText();
 }
 
-void Label::init()
+void Label::start()
 {
 	transform = owner->getComponent<Transform>();
 }
@@ -29,7 +29,7 @@ void Label::render()
 	SDL_RenderCopy(Renderer::getRenderer(), texture, NULL, &position);
 }
 
-void Label::setText(const char* text)
+void Label::setText(const std::string& text)
 {
 	this->text = text;
 
@@ -50,9 +50,18 @@ void Label::setColor(SDL_Color& color)
 	updateText();
 }
 
+Size* Label::getSize()
+{
+	Size size;
+
+	TTF_SizeText(ResourceManager::getFont(font), text.c_str(), &size.w, &size.h);
+
+	return &size;
+}
+
 void Label::updateText()
 {
-	SDL_Surface* surface = TTF_RenderText_Blended(ResourceManager::getFont(font), text, color);
+	SDL_Surface* surface = TTF_RenderText_Blended(ResourceManager::getFont(font), text.c_str(), color);
 
 	texture = SDL_CreateTextureFromSurface(Renderer::getRenderer(), surface);
 
