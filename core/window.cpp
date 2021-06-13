@@ -12,11 +12,22 @@ void Window::init(const char* title, const int x, const int y, const unsigned in
 		log_utils::error("Could not initialize SDL Window");
 		return;
 	}
+
+	SDL_Rect& rect = getInstance()->rect;
+	rect.x = x;
+	rect.y = y;
+	rect.w = w;
+	rect.h = h;
 }
 
 SDL_Window* Window::getWindow()
 {
 	return getInstance()->window;
+}
+
+SDL_Rect* Window::getRect()
+{
+	return &getInstance()->rect;
 }
 
 std::shared_ptr<Window> Window::getInstance()

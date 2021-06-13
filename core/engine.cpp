@@ -19,14 +19,13 @@ void Engine::run(const char* sceneName)
 {
 	SceneManager::setActiveScene(sceneName);
 
-	Timer timer;
-
 	while (isRunning)
 	{
 		events();
-		update(timer.getDeltaTime());
+		update(Timer::getDeltaTime());
 		render();
-		timer.tick();
+		Timer::tick();
+		input::events::end();
 	}
 
 	destroy();

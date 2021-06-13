@@ -22,23 +22,35 @@ namespace input
 			mouseScrollWheel = 0;
 		}
 
+		void end()
+		{
+			buttonsNoRepeat = buttons;
+			keysNoRepeat = keys;
+			
+			for (const auto&[button, boolean] : buttonsUp)
+			{
+				buttonsUp[button] = false;
+			}
+
+			for (const auto& [key, boolean] : keysUp)
+			{
+				keysUp[key] = false;
+			}
+		}
+
 		void keyEvent(const SDL_KeyboardEvent* event)
 		{
-			const int keycode = event->keysym.sym;
+			const int keyCode = event->keysym.sym;
 
 			if (event->type == SDL_KEYDOWN)
 			{
-				keys[keycode] = true;
-
-				if (!event->repeat)
-				{
-					keysNoRepeat[keycode] = true;
-				}
+				keys[keyCode] = true;
 			}
 			else if (event->type == SDL_KEYUP)
 			{
-				keys[keycode] = false;
-				keysUp[keycode] = true;
+				keys[keyCode] = false;
+				keysUp[keyCode] = true;
+				keysNoRepeat[keyCode] = false;
 			}
 		}
 
@@ -70,27 +82,19 @@ namespace input
 		}
 	}
 
-	bool getKey(const int keycode)
+	bool getKey(const int keyCode)
 	{
-		return keys[keycode];
+		return keys[keyCode];
 	}
 
-	bool getKeyDown(const int keycode)
+	bool getKeyDown(const int keyCode)
 	{
-		bool keyDown = keysNoRepeat[keycode];
-
-		keysNoRepeat[keycode] = false;
-
-		return keyDown;
+		return !keysNoRepeat[keyCode] && keys[keyCode];
 	}
 
-	bool getKeyUp(const int keycode)
+	bool getKeyUp(const int keyCode)
 	{
-		bool keyUp = keysUp[keycode];
-
-		keysUp[keycode] = false;
-
-		return keyUp;
+		return keysUp[keyCode];
 	}
 
 	bool getMouseButton(const int button)
@@ -100,23 +104,12 @@ namespace input
 
 	bool getMouseButtonDown(const int button)
 	{
-		if (!buttonsNoRepeat[button] && buttons[button])
-		{
-			buttonsNoRepeat[button] = true;
-
-			return true;
-		}
-
-		return false;
+		return !buttonsNoRepeat[button] && buttons[button];
 	}
 
 	bool getMouseButtonUp(const int button)
 	{
-		bool buttonUp = buttonsUp[button];
-
-		buttonsUp[button] = false;
-
-		return buttonUp;
+		return buttonsUp[button];
 	}
 
 	short getMouseScrollWheel()

@@ -2,17 +2,24 @@
 
 #include <SDL.h>
 
+std::shared_ptr<Timer> Timer::instance = nullptr;
+
 void Timer::tick()
 {
-	deltaTime = ((float) SDL_GetTicks() - lastTime) * (TARGET_FPS / 1000.0f);
+	getInstance()->deltaTime = ((float) SDL_GetTicks() - getInstance()->lastTime) * (TARGET_FPS / 1000.0f);
 
-	if (deltaTime > MAX_DELTA_TIME)
-		deltaTime = MAX_DELTA_TIME;
+	if (getInstance()->deltaTime > MAX_DELTA_TIME)
+		getInstance()->deltaTime = MAX_DELTA_TIME;
 
-	lastTime = (float) SDL_GetTicks();
+	getInstance()->lastTime = (float) SDL_GetTicks();
 }
 
 float Timer::getDeltaTime()
 {
-	return deltaTime;
+	return getInstance()->deltaTime;
+}
+
+std::shared_ptr<Timer> Timer::getInstance()
+{
+	return instance = (instance != nullptr) ? instance : std::make_shared<Timer>();
 }
