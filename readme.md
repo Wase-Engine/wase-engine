@@ -24,6 +24,9 @@ cmake build .
 
 Now you will be able to build the SDL Game Engine. When you build the SDL Game Engine there will be an include and lib folder in the build directory. You can use these for your game projects.
 
+## List of game projects with SDL Game Engine
+ - [Simon](https://github.com/JelleVos1/simon)
+
 ## Documentation
 You can head over to the [documentation](https://github.com/JelleVos1/sdl-game-engine/blob/master/documentation.md) for more information about SDL Game Engine. In the [documentation](https://github.com/JelleVos1/sdl-game-engine/blob/master/documentation.md) there is a detailed description about how SDL Game Engine works.
 
