@@ -18,7 +18,7 @@
 10. [Contributing](#contributing)
 
 ## Introduction <a name="introduction"></a>
-In this file you will find information about how you can build SDL Game Engine and how to use it. Everything will be demonstrated with a code example and you can always take a look at the [example game](https://github.com/JelleVos1/sdl-game-engine/tree/master/example-game)
+In this file you will find information about how you can build SDL Game Engine and how to use it. Everything will be demonstrated with a code example.
 
 ## Building SDL Game Engine <a name="setup"></a>
 To set up SDL Game Engine you will need to install the following items:
@@ -27,7 +27,7 @@ To set up SDL Game Engine you will need to install the following items:
 - SDL2
 - SDL2 image
 - SDL2 mixer
-- SDL2 TTF
+- SDL2 ttf
 
 When you have all of them installed you can choose to build using the commandline or with the CMake gui.
 You will first need to clone this repository or your own fork, after this you can decide if you want to use the CMake gui or run the following commands:
@@ -37,6 +37,8 @@ cd build
 cmake ..
 cmake build .
 ```
+
+Now you will be able to build the SDL Game Engine. When you build the SDL Game Engine there will be an include and lib folder in the build directory. You can use these for your game projects.
 
 ## Setting up the engine <a name="setup-engine"></a>
 To run the engine you can simply call the run method on the Engine instance in the main function.<br>
