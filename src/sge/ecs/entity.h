@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <vector>
 #include <memory>
 
 class Component;
@@ -14,7 +15,9 @@ class EntityManager;
 class Entity
 {
 public:
-	EntityManager* entityManager;
+	EntityManager* entityManager = nullptr;
+	Entity* parent = nullptr;
+	std::vector<Entity*> children;
 
 public:
 	Entity(const std::string& name);
@@ -22,6 +25,7 @@ public:
 
 	void update(float dt);
 	void render();
+	void setParent(Entity* entity);
 
 	template<typename T, typename... TArgs>
 	inline T* addComponent(TArgs&&... args)

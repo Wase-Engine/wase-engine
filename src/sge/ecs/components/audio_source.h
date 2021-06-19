@@ -16,7 +16,7 @@ public:
 	bool loop;
 
 private:
-	Mix_Chunk* audioClip;
+	Mix_Chunk* audioClip = nullptr;
 	int channel = -1;
 
 public:

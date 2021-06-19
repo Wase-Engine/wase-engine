@@ -32,6 +32,17 @@ void Entity::render()
 	}
 }
 
+void Entity::setParent(Entity* entity)
+{
+	if (parent)
+	{
+		parent->children.erase(std::remove(parent->children.begin(), parent->children.end(), this), parent->children.end());
+	}
+
+	entity->children.emplace_back(this);
+	parent = entity;
+}
+
 Entity::~Entity()
 {
 	for (const auto& [componentName, componentPtr] : components)

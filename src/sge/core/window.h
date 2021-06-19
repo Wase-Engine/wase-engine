@@ -13,7 +13,7 @@ public:
 private:
 	static std::shared_ptr<Window> instance;
 
-	SDL_Window* window;
+	SDL_Window* window = nullptr;
 	SDL_Rect rect;
 
 private:

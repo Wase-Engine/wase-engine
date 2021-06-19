@@ -14,7 +14,8 @@ public:
 	virtual bool onMouseExit() = 0;
 
 protected:
-	Transform* transform;
+	Transform* transform = nullptr;
+	Transform* parentTransform = nullptr;
 
 	bool mouseHover, entered, exited;
 

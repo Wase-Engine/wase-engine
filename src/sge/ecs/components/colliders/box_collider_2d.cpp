@@ -10,8 +10,11 @@ BoxCollider2D::BoxCollider2D(const int width, const int height)
 
 void BoxCollider2D::update(float dt)
 {
-	this->x = transform->x;
-	this->y = transform->y;
+	if (owner->parent && !parentTransform)
+		parentTransform = owner->parent->getComponent<Transform>();
+
+	x = !parentTransform ? transform->x : transform->x + parentTransform->x;
+	y = !parentTransform ? transform->y : transform->y + parentTransform->y;
 
 	mouseX = input::getMousePos().x;
 	mouseY = input::getMousePos().y;
@@ -53,14 +56,14 @@ bool BoxCollider2D::onMouseExit()
 
 void BoxCollider2D::checkMouseHover()
 {
-	if (!(mouseX < transform->x + width && mouseX > transform->x))
+	if (!(mouseX < x + width && mouseX > x))
 	{
 		entered = false;
 		mouseHover = false;
 		return;
 	}
 
-	if (!(mouseY < transform->y + height && mouseY > transform->y))
+	if (!(mouseY < y + height && mouseY > y))
 	{
 		entered = false;
 		mouseHover = false;

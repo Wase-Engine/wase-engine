@@ -14,8 +14,9 @@
 class SpriteRenderer : public Component
 {
 private:
-	Transform* transform;
-	SDL_Texture* texture;
+	Transform* transform = nullptr;
+	Transform* parentTransform = nullptr;
+	SDL_Texture* texture = nullptr;
 	SDL_Rect rect {};
 	int sizeX, sizeY;
 
@@ -35,8 +36,19 @@ public:
 
 	void update(float dt)
 	{
-		rect.x = (int)transform->x;
-		rect.y = (int)transform->y;
+		if (owner->parent && !parentTransform)
+			parentTransform = owner->parent->getComponent<Transform>();
+
+		if (parentTransform)
+		{
+			rect.x = (int)(transform->x + parentTransform->x);
+			rect.y = (int)(transform->y + parentTransform->y);
+		}
+		else
+		{
+			rect.x = (int)transform->x;
+			rect.y = (int)transform->y;
+		}
 		rect.w = (int)(sizeX * transform->scaleX);
 		rect.h = (int)(sizeY * transform->scaleY);
 	}

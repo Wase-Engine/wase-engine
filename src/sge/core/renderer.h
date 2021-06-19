@@ -15,5 +15,5 @@ private:
 private:
 	static std::shared_ptr<Renderer> instance;
 
-	SDL_Renderer* renderer;
+	SDL_Renderer* renderer = nullptr;
 };

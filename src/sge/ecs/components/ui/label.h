@@ -24,13 +24,14 @@ public:
 	Size* getSize();
 
 private:
-	Transform* transform;
+	Transform* transform = nullptr;
+	Transform* parentTransform = nullptr;
 
 	std::string text;
-	const char* font;
+	const char* font = nullptr;
 	SDL_Rect position;
 	SDL_Color color;
-	SDL_Texture* texture;
+	SDL_Texture* texture = nullptr;
 
 private:
 	void updateText();

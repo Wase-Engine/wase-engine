@@ -20,8 +20,11 @@ void Label::start()
 
 void Label::update(float dt)
 {
-	position.x = (int)transform->x;
-	position.y = (int)transform->y;
+	if (owner->parent && !parentTransform)
+		parentTransform = owner->parent->getComponent<Transform>();
+
+	position.x = !parentTransform ? (int)transform->x : (int)(transform->x + parentTransform->x);
+	position.y = !parentTransform ? (int)transform->y : (int)(transform->y + parentTransform->y);
 }
 
 void Label::render()
