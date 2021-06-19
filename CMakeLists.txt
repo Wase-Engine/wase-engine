@@ -37,6 +37,7 @@ add_library(sdl-game-engine
     src/sge/core/timer.cpp
     src/sge/core/draw.h
     src/sge/core/draw.cpp
+    src/sge/core/vector2.h
     src/sge/core/utils/log_utils.h
     src/sge/core/utils/log_utils.cpp
     src/sge/core/managers/scene_manager.h
@@ -78,6 +79,7 @@ source_group(core FILES
     src/sge/core/timer.cpp
     src/sge/core/draw.h
     src/sge/core/draw.cpp
+    src/sge/core/vector2.h
     src/sge/core/managers/scene_manager.h
     src/sge/core/managers/scene_manager.cpp
     src/sge/core/managers/resource_manager.h
