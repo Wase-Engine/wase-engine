@@ -23,8 +23,8 @@ void Label::update(float dt)
 	if (owner->parent && !parentTransform)
 		parentTransform = owner->parent->getComponent<Transform>();
 
-	position.x = !parentTransform ? (int)transform->x : (int)(transform->x + parentTransform->x);
-	position.y = !parentTransform ? (int)transform->y : (int)(transform->y + parentTransform->y);
+	position.x = !parentTransform ? (int)transform->position.x : (int)(transform->position.x + parentTransform->position.x);
+	position.y = !parentTransform ? (int)transform->position.y : (int)(transform->position.y + parentTransform->position.y);
 }
 
 void Label::render()
@@ -53,13 +53,13 @@ void Label::setColor(SDL_Color& color)
 	updateText();
 }
 
-Size* Label::getSize()
+Size Label::getSize()
 {
 	Size size;
 
 	TTF_SizeText(ResourceManager::getFont(font), text.c_str(), &size.w, &size.h);
 
-	return &size;
+	return size;
 }
 
 void Label::updateText()

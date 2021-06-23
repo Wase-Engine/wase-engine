@@ -41,16 +41,16 @@ public:
 
 		if (parentTransform)
 		{
-			rect.x = (int)(transform->x + parentTransform->x);
-			rect.y = (int)(transform->y + parentTransform->y);
+			rect.x = (int)(transform->position.x + parentTransform->position.x);
+			rect.y = (int)(transform->position.y + parentTransform->position.y);
 		}
 		else
 		{
-			rect.x = (int)transform->x;
-			rect.y = (int)transform->y;
+			rect.x = (int)transform->position.x;
+			rect.y = (int)transform->position.y;
 		}
-		rect.w = (int)(sizeX * transform->scaleX);
-		rect.h = (int)(sizeY * transform->scaleY);
+		rect.w = (int)(sizeX * transform->scale.x);
+		rect.h = (int)(sizeY * transform->scale.y);
 	}
 
 	void render()

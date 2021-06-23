@@ -13,8 +13,8 @@ void BoxCollider2D::update(float dt)
 	if (owner->parent && !parentTransform)
 		parentTransform = owner->parent->getComponent<Transform>();
 
-	x = !parentTransform ? transform->x : transform->x + parentTransform->x;
-	y = !parentTransform ? transform->y : transform->y + parentTransform->y;
+	x = !parentTransform ? transform->position.x : transform->position.x + parentTransform->position.x;
+	y = !parentTransform ? transform->position.y : transform->position.y + parentTransform->position.y;
 
 	mouseX = input::getMousePos().x;
 	mouseY = input::getMousePos().y;
