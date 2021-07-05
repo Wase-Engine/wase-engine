@@ -5,6 +5,7 @@
 #include "../../core/managers/resource_manager.h"
 #include "../component.h"
 #include "transform.h"
+#include "../entity_manager.h"
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -17,6 +18,7 @@ private:
 	Transform* transform = nullptr;
 	Transform* parentTransform = nullptr;
 	SDL_Texture* texture = nullptr;
+	Camera* camera = nullptr;
 	SDL_Rect rect {};
 	int sizeX, sizeY;
 
@@ -32,6 +34,7 @@ public:
 	void start()
 	{
 		transform = owner->getComponent<Transform>();
+		camera = &transform->owner->entityManager->camera;
 	}
 
 	void update(float dt)
@@ -41,13 +44,13 @@ public:
 
 		if (parentTransform)
 		{
-			rect.x = (int)(transform->position.x + parentTransform->position.x);
-			rect.y = (int)(transform->position.y + parentTransform->position.y);
+			rect.x = (int)(transform->position.x + parentTransform->position.x - camera->position.x);
+			rect.y = (int)(transform->position.y + parentTransform->position.y - camera->position.y);
 		}
 		else
 		{
-			rect.x = (int)transform->position.x;
-			rect.y = (int)transform->position.y;
+			rect.x = (int)(transform->position.x - camera->position.x);
+			rect.y = (int)(transform->position.y - camera->position.y);
 		}
 		rect.w = (int)(sizeX * transform->scale.x);
 		rect.h = (int)(sizeY * transform->scale.y);

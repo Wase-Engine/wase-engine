@@ -2,6 +2,7 @@
 
 #include "../../component.h"
 #include "../transform.h"
+#include "../../entity_manager.h"
 
 #include <SDL.h>
 #include <string>
@@ -24,6 +25,7 @@ public:
 	Size getSize();
 
 private:
+	Camera* camera = nullptr;
 	Transform* transform = nullptr;
 	Transform* parentTransform = nullptr;
 
