@@ -14,13 +14,8 @@
 
 class SpriteRenderer : public Component
 {
-private:
-	Transform* transform = nullptr;
-	Transform* parentTransform = nullptr;
-	SDL_Texture* texture = nullptr;
-	Camera* camera = nullptr;
-	SDL_Rect rect {};
-	int sizeX, sizeY;
+public:
+	SDL_Color color = { 255, 255, 255 };
 
 public:
 	SpriteRenderer(const std::string& name, const int sizeX, const int sizeY)
@@ -58,6 +53,15 @@ public:
 
 	void render()
 	{
+		SDL_SetTextureColorMod(texture, color.r, color.g, color.b);
 		SDL_RenderCopy(Renderer::getRenderer(), texture, NULL, &rect);
 	}
+
+private:
+	Transform* transform = nullptr;
+	Transform* parentTransform = nullptr;
+	SDL_Texture* texture = nullptr;
+	Camera* camera = nullptr;
+	SDL_Rect rect{};
+	int sizeX, sizeY;
 };
