@@ -16,6 +16,7 @@ Label::Label(const std::string& text, const char* font, const SDL_Color& color)
 void Label::start()
 {
 	transform = owner->getComponent<Transform>();
+	camera = &transform->owner->entityManager->camera;
 }
 
 void Label::update(float dt)
@@ -23,8 +24,8 @@ void Label::update(float dt)
 	if (owner->parent && !parentTransform)
 		parentTransform = owner->parent->getComponent<Transform>();
 
-	position.x = !parentTransform ? (int)transform->position.x : (int)(transform->position.x + parentTransform->position.x);
-	position.y = !parentTransform ? (int)transform->position.y : (int)(transform->position.y + parentTransform->position.y);
+	position.x = !parentTransform ? (int)(transform->position.x - camera->position.x) : (int)(transform->position.x + parentTransform->position.x - camera->position.x);
+	position.y = !parentTransform ? (int)(transform->position.y - camera->position.y) : (int)(transform->position.y + parentTransform->position.y - camera->position.y);
 }
 
 void Label::render()

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "entity.h"
+#include "camera.h"
 
 #include <string>
 #include <memory>
@@ -10,6 +11,9 @@ class Entity;
 
 class EntityManager
 {
+public:
+	Camera camera;
+
 public:
 	void update(float dt);
 	void render();
