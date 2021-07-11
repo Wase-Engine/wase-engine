@@ -16,6 +16,7 @@ class SpriteRenderer : public Component
 {
 public:
 	SDL_Color color = { 255, 255, 255 };
+	SDL_Rect rect{};
 
 public:
 	SpriteRenderer(const std::string& name, const int sizeX, const int sizeY);
@@ -28,6 +29,5 @@ private:
 	Transform* parentTransform = nullptr;
 	SDL_Texture* texture = nullptr;
 	Camera* camera = nullptr;
-	SDL_Rect rect{};
 	int sizeX, sizeY;
 };

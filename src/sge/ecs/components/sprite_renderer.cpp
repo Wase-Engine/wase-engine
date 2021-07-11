@@ -1,5 +1,7 @@
 #include "sprite_renderer.h"
 
+#include "animator.h"
+
 SpriteRenderer::SpriteRenderer(const std::string& name, const int sizeX, const int sizeY)
 {
 	this->sizeX = sizeX;
@@ -36,5 +38,13 @@ void SpriteRenderer::update(float dt)
 void SpriteRenderer::render()
 {
 	SDL_SetTextureColorMod(texture, color.r, color.g, color.b);
-	SDL_RenderCopy(Renderer::getRenderer(), texture, NULL, &rect);
+
+	if (owner->hasComponent<Animator>())
+	{
+		SDL_RenderCopy(Renderer::getRenderer(), texture, &owner->getComponent<Animator>()->rect, &rect);
+	}
+	else
+	{
+		SDL_RenderCopy(Renderer::getRenderer(), texture, NULL, &rect);
+	}
 }
