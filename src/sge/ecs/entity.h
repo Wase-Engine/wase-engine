@@ -60,6 +60,20 @@ public:
 		return component.get();
 	}
 
+	template<typename T>
+	inline bool hasComponent()
+	{
+		for (const auto&[name, componentPtr] : components)
+		{
+			if (name == typeid(T).name())
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
 private:
 	std::string name;
 	bool enabled = true;
