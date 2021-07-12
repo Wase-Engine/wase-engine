@@ -18,8 +18,8 @@ public:
 public:
 	BoxCollider2D(const int width, const int height);
 
-	void update(float dt);
-	void render();
+	void update(float dt) override;
+	void render() override;
 
 	bool onMouseEnter();
 	bool onMouseExit();
@@ -27,6 +27,7 @@ public:
 private:
 	float x, y;
 	float mouseX, mouseY;
+	Rectangle* rectangle = nullptr;
 
 	SDL_Rect rectToDraw;
 

@@ -20,9 +20,9 @@ public:
 
 public:
 	SpriteRenderer(const std::string& name, const int sizeX, const int sizeY);
-	void start();
-	void update(float dt);
-	void render();
+	void start() override;
+	void update(float dt) override;
+	void render() override;
 
 private:
 	Transform* transform = nullptr;

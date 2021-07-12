@@ -20,7 +20,7 @@ public:
 	void play();
 	void onStateChange(const bool state);
 	void setVolume(float volume);
-	void destroy();
+	void destroy() override;
 
 private:
 	Mix_Chunk* audioClip = nullptr;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <string>
 #include <SDL.h>
 
 class Engine
@@ -11,7 +12,7 @@ public:
 	void init(const char* title, const int x, const int y, const unsigned int w, const unsigned int h, const Uint32 flags);
 	void run(const char* sceneName);
 	void quit();
-	void terminate(const char* message);
+	void terminate(const std::string& message);
 
 private:
 	static std::shared_ptr<Engine> instance;

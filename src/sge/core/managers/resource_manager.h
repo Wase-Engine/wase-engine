@@ -13,8 +13,6 @@ class ResourceManager
 public:
 	static std::shared_ptr<ResourceManager> getInstance();
 
-	static void initEngineResources();
-
 	static SDL_Texture* getTexture(const std::string& name);
 	static Mix_Chunk* getAudio(const std::string& name);
 	static TTF_Font* getFont(const std::string& name);

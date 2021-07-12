@@ -8,10 +8,6 @@
 
 std::shared_ptr<ResourceManager> ResourceManager::instance = nullptr;
 
-void ResourceManager::initEngineResources()
-{
-}
-
 SDL_Texture* ResourceManager::getTexture(const std::string& name)
 {
 	try

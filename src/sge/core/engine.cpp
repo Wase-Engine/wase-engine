@@ -55,6 +55,7 @@ void Engine::init(const char* title, const int x, const int y, const unsigned in
 		return;
 	}
 
+	// Initialize SDL_TTF
 	if (TTF_Init() < 0)
 	{
 		log_utils::error("Could not initialize TTF");
@@ -63,7 +64,6 @@ void Engine::init(const char* title, const int x, const int y, const unsigned in
 
 	Window::init(title, x, y, w, h, flags);
 	Renderer::init();
-	ResourceManager::initEngineResources();
 
 	isRunning = true;
 }
@@ -106,7 +106,7 @@ void Engine::quit()
 	isRunning = false;
 }
 
-void Engine::terminate(const char* message)
+void Engine::terminate(const std::string& message)
 {
 	throw TerminateException(message);
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../core/engine.h"
+#include "../core/utils/log_utils.h"
 #include "component.h"
 #include "entity_manager.h"
 
@@ -9,7 +10,6 @@
 #include <map>
 #include <vector>
 #include <memory>
-#include <sstream>
 
 class Component;
 class EntityManager;
@@ -34,7 +34,7 @@ public:
 	{
 		if (components[typeid(T).name()] != nullptr)
 		{
-			std::cerr << "The entity " << name << " already has the " << typeid(T).name() << " component\n";
+			log_utils::error("The entity " + name + " already has the " + typeid(T).name() + " component");
 			return nullptr;
 		}
 
@@ -54,9 +54,7 @@ public:
 		std::shared_ptr<T> component = std::static_pointer_cast<T>(components[typeid(T).name()]);
 
 		if (component == nullptr) {
-			std::stringstream error;
-			error << "Entity " << name << " does not have a " << typeid(T).name();
-			Engine::getInstance()->terminate(error.str().c_str());
+			Engine::getInstance()->terminate("Entity " + name + " does not have a " + typeid(T).name());
 			return nullptr;
 		}
 

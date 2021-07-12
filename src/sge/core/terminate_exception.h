@@ -9,7 +9,7 @@ private:
 	std::string message;
 
 public:
-	TerminateException(const char* message) : message(message) {}
+	TerminateException(const std::string& message) : message(message) {}
 
 	const char* what() const
 	{

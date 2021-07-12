@@ -16,9 +16,9 @@ class Label : public Component
 {
 public:
 	Label(const std::string& text, const char* font, const SDL_Color& color);
-	void start();
-	void update(float dt);
-	void render();
+	void start() override;
+	void update(float dt) override;
+	void render() override;
 	void setText(const std::string& text);
 	void setFont(const char* font);
 	void setColor(SDL_Color& color);

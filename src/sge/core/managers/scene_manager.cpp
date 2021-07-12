@@ -2,7 +2,7 @@
 
 std::shared_ptr<SceneManager> SceneManager::instance = nullptr;
 
-void SceneManager::addScene(const std::string& name, std::shared_ptr<Scene> scene)
+void SceneManager::addScene(const std::string& name, const std::shared_ptr<Scene> scene)
 {
 	getInstance()->scenes[name] = scene;
 }

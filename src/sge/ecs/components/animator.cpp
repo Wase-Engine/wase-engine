@@ -1,6 +1,6 @@
 #include "animator.h"
 
-Animator::Animator(unsigned int frames, unsigned int speed)
+Animator::Animator(const unsigned int frames, const unsigned int speed)
 {
 	this->frames = frames;
 	this->speed = speed;

@@ -11,10 +11,10 @@ public:
 	SDL_Rect rect{};
 
 public:
-	Animator(unsigned int frames, unsigned int speed);
+	Animator(const unsigned int frames, const unsigned int speed);
 
-	void start();
-	void update(float dt);
+	void start() override;
+	void update(float dt) override;
 
 private:
 	SpriteRenderer* spriteRenderer = nullptr;
