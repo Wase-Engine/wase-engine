@@ -9,6 +9,7 @@
 #include "utils/log_utils.h"
 #include "timer.h"
 #include "draw.h"
+#include "terminate_exception.h"
 
 #include <SDL_mixer.h>
 #include <SDL_image.h>
@@ -17,18 +18,25 @@ std::shared_ptr<Engine> Engine::instance = nullptr;
 
 void Engine::run(const char* sceneName)
 {
-	SceneManager::setActiveScene(sceneName);
-
-	while (isRunning)
+	try
 	{
-		events();
-		update(Timer::getDeltaTime());
-		render();
-		Timer::tick();
-		input::events::end();
-	}
+		SceneManager::setActiveScene(sceneName);
 
-	destroy();
+		while (isRunning)
+		{
+			events();
+			update(Timer::getDeltaTime());
+			render();
+			Timer::tick();
+			input::events::end();
+		}
+
+		destroy();
+	}
+	catch (TerminateException& e)
+	{
+		log_utils::error(e.what());
+	}
 }
 
 void Engine::init(const char* title, const int x, const int y, const unsigned int w, const unsigned int h, const Uint32 flags)
@@ -96,6 +104,11 @@ void Engine::destroy()
 void Engine::quit()
 {
 	isRunning = false;
+}
+
+void Engine::terminate(const char* message)
+{
+	throw TerminateException(message);
 }
 
 std::shared_ptr<Engine> Engine::getInstance()
