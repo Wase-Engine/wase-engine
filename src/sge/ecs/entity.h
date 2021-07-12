@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../core/engine.h"
 #include "component.h"
 #include "entity_manager.h"
 
@@ -8,6 +9,7 @@
 #include <map>
 #include <vector>
 #include <memory>
+#include <sstream>
 
 class Component;
 class EntityManager;
@@ -52,9 +54,10 @@ public:
 		std::shared_ptr<T> component = std::static_pointer_cast<T>(components[typeid(T).name()]);
 
 		if (component == nullptr) {
-			std::cerr << "Entity " << name << " does not have a " << typeid(T).name() << "\n";
-			std::cerr << "Closing the application...\n";
-			exit(0);
+			std::stringstream error;
+			error << "Entity " << name << " does not have a " << typeid(T).name();
+			Engine::getInstance()->terminate(error.str().c_str());
+			return nullptr;
 		}
 
 		return component.get();

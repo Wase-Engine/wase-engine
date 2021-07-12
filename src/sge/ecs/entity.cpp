@@ -47,6 +47,9 @@ Entity::~Entity()
 {
 	for (const auto& [componentName, componentPtr] : components)
 	{
-		componentPtr->destroy();
+		if (componentPtr)
+		{
+			componentPtr->destroy();
+		}
 	}
 }
