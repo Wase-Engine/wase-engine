@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 
 set(CMAKE_GENERATOR_PLATFORM win32)
 
-project(sdl-game-engine)
+project(wase-engine)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -20,100 +20,108 @@ include_directories(${SDL2_INCLUDE_DIR}
         ${SDL2_MIXER_INCLUDE_DIR}
         ${SDL2_TTF_INCLUDE_DIR})
 
-add_library(sdl-game-engine
-    src/sge/core/engine.h
-    src/sge/core/engine.cpp
-    src/sge/core/renderer.h
-    src/sge/core/renderer.cpp
-    src/sge/core/window.h
-    src/sge/core/window.cpp
-    src/sge/core/input.h
-    src/sge/core/input.cpp
-    src/sge/core/events.h
-    src/sge/core/events.cpp
-    src/sge/core/scene.h
-    src/sge/core/scene.cpp
-    src/sge/core/timer.h
-    src/sge/core/timer.cpp
-    src/sge/core/draw.h
-    src/sge/core/draw.cpp
-    src/sge/core/vector2.h
-    src/sge/core/utils/log_utils.h
-    src/sge/core/utils/log_utils.cpp
-    src/sge/core/managers/scene_manager.h
-    src/sge/core/managers/scene_manager.cpp
-    src/sge/core/managers/resource_manager.h
-    src/sge/core/managers/resource_manager.cpp
-    src/sge/ecs/component.h
-    src/sge/ecs/component.cpp
-    src/sge/ecs/entity.h
-    src/sge/ecs/entity.cpp
-    src/sge/ecs/entity_manager.h
-    src/sge/ecs/entity_manager.cpp
-    src/sge/ecs/components/transform.h
-    src/sge/ecs/components/sprite_renderer.h
-    src/sge/ecs/components/audio_source.h
-    src/sge/ecs/components/colliders/collider.h
-    src/sge/ecs/components/colliders/collider.cpp
-    src/sge/ecs/components/colliders/box_collider_2d.h
-    src/sge/ecs/components/colliders/box_collider_2d.cpp
-    src/sge/ecs/components/ui/label.h
-    src/sge/ecs/components/ui/label.cpp
+add_library(wase-engine
+    src/wase/core/engine.h
+    src/wase/core/engine.cpp
+    src/wase/core/renderer.h
+    src/wase/core/renderer.cpp
+    src/wase/core/window.h
+    src/wase/core/window.cpp
+    src/wase/core/input.h
+    src/wase/core/input.cpp
+    src/wase/core/terminate_exception.h
+    src/wase/core/events.h
+    src/wase/core/events.cpp
+    src/wase/core/scene.h
+    src/wase/core/scene.cpp
+    src/wase/core/timer.h
+    src/wase/core/timer.cpp
+    src/wase/core/draw.h
+    src/wase/core/draw.cpp
+    src/wase/core/vector2.h
+    src/wase/core/utils/log_utils.h
+    src/wase/core/utils/log_utils.cpp
+    src/wase/core/managers/scene_manager.h
+    src/wase/core/managers/scene_manager.cpp
+    src/wase/core/managers/resource_manager.h
+    src/wase/core/managers/resource_manager.cpp
+    src/wase/ecs/component.h
+    src/wase/ecs/component.cpp
+    src/wase/ecs/entity.h
+    src/wase/ecs/entity.cpp
+    src/wase/ecs/camera.h
+    src/wase/ecs/entity_manager.h
+    src/wase/ecs/entity_manager.cpp
+    src/wase/ecs/components/transform.h
+    src/wase/ecs/components/sprite_renderer.h
+    src/wase/ecs/components/audio_source.h
+    src/wase/ecs/components/animator.h
+    src/wase/ecs/components/animator.cpp
+    src/wase/ecs/components/colliders/collider.h
+    src/wase/ecs/components/colliders/collider.cpp
+    src/wase/ecs/components/colliders/box_collider_2d.h
+    src/wase/ecs/components/colliders/box_collider_2d.cpp
+    src/wase/ecs/components/ui/label.h
+    src/wase/ecs/components/ui/label.cpp
 )
 
 # Group the core files
 source_group(core FILES
-    src/sge/core/engine.h
-    src/sge/core/engine.cpp
-    src/sge/core/renderer.h
-    src/sge/core/renderer.cpp
-    src/sge/core/window.h
-    src/sge/core/window.cpp
-    src/sge/core/input.h
-    src/sge/core/input.cpp
-    src/sge/core/events.h
-    src/sge/core/events.cpp
-    src/sge/core/scene.h
-    src/sge/core/scene.cpp
-    src/sge/core/timer.h
-    src/sge/core/timer.cpp
-    src/sge/core/draw.h
-    src/sge/core/draw.cpp
-    src/sge/core/vector2.h
-    src/sge/core/managers/scene_manager.h
-    src/sge/core/managers/scene_manager.cpp
-    src/sge/core/managers/resource_manager.h
-    src/sge/core/managers/resource_manager.cpp
+    src/wase/core/engine.h
+    src/wase/core/engine.cpp
+    src/wase/core/renderer.h
+    src/wase/core/renderer.cpp
+    src/wase/core/window.h
+    src/wase/core/window.cpp
+    src/wase/core/input.h
+    src/wase/core/input.cpp
+    src/wase/core/terminate_exception.h
+    src/wase/core/events.h
+    src/wase/core/events.cpp
+    src/wase/core/scene.h
+    src/wase/core/scene.cpp
+    src/wase/core/timer.h
+    src/wase/core/timer.cpp
+    src/wase/core/draw.h
+    src/wase/core/draw.cpp
+    src/wase/core/vector2.h
+    src/wase/core/managers/scene_manager.h
+    src/wase/core/managers/scene_manager.cpp
+    src/wase/core/managers/resource_manager.h
+    src/wase/core/managers/resource_manager.cpp
 )
 
 source_group(core/utils FILES
-    src/sge/core/utils/log_utils.h
-    src/sge/core/utils/log_utils.cpp
+    src/wase/core/utils/log_utils.h
+    src/wase/core/utils/log_utils.cpp
 )
 
 # Group the ecs files
 source_group(ecs FILES
-    src/sge/ecs/component.h
-    src/sge/ecs/component.cpp
-    src/sge/ecs/entity.h
-    src/sge/ecs/entity.cpp
-    src/sge/entity_manager.h
-    src/sge/ecs/entity_manager.cpp
+    src/wase/ecs/component.h
+    src/wase/ecs/component.cpp
+    src/wase/ecs/entity.h
+    src/wase/ecs/entity.cpp
+    src/wase/ecs/camera.h
+    src/wase/entity_manager.h
+    src/wase/ecs/entity_manager.cpp
 )
 
 source_group(ecs/components FILES
-    src/sge/ecs/components/transform.h
-    src/sge/ecs/components/sprite_renderer.h
-    src/sge/ecs/components/audio_source.h
-    src/sge/ecs/components/colliders/collider.h
-    src/sge/ecs/components/colliders/collider.cpp
-    src/sge/ecs/components/colliders/box_collider_2d.h
-    src/sge/ecs/components/colliders/box_collider_2d.cpp
-    src/sge/ecs/components/ui/label.h
-    src/sge/ecs/components/ui/label.cpp
+    src/wase/ecs/components/transform.h
+    src/wase/ecs/components/sprite_renderer.h
+    src/wase/ecs/components/audio_source.h
+    src/wase/ecs/components/animator.h
+    src/wase/ecs/components/animator.cpp
+    src/wase/ecs/components/colliders/collider.h
+    src/wase/ecs/components/colliders/collider.cpp
+    src/wase/ecs/components/colliders/box_collider_2d.h
+    src/wase/ecs/components/colliders/box_collider_2d.cpp
+    src/wase/ecs/components/ui/label.h
+    src/wase/ecs/components/ui/label.cpp
 )
 
-target_link_libraries(sdl-game-engine ${SDL2_LIBRARY}
+target_link_libraries(wase-engine ${SDL2_LIBRARY}
         ${SDL2_IMAGE_LIBRARIES}
         ${SDL2_MIXER_LIBRARIES}
         ${SDL2_TTF_LIBRARIES})
