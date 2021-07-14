@@ -2,7 +2,7 @@
 
 # Table of contents
 1. [Introduction](#introduction)
-2. [Building SDL Game Engine](#setup)
+2. [Building Wase Engine](#setup)
 3. [Setting up the engine](#setup-engine)
 4. [Scene management](#scene-management)
 5. [Creating entities](#creating-entities)
@@ -18,10 +18,10 @@
 10. [Contributing](#contributing)
 
 ## Introduction <a name="introduction"></a>
-In this file you will find information about how you can build SDL Game Engine and how to use it. Everything will be demonstrated with a code example.
+In this file you will find information about how you can build Wase Engine and how to use it. Everything will be demonstrated with a code example.
 
-## Building SDL Game Engine <a name="setup"></a>
-To set up SDL Game Engine you will need to install the following items:
+## Building Wase Engine <a name="setup"></a>
+To set up Wase Engine you will need to install the following items:
 - C++17 or higher
 - CMake
 - SDL2
@@ -38,7 +38,7 @@ cmake ..
 cmake build .
 ```
 
-Now you will be able to build the SDL Game Engine. When you build the SDL Game Engine there will be an include and lib folder in the build directory. You can use these for your game projects.
+Now you will be able to build the Wase Engine. When you build the Wase Engine there will be an include and lib folder in the build directory. You can use these for your game projects.
 
 ## Setting up the engine <a name="setup-engine"></a>
 To run the engine you can simply call the run method on the Engine instance in the main function.<br>
