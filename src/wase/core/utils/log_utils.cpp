@@ -19,19 +19,4 @@ namespace log_utils
 
 		return resultStream.str();
 	}
-
-	void info(const std::string& message)
-	{
-		std::cout << "[" << timestamp() << " INFO] " << message << "\n";
-	}
-
-	void success(const std::string& message)
-	{
-		std::cout << "\u001b[32m" << "[" << timestamp() << " SUCCESS] " << message << "\n\u001b[0m";
-	}
-
-	void error(const std::string& message)
-	{
-		std::cerr << "\u001b[31m" << "[" << timestamp() << " ERROR] " << message << "\n\u001b[0m";
-	}
 }
