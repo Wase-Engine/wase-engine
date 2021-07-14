@@ -1,16 +1,16 @@
 
-# Contributing to SDL Game Engine
+# Contributing to Wase Engine
 
 <!-- This CONTRIBUTING.md is adapted from https://gist.github.com/peterdesmet/e90a1b0dc17af6c12daf6e8b2f044e7c -->
 
-First of all, thanks for considering contributing to SDL Game Engine 👍!
+First of all, thanks for considering contributing to Wase Engine 👍!
 
-SDL Game Engine is an open source project for me to learn more about game engine structures and contributing with other people.
+Wase Engine is an open source project for me to learn more about game engine structures and contributing with other people.
 
-[documentation]: https://github.com/JelleVos1/sdl-game-engine/blob/master/documentation.md
-[repo]: https://github.com/JelleVos1/sdl-game-engine
-[issues]: https://github.com/JelleVos1/sdl-game-engine/issues
-[new_issue]: https://github.com/JelleVos1/sdl-game-engine/issues/new/choose
+[documentation]: https://github.com/JelleVos1/wase-engine/blob/master/documentation.md
+[repo]: https://github.com/JelleVos1/wase-engine
+[issues]: https://github.com/JelleVos1/wase-engine/issues
+[new_issue]: https://github.com/JelleVos1/wase-engine/issues/new/choose
 [email]: jelle.vos@outlook.com
 
 ## How you can contribute
@@ -19,13 +19,13 @@ There are several ways you can contribute to this project. If you want to know m
 
 ### Ask a question ⁉️
 
-Using SDL Game Engine and got stuck? Browse the [documentation][documentation] to see if you can find a solution. Still stuck? Post your question as an [issue on GitHub][new_issue]. While we cannot offer user support, we'll try to do our best to address it, as questions often lead to better documentation or the discovery of bugs.
+Using Wase Engine and got stuck? Browse the [documentation][documentation] to see if you can find a solution. Still stuck? Post your question as an [issue on GitHub][new_issue]. While we cannot offer user support, we'll try to do our best to address it, as questions often lead to better documentation or the discovery of bugs.
 
 Want to ask a question in private? Contact me by [email](mailto:email).
 
 ### Propose an idea 💡
 
-Have an idea for a new SDL Game Engine feature? Take a look at the [documentation][documentation] and [issue list][issues] to see if it isn't included or suggested yet. If not, suggest your idea as an [issue][new_issue]. While we can't promise to implement your idea, it helps to:
+Have an idea for a new Wase Engine feature? Take a look at the [documentation][documentation] and [issue list][issues] to see if it isn't included or suggested yet. If not, suggest your idea as an [issue][new_issue]. While we can't promise to implement your idea, it helps to:
 
 * Explain in detail how it would work.
 * Keep the scope as narrow as possible.
@@ -34,7 +34,7 @@ See below if you want to contribute code for your idea as well.
 
 ### Report a bug 🐛
 
-Using SDL Game Engine and discovered a bug? That's annoying! Don't let others have the same experience and report it as an [issue][new_issue] so we can fix it. A good bug report makes it easier for us to do so, so please include:
+Using Wase Engine and discovered a bug? That's annoying! Don't let others have the same experience and report it as an [issue][new_issue] so we can fix it. A good bug report makes it easier for us to do so, so please include:
 
 * Your operating system name and version (e.g. Mac OS 10.13.6).
 * Detailed steps to reproduce the bug.
@@ -46,7 +46,7 @@ Noticed a typo in the documentation? Think a function could use a better example
 
 ### Contribute code 📝
 
-Care to fix bugs or implement new functionality to SDL Game Engine? Awesome 👏! Have a look at the [issue list][issues] and leave a comment on the things you want to work on. See also the development guidelines below.
+Care to fix bugs or implement new functionality to Wase Engine? Awesome 👏! Have a look at the [issue list][issues] and leave a comment on the things you want to work on. See also the development guidelines below.
 
 ## Development guidelines
 
