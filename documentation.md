@@ -261,4 +261,4 @@ log_utils::info("This is an example.");
 ```
 
 ## Contributing <a name="contributing"></a>
-If you would like to help us improve this file you can head over to [this](https://github.com/JelleVos1/sdl-game-engine/blob/master/CONTRIBUTING.md) page. 
+If you would like to help us improve this file you can head over to [this](https://github.com/JelleVos1/wase-engine/blob/master/CONTRIBUTING.md) page. 
