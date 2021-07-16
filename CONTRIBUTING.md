@@ -7,11 +7,11 @@ First of all, thanks for considering contributing to Wase Engine 👍!
 
 Wase Engine is an open source project for me to learn more about game engine structures and contributing with other people.
 
-[documentation]: https://github.com/JelleVos1/wase-engine/blob/master/documentation.md
-[repo]: https://github.com/JelleVos1/wase-engine
-[issues]: https://github.com/JelleVos1/wase-engine/issues
-[new_issue]: https://github.com/JelleVos1/wase-engine/issues/new/choose
-[email]: jelle.vos@outlook.com
+[documentation]: https://wase-engine.com/documentation
+[repo]: https://github.com/Wase-Engine/wase-engine
+[issues]: https://github.com/Wase-Engine/wase-engine/issues
+[new_issue]: https://github.com/Wase-Engine/wase-engine/issues/new/choose
+[email]: info@wase-engine.com
 
 ## How you can contribute
 
