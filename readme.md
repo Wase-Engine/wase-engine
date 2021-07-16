@@ -38,7 +38,7 @@ Now you will be able to build the Wase Engine. When you build the Wase Engine th
  - [Simon](https://github.com/JelleVos1/simon)
 
 ## Documentation
-You can head over to the [documentation](https://wase-engine.com/documentation.html) for more information about Wase Engine. In the [documentation](https://wase-engine.com/documentation.html) there is a detailed description about how Wase Engine works.
+You can head over to the [documentation](https://wase-engine.com/documentation) for more information about Wase Engine. In the [documentation](https://wase-engine.com/documentation) there is a detailed description about how Wase Engine works.
 
 ## Contributing
 If you want to contribute to Wase Engine you can head over to the [contributing](https://github.com/Wase-Engine/sdl-game-engine/blob/master/CONTRIBUTING.md) page for more information.
