@@ -3,6 +3,7 @@
 #include "collider.h"
 
 #include "../../../core/renderer.h"
+#include "../../../core/vector2.h"
 #include "../../../core/draw.h"
 #include "../../../ecs/components/transform.h"
 
@@ -12,7 +13,7 @@ class BoxCollider2D : public Collider
 {
 public:
 	int width, height;
-	float offsetX = 0, offsetY = 0;
+	Vector2 offset;
 	bool showCollider = false;
 
 public:
@@ -25,8 +26,8 @@ public:
 	bool onMouseExit();
 
 private:
-	float x, y;
-	float mouseX, mouseY;
+	Vector2 position;
+	Vector2 mousePosition;
 	Rectangle* rectangle = nullptr;
 
 	SDL_Rect rectToDraw;

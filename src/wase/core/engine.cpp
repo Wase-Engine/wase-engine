@@ -87,8 +87,6 @@ void Engine::render()
 
 	Draw::render();
 
-	SDL_SetRenderDrawColor(Renderer::getRenderer(), 21, 21, 21, 255);
-
 	SDL_RenderPresent(Renderer::getRenderer());
 }
 

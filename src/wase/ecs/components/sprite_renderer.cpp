@@ -31,8 +31,8 @@ void SpriteRenderer::update(float dt)
 		rect.x = (int)(transform->position.x - camera->position.x);
 		rect.y = (int)(transform->position.y - camera->position.y);
 	}
-	rect.w = (int)(sizeX * transform->scale.x);
-	rect.h = (int)(sizeY * transform->scale.y);
+	rect.w = (int)(sizeX);
+	rect.h = (int)(sizeY);
 }
 
 void SpriteRenderer::render()

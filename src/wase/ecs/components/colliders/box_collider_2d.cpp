@@ -13,18 +13,18 @@ void BoxCollider2D::update(float dt)
 	if (owner->parent && !parentTransform)
 		parentTransform = owner->parent->getComponent<Transform>();
 
-	x = !parentTransform ? transform->position.x : transform->position.x + parentTransform->position.x;
-	y = !parentTransform ? transform->position.y : transform->position.y + parentTransform->position.y;
+	position.x = !parentTransform ? transform->position.x : transform->position.x + parentTransform->position.x;
+	position.y = !parentTransform ? transform->position.y : transform->position.y + parentTransform->position.y;
 
 	// Get the mouse position
-	mouseX = input::getMousePos().x;
-	mouseY = input::getMousePos().y;
+	mousePosition.x = input::getMousePos().x;
+	mousePosition.y = input::getMousePos().y;
 
 	// If the component should show the collider outline set the position for the rectangle
 	if (showCollider && rectangle)
 	{
-		rectangle->rect.x = (int)(x + offsetX);
-		rectangle->rect.y = (int)(y + offsetY);
+		rectangle->rect.x = (int)(position.x + offset.x);
+		rectangle->rect.y = (int)(position.y + offset.y);
 	}
 
 	checkMouseHover();
@@ -35,7 +35,7 @@ void BoxCollider2D::render()
 	// Create the rectangle if it hasn't been created yet
 	if (showCollider && !rectangle)
 	{
-		rectangle = Draw::rectangle({ (int)x + (int)offsetX, (int)y + (int)offsetY, (int)width, (int)height }, 0, 255, 0, 255, false);
+		rectangle = Draw::rectangle({ (int)position.x + (int)offset.x, (int)position.y + (int)offset.y, (int)width, (int)height }, 0, 255, 0, 255, false);
 	}
 }
 
@@ -63,14 +63,14 @@ bool BoxCollider2D::onMouseExit()
 
 void BoxCollider2D::checkMouseHover()
 {
-	if (!(mouseX < x + width && mouseX > x))
+	if (!(mousePosition.x < position.x + width && mousePosition.x > position.x))
 	{
 		entered = false;
 		mouseHover = false;
 		return;
 	}
 
-	if (!(mouseY < y + height && mouseY > y))
+	if (!(mousePosition.y < position.y + height && mousePosition.y > position.y))
 	{
 		entered = false;
 		mouseHover = false;

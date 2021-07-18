@@ -20,6 +20,23 @@ SDL_Renderer* Renderer::getRenderer()
 	return getInstance()->renderer;
 }
 
+SDL_Color Renderer::getDrawColor()
+{
+	return getInstance()->drawColor;
+}
+
+void Renderer::setDrawColor(const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a)
+{
+	SDL_Color color;
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	color.a = a;
+
+	getInstance()->drawColor = color;
+	SDL_SetRenderDrawColor(getInstance()->renderer, r, g, b, a);
+}
+
 std::shared_ptr<Renderer> Renderer::getInstance()
 {
 	return instance = (instance != nullptr) ? instance : std::make_shared<Renderer>();
