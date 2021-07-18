@@ -75,6 +75,19 @@ public:
 		return false;
 	}
 
+	template<typename T>
+	inline void removeComponent()
+	{
+		if (hasComponent<T>())
+		{
+			components.erase(components.find(typeid(T).name()));
+		}
+		else
+		{
+			log_utils::error(name + " doesn't have a " + typeid(T).name() + " component. Can't remove it.");
+		}
+	}
+
 private:
 	std::string name;
 	bool enabled = true;
