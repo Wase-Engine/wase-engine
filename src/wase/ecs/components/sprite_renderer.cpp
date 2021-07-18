@@ -21,16 +21,12 @@ void SpriteRenderer::update(float dt)
 	if (owner->parent && !parentTransform)
 		parentTransform = owner->parent->getComponent<Transform>();
 
-	if (parentTransform)
-	{
-		rect.x = (int)(transform->position.x + parentTransform->position.x - camera->position.x);
-		rect.y = (int)(transform->position.y + parentTransform->position.y - camera->position.y);
-	}
-	else
-	{
-		rect.x = (int)(transform->position.x - camera->position.x);
-		rect.y = (int)(transform->position.y - camera->position.y);
-	}
+	if (!owner->parent)
+		parentTransform = nullptr;
+
+	rect.x = parentTransform ? (int)(transform->position.x + parentTransform->position.x - camera->position.x) : (int)(transform->position.x - camera->position.x);
+	rect.y = parentTransform ? (int)(transform->position.y + parentTransform->position.y - camera->position.y) : (int)(transform->position.y - camera->position.y);
+
 	rect.w = (int)(sizeX);
 	rect.h = (int)(sizeY);
 }

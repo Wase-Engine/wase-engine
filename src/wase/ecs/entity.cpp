@@ -34,6 +34,15 @@ void Entity::render()
 
 void Entity::setParent(Entity* entity)
 {
+	if (!entity)
+	{
+		if (parent)
+			parent->children.erase(std::remove(parent->children.begin(), parent->children.end(), this), parent->children.end());
+
+		parent = nullptr;
+		return;
+	}
+
 	// If the entity already has a parent remove the entity from the current parent its list of children
 	if (parent)
 	{
