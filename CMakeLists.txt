@@ -54,7 +54,9 @@ add_library(wase-engine
     src/wase/ecs/entity_manager.cpp
     src/wase/ecs/components/transform.h
     src/wase/ecs/components/sprite_renderer.h
+    src/wase/ecs/components/sprite_renderer.cpp
     src/wase/ecs/components/audio_source.h
+    src/wase/ecs/components/audio_source.cpp
     src/wase/ecs/components/animator.h
     src/wase/ecs/components/animator.cpp
     src/wase/ecs/components/colliders/collider.h
@@ -110,7 +112,9 @@ source_group(ecs FILES
 source_group(ecs/components FILES
     src/wase/ecs/components/transform.h
     src/wase/ecs/components/sprite_renderer.h
+    src/wase/ecs/components/sprite_renderer.cpp
     src/wase/ecs/components/audio_source.h
+    src/wase/ecs/components/audio_source.cpp
     src/wase/ecs/components/animator.h
     src/wase/ecs/components/animator.cpp
     src/wase/ecs/components/colliders/collider.h
