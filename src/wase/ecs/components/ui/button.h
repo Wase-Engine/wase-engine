@@ -16,7 +16,8 @@ enum TextAlignment
     BOTTOM_RIGHT
 };
 
-struct MouseStateColors{
+struct MouseStateColors
+{
     SDL_Color color, hoverColor, pressColor;
 };
 
