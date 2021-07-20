@@ -1,7 +1,10 @@
 #pragma once
 
-#include "label.h"
+#include "../../component.h"
+#include "../transform.h"
+#include "../colliders/box_collider_2d.h"
 #include "../../../core/draw.h"
+#include "../../../core/size.h"
 
 enum TextAlignment
 {
@@ -24,11 +27,13 @@ struct MouseStateColors
 class Button : public Component
 {
 public:
-	Button(const std::string& text, const Size& buttonSize, const char* font, TextAlignment textAlignment, const SDL_Color& textColor, const SDL_Color& buttonColor);
+	Button(const char* text, const Size& buttonSize, const char* font, TextAlignment textAlignment, const SDL_Color& textColor, const SDL_Color& buttonColor);
+
 	void start() override;
 	void update(float dt) override;
 	void render() override;
-	void setText(const std::string& text);
+
+	void setText(const char* text);
     void setTextAlignment(const TextAlignment &textAlignment);
 	void setFont(const char* font);
 	void setTextColor(const SDL_Color& color);
@@ -37,6 +42,7 @@ public:
 	Size getTextSize();
 
 	void setButtonPressEffect(const bool buttonPressEffect);
+	void setButtonHoverEffect(const bool buttonHoverEffect);
     void setButtonColor(const SDL_Color& color);
     void setButtonHoverColor(const SDL_Color& color);
     void setButtonPressColor(const SDL_Color& color);
@@ -52,8 +58,9 @@ private:
 	Camera* camera = nullptr;
 	Transform* transform = nullptr;
 	Transform* parentTransform = nullptr;
+    BoxCollider2D* boxCollider = nullptr;
 
-	std::string text;
+	const char* text;
 	const char* font = nullptr;
 	SDL_Rect textPosition;
     Vector2 textOffset;
@@ -61,6 +68,7 @@ private:
 	SDL_Texture* texture = nullptr;
 
     bool buttonPressEffect = false;
+    bool buttonHoverEffect = false;
     SDL_Color textCurrentColor;
     MouseStateColors textColors;
 
@@ -70,11 +78,9 @@ private:
     TextAlignment textAlignment;
 
     SDL_Rect rect;
-    Rectangle *rectangle;
-
-    bool mouseHover, entered, exited;
+    Rectangle* rectangle = nullptr;
 
 private:
+    void buttonEffects();
 	void updateText();
-    void checkMouseHover();
 };

@@ -39,6 +39,7 @@ add_library(wase-engine
     src/wase/core/draw.h
     src/wase/core/draw.cpp
     src/wase/core/vector2.h
+    src/wase/core/size.h
     src/wase/core/utils/log_utils.h
     src/wase/core/utils/log_utils.cpp
     src/wase/core/managers/scene_manager.h
@@ -89,6 +90,7 @@ source_group(core FILES
     src/wase/core/draw.h
     src/wase/core/draw.cpp
     src/wase/core/vector2.h
+    src/wase/core/size.h
     src/wase/core/managers/scene_manager.h
     src/wase/core/managers/scene_manager.cpp
     src/wase/core/managers/resource_manager.h
