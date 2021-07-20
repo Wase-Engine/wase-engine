@@ -39,6 +39,11 @@ void BoxCollider2D::render()
 	}
 }
 
+bool BoxCollider2D::isHovering()
+{
+	return mouseHover;
+}
+
 bool BoxCollider2D::onMouseEnter()
 {
 	if (entered)

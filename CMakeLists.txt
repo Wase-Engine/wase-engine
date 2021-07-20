@@ -39,6 +39,7 @@ add_library(wase-engine
     src/wase/core/draw.h
     src/wase/core/draw.cpp
     src/wase/core/vector2.h
+    src/wase/core/size.h
     src/wase/core/utils/log_utils.h
     src/wase/core/utils/log_utils.cpp
     src/wase/core/managers/scene_manager.h
@@ -65,6 +66,8 @@ add_library(wase-engine
     src/wase/ecs/components/colliders/box_collider_2d.cpp
     src/wase/ecs/components/ui/label.h
     src/wase/ecs/components/ui/label.cpp
+    src/wase/ecs/components/ui/button.h
+    src/wase/ecs/components/ui/button.cpp
 )
 
 # Group the core files
@@ -87,6 +90,7 @@ source_group(core FILES
     src/wase/core/draw.h
     src/wase/core/draw.cpp
     src/wase/core/vector2.h
+    src/wase/core/size.h
     src/wase/core/managers/scene_manager.h
     src/wase/core/managers/scene_manager.cpp
     src/wase/core/managers/resource_manager.h
@@ -123,6 +127,8 @@ source_group(ecs/components FILES
     src/wase/ecs/components/colliders/box_collider_2d.cpp
     src/wase/ecs/components/ui/label.h
     src/wase/ecs/components/ui/label.cpp
+    src/wase/ecs/components/ui/button.h
+    src/wase/ecs/components/ui/button.cpp
 )
 
 target_link_libraries(wase-engine ${SDL2_LIBRARY}

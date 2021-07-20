@@ -3,14 +3,10 @@
 #include "../../component.h"
 #include "../transform.h"
 #include "../../entity_manager.h"
+#include "../../../core/size.h"
 
 #include <SDL.h>
 #include <string>
-
-struct Size
-{
-	int w, h;
-};
 
 class Label : public Component
 {
