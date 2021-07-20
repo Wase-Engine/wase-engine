@@ -65,6 +65,8 @@ add_library(wase-engine
     src/wase/ecs/components/colliders/box_collider_2d.cpp
     src/wase/ecs/components/ui/label.h
     src/wase/ecs/components/ui/label.cpp
+    src/wase/ecs/components/ui/button.h
+    src/wase/ecs/components/ui/button.cpp
 )
 
 # Group the core files
@@ -123,6 +125,8 @@ source_group(ecs/components FILES
     src/wase/ecs/components/colliders/box_collider_2d.cpp
     src/wase/ecs/components/ui/label.h
     src/wase/ecs/components/ui/label.cpp
+    src/wase/ecs/components/ui/button.h
+    src/wase/ecs/components/ui/button.cpp
 )
 
 target_link_libraries(wase-engine ${SDL2_LIBRARY}
