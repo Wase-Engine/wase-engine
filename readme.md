@@ -41,7 +41,6 @@ Add this codes in cmakelist.txt
 ```cmake
 if(MINGW)
     target_link_libraries(${PROJECT_NAME} mingw32)
-    add_definitions(-DSDL_MAIN_HANDLED)
 endif(MINGW)
 ```
 
