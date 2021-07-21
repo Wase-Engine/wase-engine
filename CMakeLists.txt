@@ -1,14 +1,12 @@
 cmake_minimum_required(VERSION 3.17)
 
-set(CMAKE_GENERATOR_PLATFORM win32)
-
 project(wase-engine)
 
 set(CMAKE_CXX_STANDARD 20)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib/x86)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)

@@ -3,6 +3,7 @@
 #include "components/transform.h"
 
 #include <string>
+#include <algorithm>
 
 Entity::Entity(const std::string& name)
 {

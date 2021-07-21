@@ -31,8 +31,19 @@ cd build
 cmake ..
 cmake build .
 ```
+Now you will be able to build the Wase Engine. 
 
-Now you will be able to build the Wase Engine. When you build the Wase Engine there will be an include and lib folder in the build directory. You can use these for your game projects.
+## Using Wase Engine in your games
+When you build the Wase Engine there will be an include and lib folder in the build directory. You can use these for your game projects.
+
+**MinGW:**
+Add this codes in cmakelist.txt
+```cmake
+if(MINGW)
+    target_link_libraries(${PROJECT_NAME} mingw32)
+    add_definitions(-DSDL_MAIN_HANDLED)
+endif(MINGW)
+```
 
 ## List of projects with Wase Engine
  - [Simon](https://github.com/JelleVos1/simon)
