@@ -6,7 +6,7 @@
 
 #include <SDL_ttf.h>
 
-Button::Button(const std::string &text, const Size &buttonSize, const char *font, TextAlignment textAlignment, const SDL_Color &textColor, const SDL_Color &buttonColor)
+Button::Button(const char* text, const Size &buttonSize, const char *font, TextAlignment textAlignment, const SDL_Color &textColor, const SDL_Color &buttonColor)
 {
     this->text = text;
     this->buttonSize = buttonSize;
@@ -23,6 +23,7 @@ Button::Button(const std::string &text, const Size &buttonSize, const char *font
 void Button::start()
 {
     transform = owner->getComponent<Transform>();
+    boxCollider = owner->addComponent<BoxCollider2D>(buttonSize.w, buttonSize.h);
     camera = &transform->owner->entityManager->camera;
 
     rect.w = buttonSize.w;
@@ -44,8 +45,31 @@ void Button::update(float dt)
 
     textPosition.x = rectangle->rect.x + textOffset.x;
     textPosition.y = rectangle->rect.y + textOffset.y;
+    
+    buttonEffects();
+}
 
-    checkMouseHover();
+void Button::render()
+{
+    SDL_RenderCopy(Renderer::getRenderer(), texture, NULL, &textPosition);
+}
+
+void Button::buttonEffects()
+{
+    if (!onMouseHold(SDL_BUTTON_LEFT))
+    {
+        buttonCurrentColor = buttonColors.color;
+        textCurrentColor = textColors.color;
+    }
+
+    if (buttonHoverEffect)
+    {
+        if (onMouseHover())
+        {
+            buttonCurrentColor = buttonColors.hoverColor;
+            textCurrentColor = textColors.hoverColor;
+        }
+    }
 
     if (buttonPressEffect)
     {
@@ -54,32 +78,18 @@ void Button::update(float dt)
             buttonCurrentColor = buttonColors.pressColor;
             textCurrentColor = textColors.pressColor;
         }
-        else if (onMouseHover())
-        {
-            buttonCurrentColor = buttonColors.hoverColor;
-            textCurrentColor = textColors.hoverColor;
-        }
-        else
-        {
-            buttonCurrentColor = buttonColors.color;
-            textCurrentColor = textColors.color;
-        }
-        rectangle->r = buttonCurrentColor.r;
-        rectangle->g = buttonCurrentColor.g;
-        rectangle->b = buttonCurrentColor.b;
-        rectangle->a = buttonCurrentColor.a;
-
-        SDL_SetTextureColorMod(texture, textCurrentColor.r, textCurrentColor.g, textCurrentColor.b);
-        SDL_SetTextureAlphaMod(texture, textCurrentColor.a);
     }
+
+    rectangle->r = buttonCurrentColor.r;
+    rectangle->g = buttonCurrentColor.g;
+    rectangle->b = buttonCurrentColor.b;
+    rectangle->a = buttonCurrentColor.a;
+
+    SDL_SetTextureColorMod(texture, textCurrentColor.r, textCurrentColor.g, textCurrentColor.b);
+    SDL_SetTextureAlphaMod(texture, textCurrentColor.a);
 }
 
-void Button::render()
-{
-    SDL_RenderCopy(Renderer::getRenderer(), texture, NULL, &textPosition);
-}
-
-void Button::setText(const std::string &text)
+void Button::setText(const char* text)
 {
     this->text = text;
 
@@ -103,13 +113,6 @@ void Button::setFont(const char *font)
 void Button::setTextColor(const SDL_Color &color)
 {
     textColors.color = color;
-
-    if (!buttonPressEffect)
-    {
-        textCurrentColor = textColors.color;
-        SDL_SetTextureColorMod(texture, textCurrentColor.r, textCurrentColor.g, textCurrentColor.b);
-        SDL_SetTextureAlphaMod(texture, textCurrentColor.a);
-    }
 }
 
 void Button::setTextHoverColor(const SDL_Color &color)
@@ -126,7 +129,7 @@ Size Button::getTextSize()
 {
     Size size;
 
-    TTF_SizeText(ResourceManager::getFont(font), text.c_str(), &size.w, &size.h);
+    TTF_SizeText(ResourceManager::getFont(font), text, &size.w, &size.h);
 
     return size;
 }
@@ -134,23 +137,16 @@ Size Button::getTextSize()
 void Button::setButtonPressEffect(const bool buttonPressEffect)
 {
     this->buttonPressEffect = buttonPressEffect;
+}
 
-    setButtonColor(buttonColors.color);
-    setTextColor(textColors.color);
+void Button::setButtonHoverEffect(const bool buttonHoverEffect)
+{
+    this->buttonHoverEffect = buttonHoverEffect;
 }
 
 void Button::setButtonColor(const SDL_Color &color)
 {
     buttonColors.color = color;
-
-    if (!buttonPressEffect)
-    {
-        buttonCurrentColor = color;
-        rectangle->r = buttonCurrentColor.r;
-        rectangle->g = buttonCurrentColor.g;
-        rectangle->b = buttonCurrentColor.b;
-        rectangle->a = buttonCurrentColor.a;
-    }
 }
 
 void Button::setButtonHoverColor(const SDL_Color &color)
@@ -165,68 +161,32 @@ void Button::setButtonPressColor(const SDL_Color &color)
 
 bool Button::onMouseEnter()
 {
-    if (entered)
-        return false;
-
-    if (mouseHover)
-        entered = true;
-
-    return mouseHover;
+    return boxCollider->onMouseEnter();
 }
 
 bool Button::onMouseExit()
 {
-    if (exited)
-        return false;
-
-    if (!mouseHover)
-        exited = true;
-
-    return !mouseHover;
+    return boxCollider->onMouseExit();
 }
 
 bool Button::onMouseHold(const int button)
 {
-    return mouseHover && input::getMouseButton(button);
+    return boxCollider->onMouseHold(button);
 }
 
 bool Button::onMouseHover()
 {
-    return mouseHover;
+    return boxCollider->isHovering();
 }
 
 bool Button::onMouseDown(const int button)
 {
-    return mouseHover && input::getMouseButtonDown(button);
+    return boxCollider->onMouseDown(button);
 }
 
 bool Button::onMouseUp(const int button)
 {
-    return mouseHover && input::getMouseButtonUp(button);
-}
-
-void Button::checkMouseHover()
-{
-    Vector2 mousePosition;
-    mousePosition.x = input::getMousePos().x;
-    mousePosition.y = input::getMousePos().y;
-
-    if (!(mousePosition.x < rectangle->rect.x + rectangle->rect.w && mousePosition.x > rectangle->rect.x))
-    {
-        entered = false;
-        mouseHover = false;
-        return;
-    }
-
-    if (!(mousePosition.y < rectangle->rect.y + rectangle->rect.h && mousePosition.y > rectangle->rect.y))
-    {
-        entered = false;
-        mouseHover = false;
-        return;
-    }
-
-    mouseHover = true;
-    exited = false;
+    return boxCollider->onMouseUp(button);
 }
 
 void Button::updateText()
@@ -271,7 +231,7 @@ void Button::updateText()
         break;
     }
 
-    SDL_Surface *surface = TTF_RenderText_Blended(ResourceManager::getFont(font), text.c_str(), textCurrentColor);
+    SDL_Surface *surface = TTF_RenderText_Blended(ResourceManager::getFont(font), text, textCurrentColor);
 
     texture = SDL_CreateTextureFromSurface(Renderer::getRenderer(), surface);
 
