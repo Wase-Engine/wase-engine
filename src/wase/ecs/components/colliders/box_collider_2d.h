@@ -22,6 +22,7 @@ public:
 	void update(float dt) override;
 	void render() override;
 
+	bool isHovering();
 	bool onMouseEnter();
 	bool onMouseExit();
 
