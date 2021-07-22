@@ -88,3 +88,20 @@ jobs:
           cmake -Bbuild -G "NMake Makefiles"
           cd build
           nmake
+  macos:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+          submodules: true
+    - name: install packages and build
+      shell: bash
+      run: |
+        brew install sdl2
+        brew install sdl2_image
+        brew install sdl2_mixer
+        brew install sdl2_ttf
+        cmake -Bbuild -G "Unix Makefiles"
+        cd build
+        make
