@@ -3,19 +3,15 @@
 #include "../../component.h"
 #include "../transform.h"
 #include "../../entity_manager.h"
+#include "../../../core/size.h"
 
 #include <SDL.h>
 #include <string>
 
 namespace wase
 {
-	struct Size
-	{
-		int w, h;
-	};
-
-	class Label : public Component
-	{
+class Label : public Component
+{
 	public:
 		Label(const char* text, const char* font, const SDL_Color& color);
 		void start() override;

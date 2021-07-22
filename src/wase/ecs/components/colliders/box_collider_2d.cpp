@@ -41,10 +41,18 @@ namespace wase
 		}
 	}
 
+	bool BoxCollider2D::isHovering()
+	{
+		return mouseHover;
+	}
+
 	bool BoxCollider2D::onMouseEnter()
 	{
 		if (entered)
 			return false;
+
+		if (mouseHover)
+			entered = true;
 
 		if (mouseHover)
 			entered = true;
