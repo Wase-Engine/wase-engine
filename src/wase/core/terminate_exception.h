@@ -3,16 +3,19 @@
 #include <exception>
 #include <string>
 
-class TerminateException : public std::exception
+namespace wase
 {
-private:
-	std::string message;
-
-public:
-	TerminateException(const std::string& message) : message(message) {}
-
-	const char* what() const noexcept override
+	class TerminateException : public std::exception
 	{
-		return message.c_str();
-	}
-};
+	private:
+		std::string message;
+
+	public:
+		TerminateException(const std::string& message) : message(message) {}
+
+		const char* what() const noexcept override
+		{
+			return message.c_str();
+		}
+	};
+}
