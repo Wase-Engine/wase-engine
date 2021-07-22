@@ -1,4 +1,3 @@
-
 [![Wase Engine logo banner](http://wase-engine.com/img/banner.png)](https://wase-engine.com/)
 
 [![Website badge](https://img.shields.io/website?up_message=online&url=https%3A%2F%2Fwase-engine.com%2F)](https://wase-engine.com/)
@@ -31,18 +30,8 @@ cd build
 cmake ..
 cmake build .
 ```
-Now you will be able to build the Wase Engine. 
 
-## Using Wase Engine in your games
-When you build the Wase Engine there will be an include and lib folder in the build directory. You can use these for your game projects.
-
-**MinGW:**
-Add this codes in cmakelist.txt
-```cmake
-if(MINGW)
-    target_link_libraries(${PROJECT_NAME} mingw32)
-endif(MINGW)
-```
+Now you will be able to build the Wase Engine. When you build the Wase Engine there will be an include and lib folder in the build directory. You can use these for your game projects.
 
 ## List of projects with Wase Engine
  - [Simon](https://github.com/JelleVos1/simon)

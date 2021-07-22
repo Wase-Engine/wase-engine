@@ -134,4 +134,8 @@ target_link_libraries(wase-engine ${SDL2_LIBRARY}
         ${SDL2_MIXER_LIBRARIES}
         ${SDL2_TTF_LIBRARIES})
 
+if(MINGW)
+    target_link_libraries(wase-engine mingw32)
+endif(MINGW)
+
 file(COPY src/ DESTINATION ${CMAKE_BINARY_DIR}/include)
