@@ -12,22 +12,25 @@
 #include <memory>
 #include <string>
 
-class SpriteRenderer : public Component
+namespace wase
 {
-public:
-	SDL_Color color = { 255, 255, 255 };
-	SDL_Rect rect{};
+	class SpriteRenderer : public Component
+	{
+	public:
+		SDL_Color color = { 255, 255, 255 };
+		SDL_Rect rect{};
 
-public:
-	SpriteRenderer(const std::string& name, const int sizeX, const int sizeY);
-	void start() override;
-	void update(float dt) override;
-	void render() override;
+	public:
+		SpriteRenderer(const std::string& name, const int sizeX, const int sizeY);
+		void start() override;
+		void update(float dt) override;
+		void render() override;
 
-private:
-	Transform* transform = nullptr;
-	Transform* parentTransform = nullptr;
-	SDL_Texture* texture = nullptr;
-	Camera* camera = nullptr;
-	int sizeX, sizeY;
-};
+	private:
+		Transform* transform = nullptr;
+		Transform* parentTransform = nullptr;
+		SDL_Texture* texture = nullptr;
+		Camera* camera = nullptr;
+		int sizeX, sizeY;
+	};
+}

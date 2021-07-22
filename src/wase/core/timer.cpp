@@ -2,24 +2,27 @@
 
 #include <SDL.h>
 
-std::shared_ptr<Timer> Timer::instance = nullptr;
-
-void Timer::tick()
+namespace wase
 {
-	getInstance()->deltaTime = ((float) SDL_GetTicks() - getInstance()->lastTime) * (TARGET_FPS / 1000.0f);
+	std::shared_ptr<Timer> Timer::instance = nullptr;
 
-	if (getInstance()->deltaTime > MAX_DELTA_TIME)
-		getInstance()->deltaTime = MAX_DELTA_TIME;
+	void Timer::tick()
+	{
+		getInstance()->deltaTime = ((float)SDL_GetTicks() - getInstance()->lastTime) * (TARGET_FPS / 1000.0f);
 
-	getInstance()->lastTime = (float) SDL_GetTicks();
-}
+		if (getInstance()->deltaTime > MAX_DELTA_TIME)
+			getInstance()->deltaTime = MAX_DELTA_TIME;
 
-float Timer::getDeltaTime()
-{
-	return getInstance()->deltaTime;
-}
+		getInstance()->lastTime = (float)SDL_GetTicks();
+	}
 
-std::shared_ptr<Timer> Timer::getInstance()
-{
-	return instance = (instance != nullptr) ? instance : std::make_shared<Timer>();
+	float Timer::getDeltaTime()
+	{
+		return getInstance()->deltaTime;
+	}
+
+	std::shared_ptr<Timer> Timer::getInstance()
+	{
+		return instance = (instance != nullptr) ? instance : std::make_shared<Timer>();
+	}
 }
