@@ -2,7 +2,10 @@
 
 #include "../core/vector2.h"
 
-struct Camera
+namespace wase
 {
-	Vector2 position;
-};
+	struct Camera
+	{
+		Vector2 position;
+	};
+}

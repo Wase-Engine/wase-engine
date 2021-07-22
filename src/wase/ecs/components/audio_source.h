@@ -9,20 +9,23 @@
 #include <map>
 #include <string>
 
-class AudioSource : public Component
+namespace wase
 {
-public:
-	bool playing = false;
-	bool loop;
+	class AudioSource : public Component
+	{
+	public:
+		bool playing = false;
+		bool loop;
 
-public:
-	AudioSource(const std::string& name, const Uint8 volume = 100, const bool loop = false, const bool playOnAwake = false);
-	void play();
-	void onStateChange(const bool state);
-	void setVolume(float volume);
-	void destroy() override;
+	public:
+		AudioSource(const std::string& name, const Uint8 volume = 100, const bool loop = false, const bool playOnAwake = false);
+		void play();
+		void onStateChange(const bool state);
+		void setVolume(float volume);
+		void destroy() override;
 
-private:
-	Mix_Chunk* audioClip = nullptr;
-	int channel = -1;
-};
+	private:
+		Mix_Chunk* audioClip = nullptr;
+		int channel = -1;
+	};
+}

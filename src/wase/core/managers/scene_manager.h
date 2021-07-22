@@ -6,21 +6,24 @@
 #include <string>
 #include <memory>
 
-class SceneManager
+namespace wase
 {
-public:
-	static void addScene(const std::string& name, const std::shared_ptr<Scene> scene);
+	class SceneManager
+	{
+	public:
+		static void addScene(const std::string& name, const std::shared_ptr<Scene> scene);
 
-	static Scene* getActiveScene();
-	static void setActiveScene(const std::string& name);
+		static Scene* getActiveScene();
+		static void setActiveScene(const std::string& name);
 
-private:
-	static std::shared_ptr<SceneManager> instance;
-	
-	std::map<std::string, std::shared_ptr<Scene>> scenes;
+	private:
+		static std::shared_ptr<SceneManager> instance;
 
-	std::shared_ptr<Scene> activeScene;
+		std::map<std::string, std::shared_ptr<Scene>> scenes;
 
-private:
-	static std::shared_ptr<SceneManager> getInstance();
-};
+		std::shared_ptr<Scene> activeScene;
+
+	private:
+		static std::shared_ptr<SceneManager> getInstance();
+	};
+}

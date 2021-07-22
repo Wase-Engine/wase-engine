@@ -7,20 +7,23 @@
 #include <memory>
 #include <map>
 
-class Entity;
-
-class EntityManager
+namespace wase
 {
-public:
-	Camera camera;
+	class Entity;
 
-public:
-	void update(float dt);
-	void render();
+	class EntityManager
+	{
+	public:
+		Camera camera;
 
-	Entity* addEntity(const std::string& name);
-	Entity* getEntity(const std::string& name);
+	public:
+		void update(float dt);
+		void render();
 
-private:
-	std::map<std::string, std::shared_ptr<Entity>> entities;
-};
+		Entity* addEntity(const std::string& name);
+		Entity* getEntity(const std::string& name);
+
+	private:
+		std::map<std::string, std::shared_ptr<Entity>> entities;
+	};
+}

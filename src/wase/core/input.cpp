@@ -2,123 +2,126 @@
 
 #include <map>
 
-namespace input 
+namespace wase
 {
-	std::map<int, bool> keys, keysNoRepeat, keysUp;
-	std::map<int, bool> buttons, buttonsNoRepeat, buttonsUp;
-	
-	short mouseScrollWheel = 0;
-	Vector2 mousePos;
-
-	namespace events
+	namespace input
 	{
-		void update()
+		std::map<int, bool> keys, keysNoRepeat, keysUp;
+		std::map<int, bool> buttons, buttonsNoRepeat, buttonsUp;
+
+		short mouseScrollWheel = 0;
+		Vector2 mousePos;
+
+		namespace events
 		{
-			for (const auto& [button, pressed] : buttonsUp)
+			void update()
 			{
-				buttonsUp[button] = false;
+				for (const auto& [button, pressed] : buttonsUp)
+				{
+					buttonsUp[button] = false;
+				}
+
+				mouseScrollWheel = 0;
 			}
 
-			mouseScrollWheel = 0;
+			void end()
+			{
+				buttonsNoRepeat = buttons;
+				keysNoRepeat = keys;
+
+				for (const auto& [button, boolean] : buttonsUp)
+				{
+					buttonsUp[button] = false;
+				}
+
+				for (const auto& [key, boolean] : keysUp)
+				{
+					keysUp[key] = false;
+				}
+			}
+
+			void keyEvent(const SDL_KeyboardEvent* event)
+			{
+				const int keyCode = event->keysym.sym;
+
+				if (event->type == SDL_KEYDOWN)
+				{
+					keys[keyCode] = true;
+				}
+				else if (event->type == SDL_KEYUP)
+				{
+					keys[keyCode] = false;
+					keysUp[keyCode] = true;
+					keysNoRepeat[keyCode] = false;
+				}
+			}
+
+			void mouseButtonEvent(const SDL_MouseButtonEvent* event)
+			{
+				const int button = event->button;
+
+				if (event->type == SDL_MOUSEBUTTONDOWN)
+				{
+					buttons[button] = true;
+				}
+				else if (event->type == SDL_MOUSEBUTTONUP)
+				{
+					buttons[button] = false;
+					buttonsUp[button] = true;
+					buttonsNoRepeat[button] = false;
+				}
+			}
+
+			void mouseScrollWheelEvent(const SDL_MouseWheelEvent* event)
+			{
+				mouseScrollWheel = event->y;
+			}
+
+			void mouseMotionEvent(const SDL_MouseMotionEvent* event)
+			{
+				mousePos.x = (float)event->x;
+				mousePos.y = (float)event->y;
+			}
 		}
 
-		void end()
+		bool getKey(const int keyCode)
 		{
-			buttonsNoRepeat = buttons;
-			keysNoRepeat = keys;
-			
-			for (const auto&[button, boolean] : buttonsUp)
-			{
-				buttonsUp[button] = false;
-			}
-
-			for (const auto& [key, boolean] : keysUp)
-			{
-				keysUp[key] = false;
-			}
+			return keys[keyCode];
 		}
 
-		void keyEvent(const SDL_KeyboardEvent* event)
+		bool getKeyDown(const int keyCode)
 		{
-			const int keyCode = event->keysym.sym;
-
-			if (event->type == SDL_KEYDOWN)
-			{
-				keys[keyCode] = true;
-			}
-			else if (event->type == SDL_KEYUP)
-			{
-				keys[keyCode] = false;
-				keysUp[keyCode] = true;
-				keysNoRepeat[keyCode] = false;
-			}
+			return !keysNoRepeat[keyCode] && keys[keyCode];
 		}
 
-		void mouseButtonEvent(const SDL_MouseButtonEvent* event)
+		bool getKeyUp(const int keyCode)
 		{
-			const int button = event->button;
-
-			if (event->type == SDL_MOUSEBUTTONDOWN)
-			{
-				buttons[button] = true;
-			}
-			else if (event->type == SDL_MOUSEBUTTONUP)
-			{
-				buttons[button] = false;
-				buttonsUp[button] = true;
-				buttonsNoRepeat[button] = false;
-			}
+			return keysUp[keyCode];
 		}
 
-		void mouseScrollWheelEvent(const SDL_MouseWheelEvent* event)
+		bool getMouseButton(const int button)
 		{
-			mouseScrollWheel = event->y;
+			return buttons[button];
 		}
 
-		void mouseMotionEvent(const SDL_MouseMotionEvent* event)
+		bool getMouseButtonDown(const int button)
 		{
-			mousePos.x = (float)event->x;
-			mousePos.y = (float)event->y;
+			return !buttonsNoRepeat[button] && buttons[button];
 		}
-	}
 
-	bool getKey(const int keyCode)
-	{
-		return keys[keyCode];
-	}
+		bool getMouseButtonUp(const int button)
+		{
+			return buttonsUp[button];
+		}
 
-	bool getKeyDown(const int keyCode)
-	{
-		return !keysNoRepeat[keyCode] && keys[keyCode];
-	}
+		short getMouseScrollWheel()
+		{
+			return mouseScrollWheel;
+		}
 
-	bool getKeyUp(const int keyCode)
-	{
-		return keysUp[keyCode];
-	}
-
-	bool getMouseButton(const int button)
-	{
-		return buttons[button];
-	}
-
-	bool getMouseButtonDown(const int button)
-	{
-		return !buttonsNoRepeat[button] && buttons[button];
-	}
-
-	bool getMouseButtonUp(const int button)
-	{
-		return buttonsUp[button];
-	}
-
-	short getMouseScrollWheel()
-	{
-		return mouseScrollWheel;
-	}
-
-	Vector2 getMousePos()
-	{
-		return mousePos;
+		Vector2 getMousePos()
+		{
+			return mousePos;
+		}
 	}
 }

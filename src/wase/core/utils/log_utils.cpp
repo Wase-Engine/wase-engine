@@ -6,16 +6,19 @@
 #include <sstream>
 #include <iomanip>
 
-namespace log_utils
+namespace wase
 {
-    std::string timestamp()
+    namespace log_utils
     {
-        std::stringstream resultStream;
-        std::time_t rawTime = std::time(nullptr);
-        std::tm *localTime = std::localtime(&rawTime);
+        std::string timestamp()
+        {
+            std::stringstream resultStream;
+            std::time_t rawTime = std::time(nullptr);
+            std::tm* localTime = std::localtime(&rawTime);
 
-        resultStream << std::put_time(localTime, "%T");
+            resultStream << std::put_time(localTime, "%T");
 
-        return resultStream.str();
+            return resultStream.str();
+        }
     }
 }

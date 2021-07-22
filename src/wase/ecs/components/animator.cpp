@@ -1,34 +1,37 @@
 #include "animator.h"
 
-Animator::Animator(const unsigned int frames, const unsigned int speed)
+namespace wase
 {
-	this->frames = frames;
-	this->speed = speed;
-}
-
-void Animator::start()
-{
-	spriteRenderer = owner->getComponent<SpriteRenderer>();
-}
-
-void Animator::update(float dt)
-{
-	rect.w = spriteRenderer->rect.w;
-	rect.h = spriteRenderer->rect.h;
-
-	timer += dt;
-	
-	if (timer > speed)
+	Animator::Animator(const unsigned int frames, const unsigned int speed)
 	{
-		currentFrame += 1;
-		if (currentFrame >= frames - 1)
+		this->frames = frames;
+		this->speed = speed;
+	}
+
+	void Animator::start()
+	{
+		spriteRenderer = owner->getComponent<SpriteRenderer>();
+	}
+
+	void Animator::update(float dt)
+	{
+		rect.w = spriteRenderer->rect.w;
+		rect.h = spriteRenderer->rect.h;
+
+		timer += dt;
+
+		if (timer > speed)
 		{
-			rect.x = 0;
-			currentFrame = 0;
+			currentFrame += 1;
+			if (currentFrame >= frames - 1)
+			{
+				rect.x = 0;
+				currentFrame = 0;
+			}
+
+			rect.x += rect.w;
+
+			timer = 0;
 		}
-
-		rect.x += rect.w;
-
-		timer = 0;
 	}
 }
