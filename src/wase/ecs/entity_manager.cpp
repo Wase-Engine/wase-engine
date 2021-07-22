@@ -3,42 +3,45 @@
 #include "components/transform.h"
 #include "component.h"
 
-void EntityManager::update(float dt)
+namespace wase
 {
-	for (const auto&[entityName, entityPtr] : entities)
+	void EntityManager::update(float dt)
 	{
-		entityPtr->update(dt);
-	}
-}
-
-void EntityManager::render()
-{
-	std::multimap<int, Entity*> depthMap;
-
-	// Put the entities in a new map where they are sorted based on the depth
-	for (const auto& [entityName, entityPtr] : entities)
-	{
-		depthMap.insert(std::pair<int, Entity*>(entityPtr->getComponent<Transform>()->depth, entityPtr.get()));
+		for (const auto& [entityName, entityPtr] : entities)
+		{
+			entityPtr->update(dt);
+		}
 	}
 
-	// Render the sorted depthMap
-	for (const auto& [depth, entityPtr] : depthMap)
+	void EntityManager::render()
 	{
-		entityPtr->render();
+		std::multimap<int, Entity*> depthMap;
+
+		// Put the entities in a new map where they are sorted based on the depth
+		for (const auto& [entityName, entityPtr] : entities)
+		{
+			depthMap.insert(std::pair<int, Entity*>(entityPtr->getComponent<Transform>()->depth, entityPtr.get()));
+		}
+
+		// Render the sorted depthMap
+		for (const auto& [depth, entityPtr] : depthMap)
+		{
+			entityPtr->render();
+		}
 	}
-}
 
-Entity* EntityManager::addEntity(const std::string& name)
-{
-	std::shared_ptr<Entity> entity = std::make_shared<Entity>(name);
-	entity->entityManager = this;
+	Entity* EntityManager::addEntity(const std::string& name)
+	{
+		std::shared_ptr<Entity> entity = std::make_shared<Entity>(name);
+		entity->entityManager = this;
 
-	entities[name] = entity;
+		entities[name] = entity;
 
-	return entity.get();
-}
+		return entity.get();
+	}
 
-Entity* EntityManager::getEntity(const std::string& name)
-{
-	return entities[name].get();
+	Entity* EntityManager::getEntity(const std::string& name)
+	{
+		return entities[name].get();
+	}
 }

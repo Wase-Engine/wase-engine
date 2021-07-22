@@ -9,29 +9,32 @@
 
 #include <SDL.h>
 
-class BoxCollider2D : public Collider
+namespace wase
 {
-public:
-	int width, height;
-	Vector2 offset;
-	bool showCollider = false;
+	class BoxCollider2D : public Collider
+	{
+	public:
+		int width, height;
+		Vector2 offset;
+		bool showCollider = false;
 
-public:
-	BoxCollider2D(const int width, const int height);
+	public:
+		BoxCollider2D(const int width, const int height);
 
-	void update(float dt) override;
-	void render() override;
+		void update(float dt) override;
+		void render() override;
 
-	bool onMouseEnter();
-	bool onMouseExit();
+		bool onMouseEnter();
+		bool onMouseExit();
 
-private:
-	Vector2 position;
-	Vector2 mousePosition;
-	Rectangle* rectangle = nullptr;
+	private:
+		Vector2 position;
+		Vector2 mousePosition;
+		Rectangle* rectangle = nullptr;
 
-	SDL_Rect rectToDraw;
+		SDL_Rect rectToDraw;
 
-private:
-	void checkMouseHover();
-};
+	private:
+		void checkMouseHover();
+	};
+}

@@ -1,32 +1,35 @@
 #include "component.h"
 
-void Component::start()
+namespace wase
 {
-}
+	void Component::start()
+	{
+	}
 
-void Component::update(float dt)
-{
-}
+	void Component::update(float dt)
+	{
+	}
 
-void Component::render()
-{
-}
+	void Component::render()
+	{
+	}
 
-void Component::destroy()
-{
-}
+	void Component::destroy()
+	{
+	}
 
-void Component::onStateChange(const bool state)
-{
-}
+	void Component::onStateChange(const bool state)
+	{
+	}
 
-bool Component::isActive()
-{
-	return active;
-}
+	bool Component::isActive()
+	{
+		return active;
+	}
 
-void Component::setActive(const bool state)
-{
-	active = state;
-	onStateChange(state);
+	void Component::setActive(const bool state)
+	{
+		active = state;
+		onStateChange(state);
+	}
 }

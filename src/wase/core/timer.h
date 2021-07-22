@@ -2,20 +2,23 @@
 
 #include <memory>
 
-const int TARGET_FPS = 60;
-const float MAX_DELTA_TIME = 1.5f;
-
-class Timer
+namespace wase
 {
-public:
-	static void tick();
-	static float getDeltaTime();
+	const int TARGET_FPS = 60;
+	const float MAX_DELTA_TIME = 1.5f;
 
-private:
-	static std::shared_ptr<Timer> instance;
+	class Timer
+	{
+	public:
+		static void tick();
+		static float getDeltaTime();
 
-	float deltaTime = 0, lastTime = 0;
+	private:
+		static std::shared_ptr<Timer> instance;
 
-private:
-	static std::shared_ptr<Timer> getInstance();
-};
+		float deltaTime = 0, lastTime = 0;
+
+	private:
+		static std::shared_ptr<Timer> getInstance();
+	};
+}

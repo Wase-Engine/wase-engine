@@ -14,102 +14,105 @@
 #include <SDL_mixer.h>
 #include <SDL_image.h>
 
-std::shared_ptr<Engine> Engine::instance = nullptr;
-
-void Engine::run(const char* sceneName)
+namespace wase
 {
-	try
-	{
-		SceneManager::setActiveScene(sceneName);
+	std::shared_ptr<Engine> Engine::instance = nullptr;
 
-		while (isRunning)
+	void Engine::run(const char* sceneName)
+	{
+		try
 		{
-			events();
-			update(Timer::getDeltaTime());
-			render();
-			Timer::tick();
-			input::events::end();
+			SceneManager::setActiveScene(sceneName);
+
+			while (isRunning)
+			{
+				events();
+				update(Timer::getDeltaTime());
+				render();
+				Timer::tick();
+				input::events::end();
+			}
+
+			destroy();
+		}
+		catch (TerminateException& e)
+		{
+			log_utils::error(e.what());
+		}
+	}
+
+	void Engine::init(const char* title, const int x, const int y, const unsigned int w, const unsigned int h, const Uint32 flags)
+	{
+		// Initialize SDL
+		if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
+		{
+			log_utils::error("Could not initialize SDL");
+			return;
 		}
 
-		destroy();
+		// Initialize SDL_Mixer
+		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+		{
+			log_utils::error("Could not initialize SDL Mixer");
+			return;
+		}
+
+		// Initialize SDL_TTF
+		if (TTF_Init() < 0)
+		{
+			log_utils::error("Could not initialize TTF");
+			return;
+		}
+
+		Window::init(title, x, y, w, h, flags);
+		Renderer::init();
+
+		isRunning = true;
 	}
-	catch (TerminateException& e)
+
+	void Engine::events()
 	{
-		log_utils::error(e.what());
+		input::events::update();
+		events::update();
 	}
-}
 
-void Engine::init(const char* title, const int x, const int y, const unsigned int w, const unsigned int h, const Uint32 flags)
-{
-	// Initialize SDL
-	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
+	void Engine::update(float dt)
 	{
-		log_utils::error("Could not initialize SDL");
-		return;
+		SceneManager::getActiveScene()->updateScene(dt);
 	}
 
-	// Initialize SDL_Mixer
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+	void Engine::render()
 	{
-		log_utils::error("Could not initialize SDL Mixer");
-		return;
+		SDL_RenderClear(Renderer::getRenderer());
+
+		SceneManager::getActiveScene()->renderScene();
+
+		Draw::render();
+
+		SDL_RenderPresent(Renderer::getRenderer());
 	}
 
-	// Initialize SDL_TTF
-	if (TTF_Init() < 0)
+	void Engine::destroy()
 	{
-		log_utils::error("Could not initialize TTF");
-		return;
+		SDL_DestroyRenderer(Renderer::getRenderer());
+		SDL_DestroyWindow(Window::getWindow());
+		SDL_Quit();
+		Mix_Quit();
+		IMG_Quit();
 	}
 
-	Window::init(title, x, y, w, h, flags);
-	Renderer::init();
+	void Engine::quit()
+	{
+		isRunning = false;
+	}
 
-	isRunning = true;
-}
+	void Engine::terminate(const std::string& message)
+	{
+		throw TerminateException(message);
+	}
 
-void Engine::events()
-{
-	input::events::update();
-	events::update();
-}
-
-void Engine::update(float dt)
-{
-	SceneManager::getActiveScene()->updateScene(dt);
-}
-
-void Engine::render()
-{
-	SDL_RenderClear(Renderer::getRenderer());
-
-	SceneManager::getActiveScene()->renderScene();
-
-	Draw::render();
-
-	SDL_RenderPresent(Renderer::getRenderer());
-}
-
-void Engine::destroy()
-{
-	SDL_DestroyRenderer(Renderer::getRenderer());
-	SDL_DestroyWindow(Window::getWindow());
-	SDL_Quit();
-	Mix_Quit();
-	IMG_Quit();
-}
-
-void Engine::quit()
-{
-	isRunning = false;
-}
-
-void Engine::terminate(const std::string& message)
-{
-	throw TerminateException(message);
-}
-
-std::shared_ptr<Engine> Engine::getInstance()
-{
-	return instance = (instance != nullptr) ? instance : std::make_shared<Engine>();
+	std::shared_ptr<Engine> Engine::getInstance()
+	{
+		return instance = (instance != nullptr) ? instance : std::make_shared<Engine>();
+	}
 }
