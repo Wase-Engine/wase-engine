@@ -2,24 +2,27 @@
 
 #include "entity.h"
 
-class Entity;
-
-class Component
+namespace wase
 {
-public:
-	Entity* owner = nullptr;
+	class Entity;
 
-public:
-	virtual void start();
-	virtual void update(float dt);
-	virtual void render();
-	virtual void destroy();
+	class Component
+	{
+	public:
+		Entity* owner = nullptr;
 
-	virtual void onStateChange(const bool state);
+	public:
+		virtual void start();
+		virtual void update(float dt);
+		virtual void render();
+		virtual void destroy();
 
-	bool isActive();
-	void setActive(const bool state);
+		virtual void onStateChange(const bool state);
 
-private:
-	bool active = true;
-};
+		bool isActive();
+		void setActive(const bool state);
+
+	private:
+		bool active = true;
+	};
+}

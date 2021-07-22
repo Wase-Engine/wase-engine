@@ -1,6 +1,9 @@
 #pragma once
 
-struct Size
+namespace wase
 {
-	int w, h;
-};
+	struct Size
+	{
+		int w, h;
+	};
+}

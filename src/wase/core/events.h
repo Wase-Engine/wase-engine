@@ -1,6 +1,9 @@
 #pragma once
 
-namespace events
+namespace wase
 {
-	void update();
+	namespace events
+	{
+		void update();
+	}
 }
