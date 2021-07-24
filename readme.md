@@ -35,6 +35,7 @@ cmake build .
 Now you will be able to build the Wase Engine. When you build the Wase Engine there will be an include and lib folder in the build directory. You can use these for your game projects.
 
 ## List of projects with Wase Engine
+ - [Blank Project](https://github.com/Wase-Engine/blank-project)
  - [Simon](https://github.com/JelleVos1/simon)
 
 ## Documentation
