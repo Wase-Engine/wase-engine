@@ -37,7 +37,7 @@ jobs:
     - name: test
       shell: bash
       run: |
-        cd build
+        cd build/test
         ctest
   windows-mingw:
     # The CMake configure and build commands are platform agnostic and should work equally
@@ -64,13 +64,13 @@ jobs:
       run: curl https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-devel-2.0.15-mingw.tar.gz -L -o sdl2ttfmingw.tar.gz & tar xzvf sdl2ttfmingw.tar.gz & setx -m SDL2TTFDIR "%CD%\SDL2_ttf-2.0.15\x86_64-w64-mingw32"
     - name: copy dll's
       shell: cmd
-      run: mkdir build & xcopy "%CD%\SDL2-2.0.14\x86_64-w64-mingw32\bin\SDL2.dll" "%CD%\build" & xcopy "%CD%\SDL2_image-2.0.5\x86_64-w64-mingw32\bin\SDL2_image.dll" "%CD%\build" & xcopy "%CD%\SDL2_mixer-2.0.4\x86_64-w64-mingw32\bin\SDL2_mixer.dll" "%CD%\build" & xcopy "%CD%\SDL2_ttf-2.0.15\x86_64-w64-mingw32\bin\SDL2_ttf.dll" "%CD%\build" & xcopy "%CD%\SDL2_ttf-2.0.15\x86_64-w64-mingw32\bin\zlib1.dll" "%CD%\build" & xcopy "%CD%\SDL2_ttf-2.0.15\x86_64-w64-mingw32\bin\libfreetype-6.dll" "%CD%\build"
+      run: mkdir -p build\test & xcopy "%CD%\SDL2-2.0.14\x86_64-w64-mingw32\bin\SDL2.dll" "%CD%\build\test" & xcopy "%CD%\SDL2_image-2.0.5\x86_64-w64-mingw32\bin\SDL2_image.dll" "%CD%\build\test" & xcopy "%CD%\SDL2_mixer-2.0.4\x86_64-w64-mingw32\bin\SDL2_mixer.dll" "%CD%\build\test" & xcopy "%CD%\SDL2_ttf-2.0.15\x86_64-w64-mingw32\bin\SDL2_ttf.dll" "%CD%\build\test" & xcopy "%CD%\SDL2_ttf-2.0.15\x86_64-w64-mingw32\bin\zlib1.dll" "%CD%\build\test" & xcopy "%CD%\SDL2_ttf-2.0.15\x86_64-w64-mingw32\bin\libfreetype-6.dll" "%CD%\build\test"
     - name: build
       shell: cmd
       run: refreshenv & cmake -Bbuild -G "MinGW Makefiles" -Denable_test=1 & cd build & mingw32-make.exe
     - name: test
       shell: cmd
-      run: refreshenv & cd build & ctest
+      run: refreshenv & cd build\test & ctest
 
   windows-msvc:
     runs-on: windows-latest
@@ -95,7 +95,7 @@ jobs:
       run: curl https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-devel-2.0.15-VC.zip -L -o sdl2ttfvc.zip & tar xf sdl2ttfvc.zip & setx -m SDL2TTFDIR "%CD%\SDL2_ttf-2.0.15"
     - name: copy dll's
       shell: cmd
-      run: mkdir build & xcopy "%CD%\SDL2-2.0.14\lib\x64\SDL2.dll" "%CD%\build" & xcopy "%CD%\SDL2_image-2.0.5\lib\x64\SDL2_image.dll" "%CD%\build" & xcopy "%CD%\SDL2_mixer-2.0.4\lib\x64\SDL2_mixer.dll" "%CD%\build" & xcopy "%CD%\SDL2_ttf-2.0.15\lib\x64\SDL2_ttf.dll" "%CD%\build" & xcopy "%CD%\SDL2_ttf-2.0.15\lib\x64\zlib1.dll" "%CD%\build" & xcopy "%CD%\SDL2_ttf-2.0.15\lib\x64\libfreetype-6.dll" "%CD%\build"
+      run: mkdir -p build\test & xcopy "%CD%\SDL2-2.0.14\lib\x64\SDL2.dll" "%CD%\build\test" & xcopy "%CD%\SDL2_image-2.0.5\lib\x64\SDL2_image.dll" "%CD%\build\test" & xcopy "%CD%\SDL2_mixer-2.0.4\lib\x64\SDL2_mixer.dll" "%CD%\build\test" & xcopy "%CD%\SDL2_ttf-2.0.15\lib\x64\SDL2_ttf.dll" "%CD%\build\test" & xcopy "%CD%\SDL2_ttf-2.0.15\lib\x64\zlib1.dll" "%CD%\build\test" & xcopy "%CD%\SDL2_ttf-2.0.15\lib\x64\libfreetype-6.dll" "%CD%\build\test"
     - name: build
       run: |
         $env:SDL2DIR = [System.Environment]::GetEnvironmentVariable("SDL2DIR","Machine")
@@ -111,7 +111,7 @@ jobs:
         $env:SDL2IMAGEDIR = [System.Environment]::GetEnvironmentVariable("SDL2IMAGEDIR","Machine")
         $env:SDL2MIXERDIR = [System.Environment]::GetEnvironmentVariable("SDL2MIXERDIR","Machine")
         $env:SDL2TTFDIR = [System.Environment]::GetEnvironmentVariable("SDL2TTFDIR","Machine")
-        cd build
+        cd build\test
         ctest
   macos:
     runs-on: macos-latest
@@ -136,5 +136,5 @@ jobs:
     - name: test
       shell: bash
       run: |
-        cd build
+        cd build/test
         ctest
