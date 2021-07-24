@@ -1,6 +1,6 @@
 name: build
 
-on: [push]
+on: [push, pull_request]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -23,14 +23,22 @@ jobs:
     - uses: actions/checkout@v2
       with:
           submodules: true
-    - name: install packages and build
+    - name: setup
       shell: bash
       run: |
         sudo apt-get update
         sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libegl1-mesa-dev libgles2-mesa-dev
-        cmake -Bbuild -G "Unix Makefiles"
+    - name: build
+      shell: bash
+      run: |
+        cmake -Bbuild -G "Unix Makefiles" -Denable_test=1
         cd build
         make
+    - name: test
+      shell: bash
+      run: |
+        cd build
+        ctest
   windows-mingw:
     # The CMake configure and build commands are platform agnostic and should work equally
     # well on Windows or Mac.  You can convert this to a matrix build if you need
@@ -54,9 +62,15 @@ jobs:
     - name: sdl2-ttf
       shell: cmd
       run: curl https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-devel-2.0.15-mingw.tar.gz -L -o sdl2ttfmingw.tar.gz & tar xzvf sdl2ttfmingw.tar.gz & setx -m SDL2TTFDIR "%CD%\SDL2_ttf-2.0.15\x86_64-w64-mingw32"
+    - name: copy dll's
+      shell: cmd
+      run: mkdir build & xcopy "%CD%\SDL2-2.0.14\x86_64-w64-mingw32\bin\SDL2.dll" "%CD%\build" & xcopy "%CD%\SDL2_image-2.0.5\x86_64-w64-mingw32\bin\SDL2_image.dll" "%CD%\build" & xcopy "%CD%\SDL2_mixer-2.0.4\x86_64-w64-mingw32\bin\SDL2_mixer.dll" "%CD%\build" & xcopy "%CD%\SDL2_ttf-2.0.15\x86_64-w64-mingw32\bin\SDL2_ttf.dll" "%CD%\build" & xcopy "%CD%\SDL2_ttf-2.0.15\x86_64-w64-mingw32\bin\zlib1.dll" "%CD%\build" & xcopy "%CD%\SDL2_ttf-2.0.15\x86_64-w64-mingw32\bin\libfreetype-6.dll" "%CD%\build"
     - name: build
       shell: cmd
-      run: refreshenv & cmake -Bbuild -G "MinGW Makefiles" & cd build & mingw32-make.exe
+      run: refreshenv & cmake -Bbuild -G "MinGW Makefiles" -Denable_test=1 & cd build & mingw32-make.exe
+    - name: test
+      shell: cmd
+      run: refreshenv & cd build & ctest
 
   windows-msvc:
     runs-on: windows-latest
@@ -65,29 +79,40 @@ jobs:
         arch:
           - amd64_x86
     steps:
-      - uses: actions/checkout@v2
-      - uses: ilammy/msvc-dev-cmd@v1
-      - name: sdl2
-        shell: cmd
-        run: curl https://www.libsdl.org/release/SDL2-devel-2.0.14-VC.zip -L -o sdl2vc.zip & tar xf sdl2vc.zip & setx -m SDL2DIR "%CD%\SDL2-2.0.14"
-      - name: sdl2-image
-        shell: cmd
-        run: curl https://www.libsdl.org/projects/SDL_image/release/SDL2_image-devel-2.0.5-VC.zip -L -o sdl2imagevc.zip & tar xf sdl2imagevc.zip & setx -m SDL2IMAGEDIR "%CD%\SDL2_image-2.0.5"
-      - name: sdl2-mixer
-        shell: cmd
-        run: curl https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-devel-2.0.4-VC.zip -L -o sdl2mixervc.zip & tar xf sdl2mixervc.zip & setx -m SDL2MIXERDIR "%CD%\SDL2_mixer-2.0.4"
-      - name: sdl2-ttf
-        shell: cmd
-        run: curl https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-devel-2.0.15-VC.zip -L -o sdl2ttfvc.zip & tar xf sdl2ttfvc.zip & setx -m SDL2TTFDIR "%CD%\SDL2_ttf-2.0.15"
-      - name: Build
-        run: |
-          $env:SDL2DIR = [System.Environment]::GetEnvironmentVariable("SDL2DIR","Machine")
-          $env:SDL2IMAGEDIR = [System.Environment]::GetEnvironmentVariable("SDL2IMAGEDIR","Machine")
-          $env:SDL2MIXERDIR = [System.Environment]::GetEnvironmentVariable("SDL2MIXERDIR","Machine")
-          $env:SDL2TTFDIR = [System.Environment]::GetEnvironmentVariable("SDL2TTFDIR","Machine")
-          cmake -Bbuild -G "NMake Makefiles"
-          cd build
-          nmake
+    - uses: actions/checkout@v2
+    - uses: ilammy/msvc-dev-cmd@v1
+    - name: sdl2
+      shell: cmd
+      run: curl https://www.libsdl.org/release/SDL2-devel-2.0.14-VC.zip -L -o sdl2vc.zip & tar xf sdl2vc.zip & setx -m SDL2DIR "%CD%\SDL2-2.0.14"
+    - name: sdl2-image
+      shell: cmd
+      run: curl https://www.libsdl.org/projects/SDL_image/release/SDL2_image-devel-2.0.5-VC.zip -L -o sdl2imagevc.zip & tar xf sdl2imagevc.zip & setx -m SDL2IMAGEDIR "%CD%\SDL2_image-2.0.5"
+    - name: sdl2-mixer
+      shell: cmd
+      run: curl https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-devel-2.0.4-VC.zip -L -o sdl2mixervc.zip & tar xf sdl2mixervc.zip & setx -m SDL2MIXERDIR "%CD%\SDL2_mixer-2.0.4"
+    - name: sdl2-ttf
+      shell: cmd
+      run: curl https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-devel-2.0.15-VC.zip -L -o sdl2ttfvc.zip & tar xf sdl2ttfvc.zip & setx -m SDL2TTFDIR "%CD%\SDL2_ttf-2.0.15"
+    - name: copy dll's
+      shell: cmd
+      run: mkdir build & xcopy "%CD%\SDL2-2.0.14\lib\x64\SDL2.dll" "%CD%\build" & xcopy "%CD%\SDL2_image-2.0.5\lib\x64\SDL2_image.dll" "%CD%\build" & xcopy "%CD%\SDL2_mixer-2.0.4\lib\x64\SDL2_mixer.dll" "%CD%\build" & xcopy "%CD%\SDL2_ttf-2.0.15\lib\x64\SDL2_ttf.dll" "%CD%\build" & xcopy "%CD%\SDL2_ttf-2.0.15\lib\x64\zlib1.dll" "%CD%\build" & xcopy "%CD%\SDL2_ttf-2.0.15\lib\x64\libfreetype-6.dll" "%CD%\build"
+    - name: build
+      run: |
+        $env:SDL2DIR = [System.Environment]::GetEnvironmentVariable("SDL2DIR","Machine")
+        $env:SDL2IMAGEDIR = [System.Environment]::GetEnvironmentVariable("SDL2IMAGEDIR","Machine")
+        $env:SDL2MIXERDIR = [System.Environment]::GetEnvironmentVariable("SDL2MIXERDIR","Machine")
+        $env:SDL2TTFDIR = [System.Environment]::GetEnvironmentVariable("SDL2TTFDIR","Machine")
+        cmake -Bbuild -G "NMake Makefiles" -Denable_test=1
+        cd build
+        nmake
+    - name: test
+      run: |
+        $env:SDL2DIR = [System.Environment]::GetEnvironmentVariable("SDL2DIR","Machine")
+        $env:SDL2IMAGEDIR = [System.Environment]::GetEnvironmentVariable("SDL2IMAGEDIR","Machine")
+        $env:SDL2MIXERDIR = [System.Environment]::GetEnvironmentVariable("SDL2MIXERDIR","Machine")
+        $env:SDL2TTFDIR = [System.Environment]::GetEnvironmentVariable("SDL2TTFDIR","Machine")
+        cd build
+        ctest
   macos:
     runs-on: macos-latest
 
@@ -95,13 +120,21 @@ jobs:
     - uses: actions/checkout@v2
       with:
           submodules: true
-    - name: install packages and build
+    - name: setup
       shell: bash
       run: |
         brew install sdl2
         brew install sdl2_image
         brew install sdl2_mixer
         brew install sdl2_ttf
-        cmake -Bbuild -G "Unix Makefiles"
+    - name: build
+      shell: bash
+      run: |
+        cmake -Bbuild -G "Unix Makefiles" -Denable_test=1
         cd build
         make
+    - name: test
+      shell: bash
+      run: |
+        cd build
+        ctest
