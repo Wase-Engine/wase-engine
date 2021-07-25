@@ -1,4 +1,5 @@
 
+
 # Contributing to Wase Engine
 
 <!-- This CONTRIBUTING.md is adapted from https://gist.github.com/peterdesmet/e90a1b0dc17af6c12daf6e8b2f044e7c -->
@@ -42,7 +43,8 @@ Using Wase Engine and discovered a bug? That's annoying! Don't let others have t
 
 ### Improve the documentation 📖
 
-Noticed a typo in the documentation? Think a function could use a better example? Good documentation makes all the difference, so your help to improve it is very welcome!
+Noticed a typo in the [documentation](https://wase-engine.com/documentation)? Think a function could use a better example? Good documentation makes all the difference, so your help to improve it is very welcome!
+In the [documentation repository](https://wase-engine.com/documentation) you can add documentation or make changes. This will be automatically be updated on the website.
 
 ### Contribute code 📝
 
@@ -58,6 +60,7 @@ We try to follow the [GitHub flow](https://guides.github.com/introduction/flow/)
 4. Make your changes:
     * Write your code.
     * Test your code (it should not include any memory leaks).
+    * Write unit tests if possible for your code
     * Update the CMakeLists.txt
 5. Commit and push your changes.
 6. Submit a [pull request](https://guides.github.com/activities/forking/#making-a-pull-request).

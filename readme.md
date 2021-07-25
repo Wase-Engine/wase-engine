@@ -1,4 +1,5 @@
 
+
 [![Wase Engine logo banner](http://wase-engine.com/img/banner.png)](https://wase-engine.com/)
 
 [![Website badge](https://img.shields.io/website?up_message=online&url=https%3A%2F%2Fwase-engine.com%2F)](https://wase-engine.com/)
@@ -24,7 +25,7 @@ To build Wase Engine you will need to install the following tools:
  - SDL2 Mixer
  - SDL2 TTF
 
-You can use the CMake GUI or you can run the following commands in the commandline:
+**CMake**
 ```
 mkdir build
 cd build
@@ -32,11 +33,24 @@ cmake ..
 cmake build .
 ```
 
+**MinGW**
+```
+mkdir build
+cd build
+cmake -G "MinGW Makefiles" ..
+make
+```
+
 Now you will be able to build the Wase Engine. When you build the Wase Engine there will be an include and lib folder in the build directory. You can use these for your game projects.
 
 ## List of projects with Wase Engine
  - [Blank Project](https://github.com/Wase-Engine/blank-project)
  - [Simon](https://github.com/JelleVos1/simon)
+
+## Compatible platforms
+- Windows
+- Linux
+- MacOS
 
 ## Documentation
 You can head over to the [documentation](https://wase-engine.com/documentation) for more information about Wase Engine. In the [documentation](https://wase-engine.com/documentation) there is a detailed description about how Wase Engine works.
