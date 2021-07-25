@@ -9,7 +9,7 @@ namespace wase
 
 	void Renderer::init()
 	{
-		getInstance()->renderer = SDL_CreateRenderer(Window::getWindow(), -1, NULL);
+		getInstance()->renderer = SDL_CreateRenderer(Window::getWindow(), -1, 0);
 		if (!getInstance()->renderer)
 		{
 			log_utils::error("Could not initialize SDL Renderer");
