@@ -129,6 +129,8 @@ source_group(ecs/components FILES
     src/wase/ecs/components/ui/button.cpp
 )
 
+target_include_directories(wase-engine PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>$<INSTALL_INTERFACE:src>)
+
 target_link_libraries(wase-engine ${SDL2_LIBRARY}
         ${SDL2_IMAGE_LIBRARIES}
         ${SDL2_MIXER_LIBRARIES}
@@ -141,33 +143,5 @@ endif(MINGW)
 file(COPY src/ DESTINATION ${CMAKE_BINARY_DIR}/include)
 
 if(DEFINED enable_test)
-  include(FetchContent)
-  FetchContent_Declare(
-    googletest
-    URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
-  )
-  # For Windows: Prevent overriding the parent project's compiler/linker settings
-  set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-  FetchContent_MakeAvailable(googletest)
-
-  enable_testing()
-
-  add_executable(
-    main_test
-    test/main_test.cpp
-    test/component_test.cpp
-    test/entity_test.cpp
-  )
-  target_link_libraries(
-    main_test
-    wase-engine
-    gtest_main
-  )
-
-  include(GoogleTest)
-  gtest_discover_tests(main_test)
-
-  #add_custom_command(TARGET main_test
-  #                  POST_BUILD
-  #                  COMMAND ctest -C $<CONFIGURATION> --output-on-failure)
+  add_subdirectory(test)
 endif()
