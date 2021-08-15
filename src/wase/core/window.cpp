@@ -32,6 +32,18 @@ namespace wase
 		return &getInstance()->rect;
 	}
 
+	SDL_Rect* Window::getDisplayBounds()
+	{
+		SDL_Rect rect;
+		if (SDL_GetDisplayBounds(0, &rect) != 0)
+		{
+			log_utils::error("Couldn't get the display bounds");
+			return nullptr;
+		}
+
+		return &rect;
+	}
+
 	std::shared_ptr<Window> Window::getInstance()
 	{
 		return instance = (instance != nullptr) ? instance : std::make_shared<Window>();
