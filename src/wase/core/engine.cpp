@@ -85,9 +85,13 @@ namespace wase
 	{
 		SDL_RenderClear(Renderer::getRenderer());
 
+		Renderer::updateViewportRectangle();
+
 		SceneManager::getActiveScene()->renderScene();
 
 		Draw::render();
+
+		SDL_SetRenderDrawColor(Renderer::getRenderer(), 0, 0, 0, 255);
 
 		SDL_RenderPresent(Renderer::getRenderer());
 	}
