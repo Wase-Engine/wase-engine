@@ -12,6 +12,7 @@ namespace wase
 		static SDL_Window* getWindow();
 		static SDL_Rect* getRect();
 		static SDL_Rect* getDisplayBounds();
+		static bool isFullscreen();
 
 	private:
 		static std::shared_ptr<Window> instance;
