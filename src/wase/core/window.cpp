@@ -44,6 +44,13 @@ namespace wase
 		return &rect;
 	}
 
+	bool Window::isFullscreen()
+	{
+		Uint32 flags = SDL_GetWindowFlags(getInstance()->window);
+
+		return flags & SDL_WINDOW_FULLSCREEN || flags & SDL_WINDOW_FULLSCREEN_DESKTOP;
+	}
+
 	std::shared_ptr<Window> Window::getInstance()
 	{
 		return instance = (instance != nullptr) ? instance : std::make_shared<Window>();

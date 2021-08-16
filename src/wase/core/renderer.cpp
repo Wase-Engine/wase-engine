@@ -38,8 +38,7 @@ namespace wase
 
 		SDL_Rect viewport{ 0, 0, windowWidth, windowHeight };
 
-		Uint32 flags = SDL_GetWindowFlags(Window::getWindow());
-		if (flags & SDL_WINDOW_FULLSCREEN || flags & SDL_WINDOW_FULLSCREEN_DESKTOP)
+		if (Window::isFullscreen())
 		{
 			if (monitorWidth - windowWidth > 0)
 				viewport.x = (monitorWidth - windowWidth) / 2;
