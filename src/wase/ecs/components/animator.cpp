@@ -23,13 +23,13 @@ namespace wase
 		if (timer > speed)
 		{
 			currentFrame += 1;
-			if (currentFrame >= frames - 1)
+			if (currentFrame >= frames)
 			{
 				rect.x = 0;
 				currentFrame = 0;
 			}
 
-			rect.x += rect.w;
+			rect.x = rect.w * currentFrame;
 
 			timer = 0;
 		}
