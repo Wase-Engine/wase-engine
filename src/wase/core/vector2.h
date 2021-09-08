@@ -1,26 +1,16 @@
 #pragma once
 
+#include <cmath>
+
 struct Vector2
 {
 	float x = 0, y = 0;
 
-	Vector2 operator+(const Vector2& other)
-	{
-		Vector2 v;
+	Vector2 operator+=(const Vector2& other);
+	Vector2 operator+(const Vector2& other);
+	Vector2 operator-=(const Vector2& other);
+	Vector2 operator-(const Vector2& other);
 
-		v.x = x + other.x;
-		v.y = y + other.y;
-
-		return v;
-	}
-
-	Vector2 operator-(const Vector2& other)
-	{
-		Vector2 v;
-
-		v.x = x - other.x;
-		v.y = y - other.y;
-
-		return v;
-	}
+	float magnitude();
+	static float dot(Vector2 lhs, Vector2 rhs);
 };
