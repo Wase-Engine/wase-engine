@@ -36,7 +36,7 @@ Vector2 Vector2::operator-(const Vector2& other)
 	return v;
 }
 
-float Vector2::magnitude()
+float Vector2::magnitude() const
 {
 	return (float)sqrt(pow(x, 2) + pow(y, 2));
 }

@@ -14,7 +14,7 @@ namespace wase
 		void init(const char* title, const int x, const int y, const unsigned int w, const unsigned int h, const Uint32 flags);
 		void run(const char* sceneName);
 		void quit();
-		void terminate(const std::string& message);
+		void terminate(const std::string& message) const;
 
 	private:
 		static std::shared_ptr<Engine> instance;

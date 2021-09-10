@@ -38,11 +38,11 @@ Vector3 Vector3::operator-(const Vector3& other)
 	v.x = x - other.x;
 	v.y = y - other.y;
 	v.z = z - other.z;
-	
+
 	return v;
 }
 
-float Vector3::magnitude()
+float Vector3::magnitude() const
 {
 	return (float)sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
 }
