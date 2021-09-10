@@ -59,7 +59,7 @@ namespace wase
 		updateText();
 	}
 
-	Size Label::getSize()
+	Size Label::getSize() const
 	{
 		Size size;
 

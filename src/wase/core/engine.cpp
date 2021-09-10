@@ -110,7 +110,7 @@ namespace wase
 		isRunning = false;
 	}
 
-	void Engine::terminate(const std::string& message)
+	void Engine::terminate(const std::string& message) const
 	{
 		throw TerminateException(message);
 	}

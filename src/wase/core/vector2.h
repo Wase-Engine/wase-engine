@@ -11,6 +11,6 @@ struct Vector2
 	Vector2 operator-=(const Vector2& other);
 	Vector2 operator-(const Vector2& other);
 
-	float magnitude();
+	float magnitude() const;
 	static float dot(Vector2 lhs, Vector2 rhs);
 };

@@ -41,7 +41,7 @@ namespace wase
 		}
 	}
 
-	bool BoxCollider2D::isHovering()
+	bool BoxCollider2D::isHovering() const
 	{
 		return mouseHover;
 	}

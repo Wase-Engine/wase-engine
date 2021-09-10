@@ -19,7 +19,7 @@ namespace wase
 
 		virtual void onStateChange(const bool state);
 
-		bool isActive();
+		bool isActive() const;
 		void setActive(const bool state);
 
 	private:
