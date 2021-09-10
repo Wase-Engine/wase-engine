@@ -22,7 +22,7 @@ namespace wase
 	{
 	}
 
-	bool Component::isActive()
+	bool Component::isActive() const
 	{
 		return active;
 	}

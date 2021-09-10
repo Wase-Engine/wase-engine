@@ -24,7 +24,7 @@ namespace wase
 		void update(float dt) override;
 		void render() override;
 
-		bool isHovering();
+		bool isHovering() const;
 		bool onMouseEnter();
 		bool onMouseExit();
 

@@ -125,10 +125,10 @@ namespace wase
 		{
 			if (Window::isFullscreen())
 			{
-				int windowWidth = Window::getRect()->w;
-				int monitorWidth = Window::getDisplayBounds()->w;
-				int windowHeight = Window::getRect()->h;
-				int monitorHeight = Window::getDisplayBounds()->h;
+				int windowWidth = Window::getRect().w;
+				int monitorWidth = Window::getDisplayBounds().w;
+				int windowHeight = Window::getRect().h;
+				int monitorHeight = Window::getDisplayBounds().h;
 
 				return Vector2{ mousePos.x - (monitorWidth - windowWidth) / 2, mousePos.y - (monitorHeight - windowHeight) / 2 };
 			}

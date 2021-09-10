@@ -27,21 +27,20 @@ namespace wase
 		return getInstance()->window;
 	}
 
-	SDL_Rect* Window::getRect()
+	SDL_Rect Window::getRect()
 	{
-		return &getInstance()->rect;
+		return getInstance()->rect;
 	}
 
-	SDL_Rect* Window::getDisplayBounds()
+	SDL_Rect Window::getDisplayBounds()
 	{
 		SDL_Rect rect;
 		if (SDL_GetDisplayBounds(0, &rect) != 0)
 		{
 			log_utils::error("Couldn't get the display bounds");
-			return nullptr;
 		}
 
-		return &rect;
+		return rect;
 	}
 
 	bool Window::isFullscreen()

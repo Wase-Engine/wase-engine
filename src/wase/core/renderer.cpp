@@ -31,10 +31,10 @@ namespace wase
 
 	void Renderer::setupViewport()
 	{
-		windowWidth = Window::getRect()->w;
-		monitorWidth = Window::getDisplayBounds()->w;
-		windowHeight = Window::getRect()->h;
-		monitorHeight = Window::getDisplayBounds()->h;
+		windowWidth = Window::getRect().w;
+		monitorWidth = Window::getDisplayBounds().w;
+		windowHeight = Window::getRect().h;
+		monitorHeight = Window::getDisplayBounds().h;
 
 		SDL_Rect viewport{ 0, 0, windowWidth, windowHeight };
 

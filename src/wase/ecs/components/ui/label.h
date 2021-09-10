@@ -20,7 +20,7 @@ class Label : public Component
 		void setText(const std::string& text);
 		void setFont(const char* font);
 		void setColor(SDL_Color& color);
-		Size getSize();
+		Size getSize() const;
 
 	private:
 		Camera* camera = nullptr;
