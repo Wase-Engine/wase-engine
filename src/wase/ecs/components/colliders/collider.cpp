@@ -4,6 +4,10 @@
 
 namespace wase
 {
+	Collider::~Collider()
+	{
+	}
+
 	Collider::Collider()
 	{
 

@@ -22,6 +22,9 @@ namespace wase
 		bool isActive() const;
 		void setActive(const bool state);
 
+	protected:
+		virtual ~Component();
+
 	private:
 		bool active = true;
 	};

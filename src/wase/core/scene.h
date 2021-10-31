@@ -7,6 +7,7 @@ namespace wase
 	class Scene
 	{
 	public:
+		virtual ~Scene();
 		void startScene();
 		void updateScene(float dt);
 		void renderScene();

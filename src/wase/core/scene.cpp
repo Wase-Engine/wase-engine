@@ -24,6 +24,10 @@ namespace wase
 		return &entityManager;
 	}
 
+	Scene::~Scene()
+	{
+	}
+
 	void Scene::start()
 	{
 

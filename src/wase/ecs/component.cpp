@@ -32,4 +32,8 @@ namespace wase
 		active = state;
 		onStateChange(state);
 	}
+
+	Component::~Component()
+	{
+	}
 }

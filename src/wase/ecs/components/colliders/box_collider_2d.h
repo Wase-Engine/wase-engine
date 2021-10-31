@@ -25,15 +25,13 @@ namespace wase
 		void render() override;
 
 		bool isHovering() const;
-		bool onMouseEnter();
-		bool onMouseExit();
+		bool onMouseEnter() override;
+		bool onMouseExit() override;
 
 	private:
 		Vector2 position;
 		Vector2 mousePosition;
 		Rectangle* rectangle = nullptr;
-
-		SDL_Rect rectToDraw;
 
 	private:
 		void checkMouseHover();
