@@ -20,7 +20,7 @@ namespace wase
 	public:
 		AudioSource(const std::string& name, const Uint8 volume = 100, const bool loop = false, const bool playOnAwake = false);
 		void play();
-		void onStateChange(const bool state);
+		void onStateChange(const bool state) override;
 		void setVolume(float volume);
 		void destroy() override;
 

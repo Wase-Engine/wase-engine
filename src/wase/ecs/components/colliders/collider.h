@@ -22,6 +22,7 @@ namespace wase
 		bool mouseHover, entered, exited;
 
 	protected:
+		virtual ~Collider();
 		Collider();
 	};
 }

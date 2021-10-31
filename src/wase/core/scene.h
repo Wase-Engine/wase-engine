@@ -17,6 +17,7 @@ namespace wase
 		EntityManager entityManager;
 
 	protected:
+		virtual ~Scene();
 		virtual void start();
 		virtual void update(float dt);
 		virtual void render();
