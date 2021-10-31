@@ -7,6 +7,7 @@ namespace wase
 	class Scene
 	{
 	public:
+		virtual ~Scene();
 		void startScene();
 		void updateScene(float dt);
 		void renderScene();
@@ -17,7 +18,6 @@ namespace wase
 		EntityManager entityManager;
 
 	protected:
-		virtual ~Scene();
 		virtual void start();
 		virtual void update(float dt);
 		virtual void render();
