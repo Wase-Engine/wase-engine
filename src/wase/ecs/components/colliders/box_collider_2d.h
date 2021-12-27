@@ -19,7 +19,7 @@ namespace wase
 		bool showCollider = false;
 
 	public:
-		BoxCollider2D(const int width, const int height);
+		BoxCollider2D(const int t_Width, const int t_Height);
 
 		void update(float dt) override;
 		void render() override;
@@ -29,9 +29,9 @@ namespace wase
 		bool onMouseExit() override;
 
 	private:
-		Vector2 position;
-		Vector2 mousePosition;
-		Rectangle* rectangle = nullptr;
+		Vector2 m_Position;
+		Vector2 m_MousePosition;
+		Rectangle* m_Rectangle = nullptr;
 
 	private:
 		void checkMouseHover();

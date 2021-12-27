@@ -2,19 +2,18 @@
 
 namespace wase
 {
-	AudioSource::AudioSource(const std::string& name, const Uint8 volume, const bool loop, const bool playOnAwake)
+	AudioSource::AudioSource(const std::string& t_Name, const Uint8 t_Volume, const bool t_Loop, const bool t_PlayOnAwake)
+		: loop(t_Loop)
 	{
-		this->loop = loop;
-
-		audioClip = ResourceManager::getAudio(name);
-		if (!audioClip)
+		m_AudioClip = ResourceManager::getAudio(t_Name);
+		if (!m_AudioClip)
 		{
 			return;
 		}
 
-		setVolume(volume);
+		setVolume(t_Volume);
 
-		if (playOnAwake)
+		if (t_PlayOnAwake)
 		{
 			play();
 		}
@@ -22,20 +21,20 @@ namespace wase
 
 	void AudioSource::play()
 	{
-		channel = Mix_PlayChannel(-1, audioClip, loop);
+		m_Channel = Mix_PlayChannel(-1, m_AudioClip, loop);
 	}
 
 	void AudioSource::onStateChange(const bool state)
 	{
-		if (channel != -1)
+		if (m_Channel != -1)
 		{
 			if (!state)
 			{
-				Mix_Pause(channel);
+				Mix_Pause(m_Channel);
 			}
 			else
 			{
-				Mix_Resume(channel);
+				Mix_Resume(m_Channel);
 			}
 		}
 	}
@@ -55,11 +54,11 @@ namespace wase
 			volume = (volume / 100) * 128;
 		}
 
-		audioClip->volume = (Uint8)volume;
+		m_AudioClip->volume = (Uint8)volume;
 	}
 
 	void AudioSource::destroy()
 	{
-		Mix_FreeChunk(audioClip);
+		Mix_FreeChunk(m_AudioClip);
 	}
 }

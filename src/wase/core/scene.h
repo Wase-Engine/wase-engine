@@ -15,7 +15,7 @@ namespace wase
 		EntityManager* getEntityManager();
 
 	protected:
-		EntityManager entityManager;
+		EntityManager m_EntityManager;
 
 	protected:
 		virtual void start();

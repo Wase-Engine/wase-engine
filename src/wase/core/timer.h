@@ -16,7 +16,7 @@ namespace wase
 		static float getDeltaTime();
 
 	private:
-		float deltaTime = 0, lastTime = 0;
+		float m_DeltaTime = 0, m_LastTime = 0;
 
 	private:
 		Timer() {}

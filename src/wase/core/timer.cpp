@@ -16,17 +16,17 @@ namespace wase
 
 	void Timer::iTick()
 	{
-		deltaTime = ((float)SDL_GetTicks() - lastTime) * (TARGET_FPS / 1000.0f);
+		m_DeltaTime = ((float)SDL_GetTicks() - m_LastTime) * (TARGET_FPS / 1000.0f);
 
-		if (deltaTime > MAX_DELTA_TIME)
-			deltaTime = MAX_DELTA_TIME;
+		if (m_DeltaTime > MAX_DELTA_TIME)
+			m_DeltaTime = MAX_DELTA_TIME;
 
-		lastTime = (float)SDL_GetTicks();
+		m_LastTime = (float)SDL_GetTicks();
 	}
 
 	float Timer::iGetDeltaTime()
 	{
-		return deltaTime;
+		return m_DeltaTime;
 	}
 
 	Timer& Timer::get()

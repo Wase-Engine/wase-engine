@@ -4,46 +4,44 @@
 
 namespace wase
 {
-	SpriteRenderer::SpriteRenderer(const std::string& name, const int sizeX, const int sizeY)
+	SpriteRenderer::SpriteRenderer(const std::string& t_Name, const int t_SizeX, const int t_SizeY)
+		: m_SizeX(t_SizeX), m_SizeY(t_SizeY)
 	{
-		this->sizeX = sizeX;
-		this->sizeY = sizeY;
-
-		texture = ResourceManager::getTexture(name);
+		m_Texture = ResourceManager::getTexture(t_Name);
 	}
 
 	void SpriteRenderer::start()
 	{
-		transform = owner->getComponent<Transform>();
-		camera = &transform->owner->entityManager->camera;
+		m_Transform = owner->getComponent<Transform>();
+		m_Camera = &m_Transform->owner->entityManager->camera;
 	}
 
 	void SpriteRenderer::update(float dt)
 	{
-		if (owner->parent && !parentTransform)
-			parentTransform = owner->parent->getComponent<Transform>();
+		if (owner->parent && !m_ParentTransform)
+			m_ParentTransform = owner->parent->getComponent<Transform>();
 
 		if (!owner->parent)
-			parentTransform = nullptr;
+			m_ParentTransform = nullptr;
 
-		rect.x = parentTransform ? (int)(transform->position.x + parentTransform->position.x - camera->position.x) : (int)(transform->position.x - camera->position.x);
-		rect.y = parentTransform ? (int)(transform->position.y + parentTransform->position.y - camera->position.y) : (int)(transform->position.y - camera->position.y);
+		rect.x = m_ParentTransform ? (int)(m_Transform->position.x + m_ParentTransform->position.x - m_Camera->position.x) : (int)(m_Transform->position.x - m_Camera->position.x);
+		rect.y = m_ParentTransform ? (int)(m_Transform->position.y + m_ParentTransform->position.y - m_Camera->position.y) : (int)(m_Transform->position.y - m_Camera->position.y);
 
-		rect.w = (int)(sizeX);
-		rect.h = (int)(sizeY);
+		rect.w = (int)(m_SizeX);
+		rect.h = (int)(m_SizeY);
 	}
 
 	void SpriteRenderer::render()
 	{
-		SDL_SetTextureColorMod(texture, color.r, color.g, color.b);
+		SDL_SetTextureColorMod(m_Texture, color.r, color.g, color.b);
 
 		if (owner->hasComponent<Animator>())
 		{
-			SDL_RenderCopy(Renderer::getRenderer(), texture, &owner->getComponent<Animator>()->rect, &rect);
+			SDL_RenderCopy(Renderer::getRenderer(), m_Texture, &owner->getComponent<Animator>()->rect, &rect);
 		}
 		else
 		{
-			SDL_RenderCopy(Renderer::getRenderer(), texture, NULL, &rect);
+			SDL_RenderCopy(Renderer::getRenderer(), m_Texture, NULL, &rect);
 		}
 	}
 }

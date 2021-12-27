@@ -19,18 +19,18 @@ namespace wase
 
 	void SceneManager::iAddScene(const std::string& name, const std::shared_ptr<Scene> scene)
 	{
-		scenes[name] = scene;
+		m_Scenes[name] = scene;
 	}
 
 	Scene* SceneManager::iGetActiveScene()
 	{
-		return activeScene.get();
+		return m_ActiveScene.get();
 	}
 
 	void SceneManager::iSetActiveScene(const std::string& name)
 	{
-		activeScene = scenes[name];
-		activeScene->startScene();
+		m_ActiveScene = m_Scenes[name];
+		m_ActiveScene->startScene();
 	}
 
 	SceneManager& SceneManager::get()

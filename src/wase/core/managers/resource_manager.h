@@ -24,7 +24,7 @@ namespace wase
 		static void loadFont(const std::string& name, const char* path, unsigned int fontSize);
 
 	private:
-		std::map<std::string, std::any> resources;
+		std::map<std::string, std::any> m_Resources;
 
 	private:
 		ResourceManager() {}

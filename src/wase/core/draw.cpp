@@ -18,7 +18,7 @@ namespace wase
 	{
 		SDL_Color previousColor = Renderer::getDrawColor();
 
-		for (std::shared_ptr<Rectangle>& rectangle : rectangles)
+		for (std::shared_ptr<Rectangle>& rectangle : m_Rectangles)
 		{
 			Renderer::setDrawColor(rectangle->r, rectangle->g, rectangle->b, rectangle->a);
 
@@ -43,7 +43,7 @@ namespace wase
 		rectangle->b = b;
 		rectangle->a = a;
 
-		rectangles.push_back(rectangle);
+		m_Rectangles.push_back(rectangle);
 
 		return rectangle.get();
 	}
