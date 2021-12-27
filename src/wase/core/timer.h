@@ -10,15 +10,20 @@ namespace wase
 	class Timer
 	{
 	public:
+		Timer(const Timer&) = delete;
+
 		static void tick();
 		static float getDeltaTime();
 
 	private:
-		static std::shared_ptr<Timer> instance;
-
 		float deltaTime = 0, lastTime = 0;
 
 	private:
-		static std::shared_ptr<Timer> getInstance();
+		Timer() {}
+
+		void iTick();
+		float iGetDeltaTime();
+
+		static Timer& get();
 	};
 }

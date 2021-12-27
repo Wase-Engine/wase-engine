@@ -57,7 +57,7 @@ namespace wase
 
 			if (component == nullptr)
 			{
-				Engine::getInstance()->terminate("Entity " + name + " does not have a " + typeid(T).name());
+				Engine::terminate("Entity " + name + " does not have a " + typeid(T).name());
 				return nullptr;
 			}
 

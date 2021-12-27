@@ -8,13 +8,41 @@
 
 namespace wase
 {
-	std::shared_ptr<ResourceManager> ResourceManager::instance = nullptr;
-
 	SDL_Texture* ResourceManager::getTexture(const std::string& name)
+	{
+		return get().iGetTexture(name);
+	}
+
+	Mix_Chunk* ResourceManager::getAudio(const std::string& name)
+	{
+		return get().iGetAudio(name);
+	}
+
+	TTF_Font* ResourceManager::getFont(const std::string& name)
+	{
+		return get().iGetFont(name);
+	}
+
+	void ResourceManager::loadTexture(const std::string& name, const char* path)
+	{
+		get().iLoadTexture(name, path);
+	}
+
+	void ResourceManager::loadAudio(const std::string& name, const char* path)
+	{
+		get().iLoadAudio(name, path);
+	}
+
+	void ResourceManager::loadFont(const std::string& name, const char* path, unsigned int fontSize)
+	{
+		get().iLoadFont(name, path, fontSize);
+	}
+
+	SDL_Texture* ResourceManager::iGetTexture(const std::string& name)
 	{
 		try
 		{
-			return std::any_cast<SDL_Texture*>(getInstance()->resources[name]);
+			return std::any_cast<SDL_Texture*>(resources[name]);
 		}
 		catch (std::exception)
 		{
@@ -23,11 +51,11 @@ namespace wase
 		}
 	}
 
-	Mix_Chunk* ResourceManager::getAudio(const std::string& name)
+	Mix_Chunk* ResourceManager::iGetAudio(const std::string& name)
 	{
 		try
 		{
-			return std::any_cast<Mix_Chunk*>(getInstance()->resources[name]);
+			return std::any_cast<Mix_Chunk*>(resources[name]);
 		}
 		catch (std::exception)
 		{
@@ -36,11 +64,11 @@ namespace wase
 		}
 	}
 
-	TTF_Font* ResourceManager::getFont(const std::string& name)
+	TTF_Font* ResourceManager::iGetFont(const std::string& name)
 	{
 		try
 		{
-			return std::any_cast<TTF_Font*>(getInstance()->resources[name]);
+			return std::any_cast<TTF_Font*>(resources[name]);
 		}
 		catch (std::exception)
 		{
@@ -49,7 +77,7 @@ namespace wase
 		}
 	}
 
-	void ResourceManager::loadTexture(const std::string& name, const char* path)
+	void ResourceManager::iLoadTexture(const std::string& name, const char* path)
 	{
 		SDL_Texture* texture = IMG_LoadTexture(Renderer::getRenderer(), path);
 
@@ -59,10 +87,10 @@ namespace wase
 			return;
 		}
 
-		getInstance()->resources[name] = texture;
+		resources[name] = texture;
 	}
 
-	void ResourceManager::loadAudio(const std::string& name, const char* path)
+	void ResourceManager::iLoadAudio(const std::string& name, const char* path)
 	{
 		Mix_Chunk* audio = Mix_LoadWAV(path);
 
@@ -72,10 +100,10 @@ namespace wase
 			return;
 		}
 
-		getInstance()->resources[name] = audio;
+		resources[name] = audio;
 	}
 
-	void ResourceManager::loadFont(const std::string& name, const char* path, unsigned int fontSize)
+	void ResourceManager::iLoadFont(const std::string& name, const char* path, unsigned int fontSize)
 	{
 		TTF_Font* font = TTF_OpenFont(path, fontSize);
 
@@ -85,11 +113,13 @@ namespace wase
 			return;
 		}
 
-		getInstance()->resources[name] = font;
+		resources[name] = font;
 	}
 
-	std::shared_ptr<ResourceManager> ResourceManager::getInstance()
+	ResourceManager& ResourceManager::get()
 	{
-		return instance = (instance != nullptr) ? instance : std::make_shared<ResourceManager>();
+		static ResourceManager instance;
+
+		return instance;
 	}
 }

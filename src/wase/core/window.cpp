@@ -4,35 +4,57 @@
 
 namespace wase
 {
-	std::shared_ptr<Window> Window::instance = nullptr;
-
 	void Window::init(const char* title, const int x, const int y, const unsigned int w, const unsigned int h, const Uint32 flags)
 	{
-		getInstance()->window = SDL_CreateWindow(title, x, y, w, h, flags);
-		if (!getInstance()->window)
+		get().iInit(title, x, y, w, h, flags);
+	}
+
+	SDL_Window* Window::getWindow()
+	{
+		return get().iGetWindow();
+	}
+
+	SDL_Rect Window::getRect()
+	{
+		return get().iGetRect();
+	}
+
+	SDL_Rect Window::getDisplayBounds()
+	{
+		return get().iGetDisplayBounds();
+	}
+
+	bool Window::isFullscreen()
+	{
+		return get().iIsFullscreen();
+	}
+
+	void Window::iInit(const char* title, const int x, const int y, const unsigned int w, const unsigned int h, const Uint32 flags)
+	{
+		window = SDL_CreateWindow(title, x, y, w, h, flags);
+		if (!window)
 		{
 			log_utils::error("Could not initialize SDL Window");
 			return;
 		}
 
-		SDL_Rect& rect = getInstance()->rect;
 		rect.x = x;
 		rect.y = y;
 		rect.w = w;
 		rect.h = h;
 	}
 
-	SDL_Window* Window::getWindow()
+	SDL_Window* Window::iGetWindow()
 	{
-		return getInstance()->window;
+		return window;
 	}
 
-	SDL_Rect Window::getRect()
+	SDL_Rect Window::iGetRect()
 	{
-		return getInstance()->rect;
+		return rect;
 	}
 
-	SDL_Rect Window::getDisplayBounds()
+	SDL_Rect Window::iGetDisplayBounds()
 	{
 		SDL_Rect rect;
 		if (SDL_GetDisplayBounds(0, &rect) != 0)
@@ -43,15 +65,17 @@ namespace wase
 		return rect;
 	}
 
-	bool Window::isFullscreen()
+	bool Window::iIsFullscreen()
 	{
-		Uint32 flags = SDL_GetWindowFlags(getInstance()->window);
+		Uint32 flags = SDL_GetWindowFlags(window);
 
 		return flags & SDL_WINDOW_FULLSCREEN || flags & SDL_WINDOW_FULLSCREEN_DESKTOP;
 	}
 
-	std::shared_ptr<Window> Window::getInstance()
+	Window& Window::get()
 	{
-		return instance = (instance != nullptr) ? instance : std::make_shared<Window>();
+		static Window instance;
+
+		return instance;
 	}
 }

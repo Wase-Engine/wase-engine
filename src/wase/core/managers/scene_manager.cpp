@@ -2,26 +2,41 @@
 
 namespace wase
 {
-	std::shared_ptr<SceneManager> SceneManager::instance = nullptr;
-
 	void SceneManager::addScene(const std::string& name, const std::shared_ptr<Scene> scene)
 	{
-		getInstance()->scenes[name] = scene;
+		get().iAddScene(name, scene);
 	}
 
 	Scene* SceneManager::getActiveScene()
 	{
-		return getInstance()->activeScene.get();
+		return get().iGetActiveScene();
 	}
 
 	void SceneManager::setActiveScene(const std::string& name)
 	{
-		getInstance()->activeScene = getInstance()->scenes[name];
-		getInstance()->activeScene->startScene();
+		get().iSetActiveScene(name);
 	}
 
-	std::shared_ptr<SceneManager> SceneManager::getInstance()
+	void SceneManager::iAddScene(const std::string& name, const std::shared_ptr<Scene> scene)
 	{
-		return instance = (instance != nullptr) ? instance : std::make_shared<SceneManager>();
+		scenes[name] = scene;
+	}
+
+	Scene* SceneManager::iGetActiveScene()
+	{
+		return activeScene.get();
+	}
+
+	void SceneManager::iSetActiveScene(const std::string& name)
+	{
+		activeScene = scenes[name];
+		activeScene->startScene();
+	}
+
+	SceneManager& SceneManager::get()
+	{
+		static SceneManager instance;
+
+		return instance;
 	}
 }

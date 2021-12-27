@@ -13,7 +13,7 @@ namespace wase
 	class ResourceManager
 	{
 	public:
-		static std::shared_ptr<ResourceManager> getInstance();
+		ResourceManager(const ResourceManager&) = delete;
 
 		static SDL_Texture* getTexture(const std::string& name);
 		static Mix_Chunk* getAudio(const std::string& name);
@@ -24,8 +24,19 @@ namespace wase
 		static void loadFont(const std::string& name, const char* path, unsigned int fontSize);
 
 	private:
-		static std::shared_ptr<ResourceManager> instance;
-
 		std::map<std::string, std::any> resources;
+
+	private:
+		ResourceManager() {}
+
+		SDL_Texture* iGetTexture(const std::string& name);
+		Mix_Chunk* iGetAudio(const std::string& name);
+		TTF_Font* iGetFont(const std::string& name);
+
+		void iLoadTexture(const std::string& name, const char* path);
+		void iLoadAudio(const std::string& name, const char* path);
+		void iLoadFont(const std::string& name, const char* path, unsigned int fontSize);
+
+		static ResourceManager& get();
 	};
 }
