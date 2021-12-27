@@ -16,10 +16,10 @@ namespace wase
 		virtual bool onMouseExit() = 0;
 
 	protected:
-		Transform* transform = nullptr;
-		Transform* parentTransform = nullptr;
+		Transform* m_Transform = nullptr;
+		Transform* m_ParentTransform = nullptr;
 
-		bool mouseHover, entered, exited;
+		bool m_MouseHover, m_Entered, m_Exited;
 
 	protected:
 		virtual ~Collider();

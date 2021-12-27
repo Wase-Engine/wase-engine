@@ -2,36 +2,34 @@
 
 namespace wase
 {
-	Animator::Animator(const unsigned int frames, const unsigned int speed)
+	Animator::Animator(const unsigned int t_Frames, const unsigned int t_Speed) : m_Frames(t_Frames), m_Speed(t_Speed)
 	{
-		this->frames = frames;
-		this->speed = speed;
 	}
 
 	void Animator::start()
 	{
-		spriteRenderer = owner->getComponent<SpriteRenderer>();
+		m_SpriteRenderer = owner->getComponent<SpriteRenderer>();
 	}
 
 	void Animator::update(float dt)
 	{
-		rect.w = spriteRenderer->rect.w;
-		rect.h = spriteRenderer->rect.h;
+		rect.w = m_SpriteRenderer->rect.w;
+		rect.h = m_SpriteRenderer->rect.h;
 
-		timer += dt;
+		m_Timer += dt;
 
-		if (timer > speed)
+		if (m_Timer > m_Speed)
 		{
-			currentFrame += 1;
-			if (currentFrame >= frames)
+			m_CurrentFrame += 1;
+			if (m_CurrentFrame >= m_Frames)
 			{
 				rect.x = 0;
-				currentFrame = 0;
+				m_CurrentFrame = 0;
 			}
 
-			rect.x = rect.w * currentFrame;
+			rect.x = rect.w * m_CurrentFrame;
 
-			timer = 0;
+			m_Timer = 0;
 		}
 	}
 }

@@ -19,9 +19,9 @@ namespace wase
 		static void setActiveScene(const std::string& name);
 
 	private:
-		std::map<std::string, std::shared_ptr<Scene>> scenes;
+		std::map<std::string, std::shared_ptr<Scene>> m_Scenes;
 
-		std::shared_ptr<Scene> activeScene;
+		std::shared_ptr<Scene> m_ActiveScene;
 
 	private:
 		SceneManager() {}

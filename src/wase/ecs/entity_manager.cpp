@@ -7,7 +7,7 @@ namespace wase
 {
 	void EntityManager::update(float dt)
 	{
-		for (const auto& [entityName, entityPtr] : entities)
+		for (const auto& [entityName, entityPtr] : m_Entities)
 		{
 			entityPtr->update(dt);
 		}
@@ -18,7 +18,7 @@ namespace wase
 		std::multimap<int, Entity*> depthMap;
 
 		// Put the entities in a new map where they are sorted based on the depth
-		for (const auto& [entityName, entityPtr] : entities)
+		for (const auto& [entityName, entityPtr] : m_Entities)
 		{
 			depthMap.insert(std::pair<int, Entity*>(entityPtr->getComponent<Transform>()->depth, entityPtr.get()));
 		}
@@ -35,13 +35,13 @@ namespace wase
 		std::shared_ptr<Entity> entity = std::make_shared<Entity>(name);
 		entity->entityManager = this;
 
-		entities[name] = entity;
+		m_Entities[name] = entity;
 
 		return entity.get();
 	}
 
 	Entity* EntityManager::getEntity(const std::string& name)
 	{
-		return entities[name].get();
+		return m_Entities[name].get();
 	}
 }

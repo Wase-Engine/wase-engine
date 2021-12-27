@@ -18,8 +18,8 @@ namespace wase
 		static bool isFullscreen();
 
 	private:
-		SDL_Window* window = nullptr;
-		SDL_Rect rect;
+		SDL_Window* m_Window = nullptr;
+		SDL_Rect m_Rect;
 
 	private:
 		Window() {}

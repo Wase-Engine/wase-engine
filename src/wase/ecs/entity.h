@@ -24,7 +24,7 @@ namespace wase
 		std::vector<Entity*> children;
 
 	public:
-		Entity(const std::string& name);
+		Entity(const std::string& t_Name);
 		~Entity();
 
 		void update(float dt);
@@ -34,9 +34,9 @@ namespace wase
 		template<typename T, typename... TArgs>
 		inline T* addComponent(TArgs&&... args)
 		{
-			if (components[typeid(T).name()] != nullptr)
+			if (m_Components[typeid(T).name()] != nullptr)
 			{
-				log_utils::error("The entity " + name + " already has the " + typeid(T).name() + " component");
+				log_utils::error("The entity " + m_Name + " already has the " + typeid(T).name() + " component");
 				return nullptr;
 			}
 
@@ -45,7 +45,7 @@ namespace wase
 			component->owner = this;
 			component->start();
 
-			components[typeid(T).name()] = component;
+			m_Components[typeid(T).name()] = component;
 
 			return component.get();
 		}
@@ -53,11 +53,11 @@ namespace wase
 		template<typename T>
 		inline T* getComponent()
 		{
-			std::shared_ptr<T> component = std::static_pointer_cast<T>(components[typeid(T).name()]);
+			std::shared_ptr<T> component = std::static_pointer_cast<T>(m_Components[typeid(T).name()]);
 
 			if (component == nullptr)
 			{
-				Engine::terminate("Entity " + name + " does not have a " + typeid(T).name());
+				Engine::terminate("Entity " + m_Name + " does not have a " + typeid(T).name());
 				return nullptr;
 			}
 
@@ -67,7 +67,7 @@ namespace wase
 		template<typename T>
 		inline bool hasComponent()
 		{
-			for (const auto& [name, componentPtr] : components)
+			for (const auto& [name, componentPtr] : m_Components)
 			{
 				if (name == typeid(T).name())
 				{
@@ -83,17 +83,17 @@ namespace wase
 		{
 			if (hasComponent<T>())
 			{
-				components.erase(components.find(typeid(T).name()));
+				m_Components.erase(components.find(typeid(T).name()));
 			}
 			else
 			{
-				log_utils::error(name + " doesn't have a " + typeid(T).name() + " component. Can't remove it.");
+				log_utils::error(m_Name + " doesn't have a " + typeid(T).name() + " component. Can't remove it.");
 			}
 		}
 
 	private:
-		std::string name;
-		bool enabled = true;
-		std::map<std::string, std::shared_ptr<Component>> components;
+		std::string m_Name;
+		bool m_Enabled = true;
+		std::map<std::string, std::shared_ptr<Component>> m_Components;
 	};
 }

@@ -24,12 +24,12 @@ namespace wase
 
 	bool Component::isActive() const
 	{
-		return active;
+		return m_Active;
 	}
 
 	void Component::setActive(const bool state)
 	{
-		active = state;
+		m_Active = state;
 		onStateChange(state);
 	}
 

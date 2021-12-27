@@ -9,19 +9,19 @@ namespace wase
 
 	void Scene::updateScene(float dt)
 	{
-		entityManager.update(dt);
+		m_EntityManager.update(dt);
 		update(dt);
 	}
 
 	void Scene::renderScene()
 	{
-		entityManager.render();
+		m_EntityManager.render();
 		render();
 	}
 
 	EntityManager* Scene::getEntityManager()
 	{
-		return &entityManager;
+		return &m_EntityManager;
 	}
 
 	Scene::~Scene()

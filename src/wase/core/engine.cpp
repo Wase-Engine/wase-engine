@@ -77,7 +77,7 @@ namespace wase
 		{
 			SceneManager::setActiveScene(sceneName);
 
-			while (isRunning)
+			while (m_IsRunning)
 			{
 				events();
 				update(Timer::getDeltaTime());
@@ -120,12 +120,12 @@ namespace wase
 		Window::init(title, x, y, w, h, flags);
 		Renderer::init();
 
-		isRunning = true;
+		m_IsRunning = true;
 	}
 
 	void Engine::iQuit()
 	{
-		isRunning = false;
+		m_IsRunning = false;
 	}
 
 	void Engine::iTerminate(const std::string& message) const

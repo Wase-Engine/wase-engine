@@ -15,21 +15,21 @@ namespace wase
 
 	void Collider::start()
 	{
-		transform = owner->getComponent<Transform>();
+		m_Transform = owner->getComponent<Transform>();
 	}
 
 	bool Collider::onMouseHold(const int button)
 	{
-		return mouseHover && input::getMouseButton(button);
+		return m_MouseHover && input::getMouseButton(button);
 	}
 
 	bool Collider::onMouseDown(const int button)
 	{
-		return mouseHover && input::getMouseButtonDown(button);
+		return m_MouseHover && input::getMouseButtonDown(button);
 	}
 
 	bool Collider::onMouseUp(const int button)
 	{
-		return mouseHover && input::getMouseButtonUp(button);
+		return m_MouseHover && input::getMouseButtonUp(button);
 	}
 }

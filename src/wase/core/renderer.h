@@ -18,9 +18,9 @@ namespace wase
 		static void setDrawColor(const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a);
 
 	private:
-		SDL_Renderer* renderer = nullptr;
-		SDL_Color drawColor = { 0, 0, 0, 1 };
-		int monitorWidth, monitorHeight, windowWidth, windowHeight;
+		SDL_Renderer* m_Renderer = nullptr;
+		SDL_Color m_DrawColor = { 0, 0, 0, 1 };
+		int m_MonitorWidth, m_MonitorHeight, m_WindowWidth, m_WindowHeight;
 
 	private:
 		Renderer() {}
