@@ -4,25 +4,35 @@
 
 namespace wase
 {
-	std::shared_ptr<Timer> Timer::instance = nullptr;
-
 	void Timer::tick()
 	{
-		getInstance()->deltaTime = ((float)SDL_GetTicks() - getInstance()->lastTime) * (TARGET_FPS / 1000.0f);
-
-		if (getInstance()->deltaTime > MAX_DELTA_TIME)
-			getInstance()->deltaTime = MAX_DELTA_TIME;
-
-		getInstance()->lastTime = (float)SDL_GetTicks();
+		get().iTick();
 	}
 
 	float Timer::getDeltaTime()
 	{
-		return getInstance()->deltaTime;
+		return get().iGetDeltaTime();
 	}
 
-	std::shared_ptr<Timer> Timer::getInstance()
+	void Timer::iTick()
 	{
-		return instance = (instance != nullptr) ? instance : std::make_shared<Timer>();
+		deltaTime = ((float)SDL_GetTicks() - lastTime) * (TARGET_FPS / 1000.0f);
+
+		if (deltaTime > MAX_DELTA_TIME)
+			deltaTime = MAX_DELTA_TIME;
+
+		lastTime = (float)SDL_GetTicks();
+	}
+
+	float Timer::iGetDeltaTime()
+	{
+		return deltaTime;
+	}
+
+	Timer& Timer::get()
+	{
+		static Timer instance;
+
+		return instance;
 	}
 }

@@ -16,58 +16,24 @@
 
 namespace wase
 {
-	std::shared_ptr<Engine> Engine::instance = nullptr;
+	void Engine::init(const char* title, const int x, const int y, const unsigned int w, const unsigned int h, const Uint32 flags)
+	{
+		get().iInit(title, x, y, w, h, flags);
+	}
 
 	void Engine::run(const char* sceneName)
 	{
-		try
-		{
-			SceneManager::setActiveScene(sceneName);
-
-			while (isRunning)
-			{
-				events();
-				update(Timer::getDeltaTime());
-				render();
-				Timer::tick();
-				input::events::end();
-			}
-
-			destroy();
-		}
-		catch (TerminateException& e)
-		{
-			log_utils::error(e.what());
-		}
+		get().iRun(sceneName);
 	}
 
-	void Engine::init(const char* title, const int x, const int y, const unsigned int w, const unsigned int h, const Uint32 flags)
+	void Engine::quit()
 	{
-		// Initialize SDL
-		if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
-		{
-			log_utils::error("Could not initialize SDL");
-			return;
-		}
+		get().iQuit();
+	}
 
-		// Initialize SDL_Mixer
-		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
-		{
-			log_utils::error("Could not initialize SDL Mixer");
-			return;
-		}
-
-		// Initialize SDL_TTF
-		if (TTF_Init() < 0)
-		{
-			log_utils::error("Could not initialize TTF");
-			return;
-		}
-
-		Window::init(title, x, y, w, h, flags);
-		Renderer::init();
-
-		isRunning = true;
+	void Engine::terminate(const std::string& message)
+	{
+		get().iTerminate(message);
 	}
 
 	void Engine::events()
@@ -105,18 +71,72 @@ namespace wase
 		IMG_Quit();
 	}
 
-	void Engine::quit()
+	void Engine::iRun(const char* sceneName)
+	{
+		try
+		{
+			SceneManager::setActiveScene(sceneName);
+
+			while (isRunning)
+			{
+				events();
+				update(Timer::getDeltaTime());
+				render();
+				Timer::tick();
+				input::events::end();
+			}
+
+			destroy();
+		}
+		catch (TerminateException& e)
+		{
+			log_utils::error(e.what());
+		}
+	}
+
+	void Engine::iInit(const char* title, const int x, const int y, const unsigned int w, const unsigned int h, const Uint32 flags)
+	{
+		// Initialize SDL
+		if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
+		{
+			log_utils::error("Could not initialize SDL");
+			return;
+		}
+
+		// Initialize SDL_Mixer
+		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+		{
+			log_utils::error("Could not initialize SDL Mixer");
+			return;
+		}
+
+		// Initialize SDL_TTF
+		if (TTF_Init() < 0)
+		{
+			log_utils::error("Could not initialize TTF");
+			return;
+		}
+
+		Window::init(title, x, y, w, h, flags);
+		Renderer::init();
+
+		isRunning = true;
+	}
+
+	void Engine::iQuit()
 	{
 		isRunning = false;
 	}
 
-	void Engine::terminate(const std::string& message) const
+	void Engine::iTerminate(const std::string& message) const
 	{
 		throw TerminateException(message);
 	}
 
-	std::shared_ptr<Engine> Engine::getInstance()
+	Engine& Engine::get()
 	{
-		return instance = (instance != nullptr) ? instance : std::make_shared<Engine>();
+		static Engine instance;
+
+		return instance;
 	}
 }

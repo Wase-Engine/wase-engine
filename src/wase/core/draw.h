@@ -16,15 +16,20 @@ namespace wase
 	class Draw
 	{
 	public:
+		Draw(const Draw&) = delete;
+
 		static void render();
 		static Rectangle* rectangle(const SDL_Rect& rect, const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a, const bool fill = true);
 
 	private:
-		static std::shared_ptr<Draw> instance;
-
 		std::vector<std::shared_ptr<Rectangle>> rectangles;
 
 	private:
-		static std::shared_ptr<Draw> getInstance();
+		Draw() {}
+
+		void iRender();
+		Rectangle* iRectangle(const SDL_Rect& rect, const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a, const bool fill = true);
+	
+		static Draw& get();
 	};
 }
