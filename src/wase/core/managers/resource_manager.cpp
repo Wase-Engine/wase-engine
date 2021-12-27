@@ -42,7 +42,7 @@ namespace wase
 	{
 		try
 		{
-			return std::any_cast<SDL_Texture*>(resources[name]);
+			return std::any_cast<SDL_Texture*>(m_Resources[name]);
 		}
 		catch (std::exception)
 		{
@@ -55,7 +55,7 @@ namespace wase
 	{
 		try
 		{
-			return std::any_cast<Mix_Chunk*>(resources[name]);
+			return std::any_cast<Mix_Chunk*>(m_Resources[name]);
 		}
 		catch (std::exception)
 		{
@@ -68,7 +68,7 @@ namespace wase
 	{
 		try
 		{
-			return std::any_cast<TTF_Font*>(resources[name]);
+			return std::any_cast<TTF_Font*>(m_Resources[name]);
 		}
 		catch (std::exception)
 		{
@@ -87,7 +87,7 @@ namespace wase
 			return;
 		}
 
-		resources[name] = texture;
+		m_Resources[name] = texture;
 	}
 
 	void ResourceManager::iLoadAudio(const std::string& name, const char* path)
@@ -100,7 +100,7 @@ namespace wase
 			return;
 		}
 
-		resources[name] = audio;
+		m_Resources[name] = audio;
 	}
 
 	void ResourceManager::iLoadFont(const std::string& name, const char* path, unsigned int fontSize)
@@ -113,7 +113,7 @@ namespace wase
 			return;
 		}
 
-		resources[name] = font;
+		m_Resources[name] = font;
 	}
 
 	ResourceManager& ResourceManager::get()

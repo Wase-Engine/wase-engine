@@ -12,11 +12,11 @@ namespace wase
 		int depth;
 
 	public:
-		Transform(const float x = 0, const float y = 0, const int depth = 0)
+		Transform(const float t_X = 0, const float t_Y = 0, const int t_Depth = 0)
+			: depth(t_Depth)
 		{
-			this->position.x = x;
-			this->position.y = y;
-			this->depth = depth;
+			this->position.x = t_X;
+			this->position.y = t_Y;
 		}
 
 		void setPosition(float x, float y)

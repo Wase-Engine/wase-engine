@@ -26,6 +26,6 @@ namespace wase
 		virtual ~Component();
 
 	private:
-		bool active = true;
+		bool m_Active = true;
 	};
 }

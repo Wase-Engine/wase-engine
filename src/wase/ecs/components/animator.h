@@ -13,14 +13,14 @@ namespace wase
 		SDL_Rect rect{};
 
 	public:
-		Animator(const unsigned int frames, const unsigned int speed);
+		Animator(const unsigned int t_Frames, const unsigned int t_Speed);
 
 		void start() override;
 		void update(float dt) override;
 
 	private:
-		SpriteRenderer* spriteRenderer = nullptr;
-		int frames = 0, speed = 100, currentFrame = 0;
-		float timer = 0;
+		SpriteRenderer* m_SpriteRenderer = nullptr;
+		int m_Frames = 0, m_Speed = 100, m_CurrentFrame = 0;
+		float m_Timer = 0;
 	};
 }

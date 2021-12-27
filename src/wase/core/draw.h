@@ -22,7 +22,7 @@ namespace wase
 		static Rectangle* rectangle(const SDL_Rect& rect, const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a, const bool fill = true);
 
 	private:
-		std::vector<std::shared_ptr<Rectangle>> rectangles;
+		std::vector<std::shared_ptr<Rectangle>> m_Rectangles;
 
 	private:
 		Draw() {}

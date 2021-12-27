@@ -7,15 +7,14 @@
 
 namespace wase
 {
-	Entity::Entity(const std::string& name)
+	Entity::Entity(const std::string& t_Name) : m_Name(t_Name)
 	{
-		this->name = name;
 		this->addComponent<Transform>();
 	}
 
 	void Entity::update(float dt)
 	{
-		for (const auto& [componentName, componentPtr] : components)
+		for (const auto& [componentName, componentPtr] : m_Components)
 		{
 			if (componentPtr->isActive())
 			{
@@ -26,7 +25,7 @@ namespace wase
 
 	void Entity::render()
 	{
-		for (const auto& [componentName, componentPtr] : components)
+		for (const auto& [componentName, componentPtr] : m_Components)
 		{
 			if (componentPtr->isActive())
 			{
@@ -61,7 +60,7 @@ namespace wase
 
 	Entity::~Entity()
 	{
-		for (const auto& [componentName, componentPtr] : components)
+		for (const auto& [componentName, componentPtr] : m_Components)
 		{
 			if (componentPtr)
 			{

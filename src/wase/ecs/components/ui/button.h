@@ -29,7 +29,7 @@ namespace wase
     class Button : public Component
     {
     public:
-        Button(const char* text, const Size& buttonSize, const char* font, TextAlignment textAlignment, const SDL_Color& textColor, const SDL_Color& buttonColor);
+        Button(const char* t_Text, const char* t_Font, const Size& t_ButtonSize, const TextAlignment& t_TextAlignment, const SDL_Color& t_TextColor, const SDL_Color& t_ButtonColor);
 
         void start() override;
         void update(float dt) override;
@@ -57,30 +57,30 @@ namespace wase
         bool onMouseUp(const int button);
 
     private:
-        Camera* camera = nullptr;
-        Transform* transform = nullptr;
-        Transform* parentTransform = nullptr;
-        BoxCollider2D* boxCollider = nullptr;
+        Camera* m_Camera = nullptr;
+        Transform* m_Transform = nullptr;
+        Transform* m_ParentTransform = nullptr;
+        BoxCollider2D* m_BoxCollider = nullptr;
 
-        const char* text;
-        const char* font = nullptr;
-        SDL_Rect textPosition;
-        Vector2 textOffset;
-        Size buttonSize;
-        SDL_Texture* texture = nullptr;
+        const char* m_Text;
+        const char* m_Font = nullptr;
+        SDL_Rect m_TextPosition;
+        Vector2 m_TextOffset;
+        Size m_ButtonSize;
+        SDL_Texture* m_Texture = nullptr;
 
-        bool buttonPressEffect = false;
-        bool buttonHoverEffect = false;
-        SDL_Color textCurrentColor;
-        MouseStateColors textColors;
+        bool m_ButtonPressEffect = false;
+        bool m_ButtonHoverEffect = false;
+        SDL_Color m_TextCurrentColor;
+        MouseStateColors m_TextColors;
 
-        SDL_Color buttonCurrentColor;
-        MouseStateColors buttonColors;
+        SDL_Color m_ButtonCurrentColor;
+        MouseStateColors m_ButtonColors;
 
-        TextAlignment textAlignment;
+        TextAlignment m_TextAlignment;
 
-        SDL_Rect rect;
-        Rectangle* rectangle = nullptr;
+        SDL_Rect m_Rect;
+        Rectangle* m_Rectangle = nullptr;
 
     private:
         void buttonEffects();

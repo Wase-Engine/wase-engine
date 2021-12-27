@@ -24,6 +24,6 @@ namespace wase
 		Entity* getEntity(const std::string& name);
 
 	private:
-		std::map<std::string, std::shared_ptr<Entity>> entities;
+		std::map<std::string, std::shared_ptr<Entity>> m_Entities;
 	};
 }

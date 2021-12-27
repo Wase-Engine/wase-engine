@@ -13,7 +13,7 @@ namespace wase
 class Label : public Component
 {
 	public:
-		Label(const char* text, const char* font, const SDL_Color& color);
+		Label(const char* t_Text, const char* t_Font, const SDL_Color& t_Color);
 		void start() override;
 		void update(float dt) override;
 		void render() override;
@@ -23,15 +23,15 @@ class Label : public Component
 		Size getSize() const;
 
 	private:
-		Camera* camera = nullptr;
-		Transform* transform = nullptr;
-		Transform* parentTransform = nullptr;
+		Camera* m_Camera = nullptr;
+		Transform* m_Transform = nullptr;
+		Transform* m_ParentTransform = nullptr;
 
-		std::string text;
-		const char* font = nullptr;
-		SDL_Rect position;
-		SDL_Color color;
-		SDL_Texture* texture = nullptr;
+		std::string m_Text;
+		const char* m_Font = nullptr;
+		SDL_Rect m_Position;
+		SDL_Color m_Color;
+		SDL_Texture* m_Texture = nullptr;
 
 	private:
 		void updateText();

@@ -32,29 +32,29 @@ namespace wase
 
 	void Renderer::setupViewport()
 	{
-		windowWidth = Window::getRect().w;
-		monitorWidth = Window::getDisplayBounds().w;
-		windowHeight = Window::getRect().h;
-		monitorHeight = Window::getDisplayBounds().h;
+		m_WindowWidth = Window::getRect().w;
+		m_MonitorWidth = Window::getDisplayBounds().w;
+		m_WindowHeight = Window::getRect().h;
+		m_MonitorHeight = Window::getDisplayBounds().h;
 
-		SDL_Rect viewport{ 0, 0, windowWidth, windowHeight };
+		SDL_Rect viewport{ 0, 0, m_WindowWidth, m_WindowHeight };
 
 		if (Window::isFullscreen())
 		{
-			if (monitorWidth - windowWidth > 0)
-				viewport.x = (monitorWidth - windowWidth) / 2;
+			if (m_MonitorWidth - m_WindowWidth > 0)
+				viewport.x = (m_MonitorWidth - m_WindowWidth) / 2;
 
-			if (monitorHeight - windowHeight > 0)
-				viewport.y = (monitorHeight - windowHeight) / 2;
+			if (m_MonitorHeight - m_WindowHeight > 0)
+				viewport.y = (m_MonitorHeight - m_WindowHeight) / 2;
 		}
 
-		SDL_RenderSetViewport(renderer, &viewport);
+		SDL_RenderSetViewport(m_Renderer, &viewport);
 	}
 
 	void Renderer::iInit()
 	{
-		renderer = SDL_CreateRenderer(Window::getWindow(), -1, 0);
-		if (!renderer)
+		m_Renderer = SDL_CreateRenderer(Window::getWindow(), -1, 0);
+		if (!m_Renderer)
 		{
 			log_utils::error("Could not initialize SDL Renderer");
 			return;
@@ -65,22 +65,22 @@ namespace wase
 
 	void Renderer::iUpdateViewportRectangle()
 	{
-		SDL_Rect viewport{ 0, 0, windowWidth, windowHeight };
+		SDL_Rect viewport{ 0, 0, m_WindowWidth, m_WindowHeight };
 		SDL_Color color = iGetDrawColor();
 		iSetDrawColor(color.r, color.g, color.b, color.a);
 
-		SDL_RenderFillRect(renderer, &viewport);
-		SDL_RenderDrawRect(renderer, &viewport);
+		SDL_RenderFillRect(m_Renderer, &viewport);
+		SDL_RenderDrawRect(m_Renderer, &viewport);
 	}
 
 	SDL_Renderer* Renderer::iGetRenderer()
 	{
-		return renderer;
+		return m_Renderer;
 	}
 
 	SDL_Color Renderer::iGetDrawColor()
 	{
-		return drawColor;
+		return m_DrawColor;
 	}
 
 	void Renderer::iSetDrawColor(const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a)
@@ -91,8 +91,8 @@ namespace wase
 		color.b = b;
 		color.a = a;
 
-		drawColor = color;
-		SDL_SetRenderDrawColor(renderer, r, g, b, a);
+		m_DrawColor = color;
+		SDL_SetRenderDrawColor(m_Renderer, r, g, b, a);
 	}
 
 	Renderer& Renderer::get()

@@ -21,16 +21,16 @@ namespace wase
 		SDL_Rect rect{};
 
 	public:
-		SpriteRenderer(const std::string& name, const int sizeX, const int sizeY);
+		SpriteRenderer(const std::string& t_Name, const int t_SizeX, const int t_SizeY);
 		void start() override;
 		void update(float dt) override;
 		void render() override;
 
 	private:
-		Transform* transform = nullptr;
-		Transform* parentTransform = nullptr;
-		SDL_Texture* texture = nullptr;
-		Camera* camera = nullptr;
-		int sizeX, sizeY;
+		Transform* m_Transform = nullptr;
+		Transform* m_ParentTransform = nullptr;
+		SDL_Texture* m_Texture = nullptr;
+		Camera* m_Camera = nullptr;
+		int m_SizeX, m_SizeY;
 	};
 }

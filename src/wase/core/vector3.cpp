@@ -8,7 +8,7 @@ Vector3::Vector3()
 }
 
 
-Vector3::Vector3(const float x, const float y, const float z) : x(x), y(y), z(z)
+Vector3::Vector3(const float t_X, const float t_Y, const float t_Z) : x(t_X), y(t_Y), z(t_Z)
 {
 
 }

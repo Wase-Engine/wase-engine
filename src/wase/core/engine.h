@@ -17,7 +17,7 @@ namespace wase
 		static void terminate(const std::string& message);
 
 	private:
-		bool isRunning = false;
+		bool m_IsRunning = false;
 
 	private:
 		Engine() {}

@@ -31,27 +31,27 @@ namespace wase
 
 	void Window::iInit(const char* title, const int x, const int y, const unsigned int w, const unsigned int h, const Uint32 flags)
 	{
-		window = SDL_CreateWindow(title, x, y, w, h, flags);
-		if (!window)
+		m_Window = SDL_CreateWindow(title, x, y, w, h, flags);
+		if (!m_Window)
 		{
 			log_utils::error("Could not initialize SDL Window");
 			return;
 		}
 
-		rect.x = x;
-		rect.y = y;
-		rect.w = w;
-		rect.h = h;
+		m_Rect.x = x;
+		m_Rect.y = y;
+		m_Rect.w = w;
+		m_Rect.h = h;
 	}
 
 	SDL_Window* Window::iGetWindow()
 	{
-		return window;
+		return m_Window;
 	}
 
 	SDL_Rect Window::iGetRect()
 	{
-		return rect;
+		return m_Rect;
 	}
 
 	SDL_Rect Window::iGetDisplayBounds()
@@ -67,7 +67,7 @@ namespace wase
 
 	bool Window::iIsFullscreen()
 	{
-		Uint32 flags = SDL_GetWindowFlags(window);
+		Uint32 flags = SDL_GetWindowFlags(m_Window);
 
 		return flags & SDL_WINDOW_FULLSCREEN || flags & SDL_WINDOW_FULLSCREEN_DESKTOP;
 	}

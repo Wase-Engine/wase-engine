@@ -18,14 +18,15 @@ namespace wase
 		bool loop;
 
 	public:
-		AudioSource(const std::string& name, const Uint8 volume = 100, const bool loop = false, const bool playOnAwake = false);
+		AudioSource(const std::string& t_Name, const Uint8 t_Volume = 100, const bool t_Loop = false, const bool t_PlayOnAwake = false);
+		
 		void play();
 		void onStateChange(const bool state) override;
 		void setVolume(float volume);
 		void destroy() override;
 
 	private:
-		Mix_Chunk* audioClip = nullptr;
-		int channel = -1;
+		Mix_Chunk* m_AudioClip = nullptr;
+		int m_Channel = -1;
 	};
 }
