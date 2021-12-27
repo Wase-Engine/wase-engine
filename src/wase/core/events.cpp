@@ -16,7 +16,7 @@ namespace wase
 				switch (event.type)
 				{
 				case SDL_QUIT:
-					Engine::getInstance()->quit();
+					Engine::quit();
 					break;
 
 				case SDL_KEYDOWN:

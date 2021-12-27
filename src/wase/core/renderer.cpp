@@ -5,28 +5,29 @@
 
 namespace wase
 {
-	std::shared_ptr<Renderer> Renderer::instance = nullptr;
-
 	void Renderer::init()
 	{
-		getInstance()->renderer = SDL_CreateRenderer(Window::getWindow(), -1, 0);
-		if (!getInstance()->renderer)
-		{
-			log_utils::error("Could not initialize SDL Renderer");
-			return;
-		}
-	
-		getInstance()->setupViewport();
+		get().iInit();
 	}
 
 	void Renderer::updateViewportRectangle()
 	{
-		SDL_Rect viewport{ 0, 0, getInstance()->windowWidth, getInstance()->windowHeight };
-		SDL_Color color = Renderer::getDrawColor();
-		Renderer::setDrawColor(color.r, color.g, color.b, color.a);
+		get().iUpdateViewportRectangle();
+	}
 
-		SDL_RenderFillRect(getInstance()->renderer, &viewport);
-		SDL_RenderDrawRect(getInstance()->renderer, &viewport);
+	SDL_Renderer* Renderer::getRenderer()
+	{
+		return get().iGetRenderer();
+	}
+
+	SDL_Color Renderer::getDrawColor()
+	{
+		return get().iGetDrawColor();
+	}
+
+	void Renderer::setDrawColor(const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a)
+	{
+		get().iSetDrawColor(r, g, b, a);
 	}
 
 	void Renderer::setupViewport()
@@ -50,17 +51,39 @@ namespace wase
 		SDL_RenderSetViewport(renderer, &viewport);
 	}
 
-	SDL_Renderer* Renderer::getRenderer()
+	void Renderer::iInit()
 	{
-		return getInstance()->renderer;
+		renderer = SDL_CreateRenderer(Window::getWindow(), -1, 0);
+		if (!renderer)
+		{
+			log_utils::error("Could not initialize SDL Renderer");
+			return;
+		}
+	
+		setupViewport();
 	}
 
-	SDL_Color Renderer::getDrawColor()
+	void Renderer::iUpdateViewportRectangle()
 	{
-		return getInstance()->drawColor;
+		SDL_Rect viewport{ 0, 0, windowWidth, windowHeight };
+		SDL_Color color = iGetDrawColor();
+		iSetDrawColor(color.r, color.g, color.b, color.a);
+
+		SDL_RenderFillRect(renderer, &viewport);
+		SDL_RenderDrawRect(renderer, &viewport);
 	}
 
-	void Renderer::setDrawColor(const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a)
+	SDL_Renderer* Renderer::iGetRenderer()
+	{
+		return renderer;
+	}
+
+	SDL_Color Renderer::iGetDrawColor()
+	{
+		return drawColor;
+	}
+
+	void Renderer::iSetDrawColor(const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a)
 	{
 		SDL_Color color;
 		color.r = r;
@@ -68,12 +91,14 @@ namespace wase
 		color.b = b;
 		color.a = a;
 
-		getInstance()->drawColor = color;
-		SDL_SetRenderDrawColor(getInstance()->renderer, r, g, b, a);
+		drawColor = color;
+		SDL_SetRenderDrawColor(renderer, r, g, b, a);
 	}
 
-	std::shared_ptr<Renderer> Renderer::getInstance()
+	Renderer& Renderer::get()
 	{
-		return instance = (instance != nullptr) ? instance : std::make_shared<Renderer>();
+		static Renderer instance;
+
+		return instance;
 	}
 }

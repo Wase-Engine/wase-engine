@@ -8,19 +8,29 @@ namespace wase
 	class Window
 	{
 	public:
+		Window(const Window&) = delete;
+
 		static void init(const char* title, const int x, const int y, const unsigned int w, const unsigned int h, const Uint32 flags);
+
 		static SDL_Window* getWindow();
 		static SDL_Rect getRect();
 		static SDL_Rect getDisplayBounds();
 		static bool isFullscreen();
 
 	private:
-		static std::shared_ptr<Window> instance;
-
 		SDL_Window* window = nullptr;
 		SDL_Rect rect;
 
 	private:
-		static std::shared_ptr<Window> getInstance();
+		Window() {}
+
+		void iInit(const char* title, const int x, const int y, const unsigned int w, const unsigned int h, const Uint32 flags);
+
+		SDL_Window* iGetWindow();
+		SDL_Rect iGetRect();
+		SDL_Rect iGetDisplayBounds();
+		bool iIsFullscreen();
+
+		static Window& get();
 	};
 }
