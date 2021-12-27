@@ -83,7 +83,7 @@ namespace wase
 		{
 			if (hasComponent<T>())
 			{
-				m_Components.erase(components.find(typeid(T).name()));
+				m_Components.erase(m_Components.find(typeid(T).name()));
 			}
 			else
 			{
