@@ -13,6 +13,14 @@ file(GLOB_RECURSE sources
     "src/*.cpp"
 )
 
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose Release or Debug" FORCE)
+endif()
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_definitions(-DWASE_DEBUG)
+endif()
+
 add_library(wase-engine ${sources})
 
 target_include_directories(wase-engine PUBLIC 
@@ -34,6 +42,7 @@ endforeach()
 find_package(OpenGL REQUIRED)
 
 # GLFW
+set(BUILD_GLFW3 ON)
 add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/glfw EXCLUDE_FROM_ALL)
 target_link_libraries(wase-engine glfw)
 target_include_directories(wase-engine PUBLIC ${PROJECT_SOURCE_DIR}/vendor/glfw/include)
@@ -42,6 +51,11 @@ target_include_directories(wase-engine PUBLIC ${PROJECT_SOURCE_DIR}/vendor/glfw/
 add_definitions(-DGLEW_STATIC)
 add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/glew-cmake EXCLUDE_FROM_ALL)
 target_link_libraries(wase-engine libglew_static)
+
+# spdlog
+add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/spdlog EXCLUDE_FROM_ALL)
+target_link_libraries(wase-engine spdlog)
+target_include_directories(wase-engine PUBLIC ${PROJECT_SOURCE_DIR}/vendor/spdlog/include)
 
 # Tests
 if(DEFINED enable_test)

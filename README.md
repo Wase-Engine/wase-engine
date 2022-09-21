@@ -14,23 +14,24 @@ Wase Engine is an open source 2d game library made with C++17. Wase Engine can b
 
 You can choose to build Wase Engine yourself from the source code or you can download the pre-build libraries on our [website](https://wase-engine.com/).
 
+### Requirements:
+- OpenGL
+- GLFW
+- spdlog
+
 **CMake**
 ```
 mkdir build
 cd build
-cmake ..
+cmake .. -DCMAKE_BUILD_TYPE=Debug
 cmake build .
 ```
 
-To include tests add `-D enable_test=1` to the `cmake ..` command.
+To include tests add `-D enable_test=1` to the `cmake ..` command. To change the build type to Release change `CMAKE_BUILD_TYPE=Debug` to `Release`
 
 ## Included dependencies
 - OpenGL loader [GLEW](http://glew.sourceforge.net/)
 - Window and input system: [GLFW](https://www.glfw.org/)
-
-## List of projects with Wase Engine
- - [Blank Project](https://github.com/Wase-Engine/blank-project)
- - [Simon](https://github.com/JelleVos1/simon)
 
 ## Compatible platforms
 - Windows

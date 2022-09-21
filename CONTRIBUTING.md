@@ -35,6 +35,7 @@ namespace wase::folder::folder
 { // Braces are always put on the next line
     class Example
     {
+    // For classes always follow the rule of five (https://en.cppreference.com/w/cpp/language/rule_of_three)
     // Order access specifiers like the following:
     public:
         // Use lowerCamelCase for method names
