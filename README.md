@@ -1,5 +1,3 @@
-
-
 [![Wase Engine logo banner](http://wase-engine.com/img/banner.png)](https://wase-engine.com/)
 
 [![Website badge](https://img.shields.io/website?up_message=online&url=https%3A%2F%2Fwase-engine.com%2F)](https://wase-engine.com/)
@@ -9,21 +7,12 @@
 ![Lines badge](https://img.shields.io/tokei/lines/github/Wase-Engine/wase-engine)
 ![Stars badge](https://img.shields.io/github/stars/Wase-Engine/wase-engine?style=social)
 
-Wase Engine is an open source 2d game library made with C++ and the SDL libraries. Wase Engine can be used to create all kinds of 2d games. The main goal for Wase Engine is to give you the tools you need for creating games while keeping as much control as possible.
+Wase Engine is an open source 2d game library made with C++17. Wase Engine can be used to create all kinds of 2d games. The main goal for Wase Engine is to give you the tools you need for creating games while keeping as much control as possible.
 
 
 ## Setting up Wase Engine
 
 You can choose to build Wase Engine yourself from the source code or you can download the pre-build libraries on our [website](https://wase-engine.com/).
-
-To build Wase Engine you will need to install the following tools:
-
- - C++17 or higher
- - CMake
- - SDL2
- - SDL2 Image
- - SDL2 Mixer
- - SDL2 TTF
 
 **CMake**
 ```
@@ -33,13 +22,11 @@ cmake ..
 cmake build .
 ```
 
-**MinGW**
-```
-mkdir build
-cd build
-cmake -G "MinGW Makefiles" ..
-make
-```
+To include tests add `-D enable_test=1` to the `cmake ..` command.
+
+## Included dependencies
+- OpenGL loader [GLEW](http://glew.sourceforge.net/)
+- Window and input system: [GLFW](https://www.glfw.org/)
 
 ## List of projects with Wase Engine
  - [Blank Project](https://github.com/Wase-Engine/blank-project)

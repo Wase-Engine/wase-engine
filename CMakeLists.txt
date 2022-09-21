@@ -1,153 +1,49 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 
-project(wase-engine)
+project(wase-engine LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 20)
-
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CXX_EXTENSIONS OFF)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 
-find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
-find_package(SDL2_mixer REQUIRED)
-find_package(SDL2_ttf REQUIRED)
-
-include_directories(${SDL2_INCLUDE_DIR}
-        ${SDL2_IMAGE_INCLUDE_DIR}
-        ${SDL2_MIXER_INCLUDE_DIR}
-        ${SDL2_TTF_INCLUDE_DIR})
-
-add_library(wase-engine
-    src/wase/core/engine.h
-    src/wase/core/engine.cpp
-    src/wase/core/renderer.h
-    src/wase/core/renderer.cpp
-    src/wase/core/window.h
-    src/wase/core/window.cpp
-    src/wase/core/input.h
-    src/wase/core/input.cpp
-    src/wase/core/terminate_exception.h
-    src/wase/core/events.h
-    src/wase/core/events.cpp
-    src/wase/core/scene.h
-    src/wase/core/scene.cpp
-    src/wase/core/timer.h
-    src/wase/core/timer.cpp
-    src/wase/core/draw.h
-    src/wase/core/draw.cpp
-    src/wase/core/vector2.h
-    src/wase/core/vector2.cpp
-    src/wase/core/vector3.h
-    src/wase/core/vector3.cpp
-    src/wase/core/size.h
-    src/wase/core/utils/log_utils.h
-    src/wase/core/utils/log_utils.cpp
-    src/wase/core/managers/scene_manager.h
-    src/wase/core/managers/scene_manager.cpp
-    src/wase/core/managers/resource_manager.h
-    src/wase/core/managers/resource_manager.cpp
-    src/wase/ecs/component.h
-    src/wase/ecs/component.cpp
-    src/wase/ecs/entity.h
-    src/wase/ecs/entity.cpp
-    src/wase/ecs/camera.h
-    src/wase/ecs/entity_manager.h
-    src/wase/ecs/entity_manager.cpp
-    src/wase/ecs/components/transform.h
-    src/wase/ecs/components/sprite_renderer.h
-    src/wase/ecs/components/sprite_renderer.cpp
-    src/wase/ecs/components/audio_source.h
-    src/wase/ecs/components/audio_source.cpp
-    src/wase/ecs/components/animator.h
-    src/wase/ecs/components/animator.cpp
-    src/wase/ecs/components/colliders/collider.h
-    src/wase/ecs/components/colliders/collider.cpp
-    src/wase/ecs/components/colliders/box_collider_2d.h
-    src/wase/ecs/components/colliders/box_collider_2d.cpp
-    src/wase/ecs/components/ui/label.h
-    src/wase/ecs/components/ui/label.cpp
-    src/wase/ecs/components/ui/button.h
-    src/wase/ecs/components/ui/button.cpp
+file(GLOB_RECURSE sources
+    "src/*.h"
+    "src/*.cpp"
 )
 
-# Group the core files
-source_group(core FILES
-    src/wase/core/engine.h
-    src/wase/core/engine.cpp
-    src/wase/core/renderer.h
-    src/wase/core/renderer.cpp
-    src/wase/core/window.h
-    src/wase/core/window.cpp
-    src/wase/core/input.h
-    src/wase/core/input.cpp
-    src/wase/core/terminate_exception.h
-    src/wase/core/events.h
-    src/wase/core/events.cpp
-    src/wase/core/scene.h
-    src/wase/core/scene.cpp
-    src/wase/core/timer.h
-    src/wase/core/timer.cpp
-    src/wase/core/draw.h
-    src/wase/core/draw.cpp
-    src/wase/core/vector2.h
-    src/wase/core/vector2.cpp
-    src/wase/core/vector3.h
-    src/wase/core/vector3.cpp
-    src/wase/core/size.h
-    src/wase/core/managers/scene_manager.h
-    src/wase/core/managers/scene_manager.cpp
-    src/wase/core/managers/resource_manager.h
-    src/wase/core/managers/resource_manager.cpp
+add_library(wase-engine ${sources})
+
+target_include_directories(wase-engine PUBLIC 
+    ${PROJECT_SOURCE_DIR}/src
 )
 
-source_group(core/utils FILES
-    src/wase/core/utils/log_utils.h
-    src/wase/core/utils/log_utils.cpp
-)
+foreach(source IN LISTS sources)
+    get_filename_component(source_path "${source}" PATH ABSOLUTE)
 
-# Group the ecs files
-source_group(ecs FILES
-    src/wase/ecs/component.h
-    src/wase/ecs/component.cpp
-    src/wase/ecs/entity.h
-    src/wase/ecs/entity.cpp
-    src/wase/ecs/camera.h
-    src/wase/entity_manager.h
-    src/wase/ecs/entity_manager.cpp
-)
+    file(RELATIVE_PATH
+        item_path_rel
+        ${PROJECT_SOURCE_DIR}
+        ${source_path})
 
-source_group(ecs/components FILES
-    src/wase/ecs/components/transform.h
-    src/wase/ecs/components/sprite_renderer.h
-    src/wase/ecs/components/sprite_renderer.cpp
-    src/wase/ecs/components/audio_source.h
-    src/wase/ecs/components/audio_source.cpp
-    src/wase/ecs/components/animator.h
-    src/wase/ecs/components/animator.cpp
-    src/wase/ecs/components/colliders/collider.h
-    src/wase/ecs/components/colliders/collider.cpp
-    src/wase/ecs/components/colliders/box_collider_2d.h
-    src/wase/ecs/components/colliders/box_collider_2d.cpp
-    src/wase/ecs/components/ui/label.h
-    src/wase/ecs/components/ui/label.cpp
-    src/wase/ecs/components/ui/button.h
-    src/wase/ecs/components/ui/button.cpp
-)
+    source_group("${item_path_rel}" FILES "${source}")
+endforeach()
 
-target_include_directories(wase-engine PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>$<INSTALL_INTERFACE:src>)
+# OpenGL
+find_package(OpenGL REQUIRED)
 
-target_link_libraries(wase-engine ${SDL2_LIBRARY}
-        ${SDL2_IMAGE_LIBRARIES}
-        ${SDL2_MIXER_LIBRARIES}
-        ${SDL2_TTF_LIBRARIES})
+# GLFW
+add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/glfw EXCLUDE_FROM_ALL)
+target_link_libraries(wase-engine glfw)
+target_include_directories(wase-engine PUBLIC ${PROJECT_SOURCE_DIR}/vendor/glfw/include)
 
-if(MINGW)
-    target_link_libraries(wase-engine mingw32)
-endif(MINGW)
+# GLEW
+add_definitions(-DGLEW_STATIC)
+add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/glew-cmake EXCLUDE_FROM_ALL)
+target_link_libraries(wase-engine libglew_static)
 
-file(COPY src/ DESTINATION ${CMAKE_BINARY_DIR}/include)
-
+# Tests
 if(DEFINED enable_test)
-  add_subdirectory(test)
+  add_subdirectory(tests)
 endif()
