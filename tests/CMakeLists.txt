@@ -17,6 +17,17 @@ file(GLOB_RECURSE sources
     "*.cpp"
 )
 
+foreach(source IN LISTS sources)
+    get_filename_component(source_path "${source}" PATH ABSOLUTE)
+
+    file(RELATIVE_PATH
+        item_path_rel
+        ${PROJECT_SOURCE_DIR}
+        ${source_path})
+
+    source_group("${item_path_rel}" FILES "${source}")
+endforeach()
+
 add_executable(wase-engine-tests ${sources})
 
 target_link_libraries(
