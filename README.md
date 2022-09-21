@@ -14,11 +14,6 @@ Wase Engine is an open source 2d game library made with C++17. Wase Engine can b
 
 You can choose to build Wase Engine yourself from the source code or you can download the pre-build libraries on our [website](https://wase-engine.com/).
 
-To build Wase Engine you will need to install the following tools:
-
- - C++17 or higher
- - CMake
-
 **CMake**
 ```
 mkdir build
@@ -27,13 +22,7 @@ cmake ..
 cmake build .
 ```
 
-**MinGW**
-```
-mkdir build
-cd build
-cmake -G "MinGW Makefiles" ..
-make
-```
+To include tests add `-D enable_test=1` to the `cmake ..` command.
 
 ## Included dependencies
 - OpenGL loader [GLEW](http://glew.sourceforge.net/)
