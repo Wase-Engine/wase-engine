@@ -4,3 +4,6 @@
 [submodule "vendor/glew-cmake"]
 	path = vendor/glew-cmake
 	url = https://github.com/Perlmint/glew-cmake/
+[submodule "vendor/spdlog"]
+	path = vendor/spdlog
+	url = https://github.com/gabime/spdlog
