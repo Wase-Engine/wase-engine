@@ -1,0 +1,19 @@
+name: build
+
+on:
+  pull_request:
+    branches: [ master, development ]
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+          submodules: true
+    - build:
+      shell: cmd
+      run: mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release -Denable_test=1 && cmake --build .
+    - name: tests
+      shell: cmd
+      run: cd build/tests && ctest
