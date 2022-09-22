@@ -13,7 +13,10 @@ jobs:
           submodules: true
     - name: build
       shell: cmd
-      run: mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release -Denable_test=1 && cmake --build .
+      run: |
+        mkdir build && cd build
+	  cmake .. -DCMAKE_BUILD_TYPE=Release -Denable_test=1
+        cmake --build .
     - name: tests
       shell: cmd
       run: cd build/tests && ctest
@@ -27,11 +30,14 @@ jobs:
     - name: setup
       shell: bash
       run: |
-        sudo apt install mesa-common-dev libgl1-mesa-dev
+        sudo apt install mesa-common-dev libgl1-mesa-dev xorg-dev
         sudo apt-get install -y libxrandr-dev
     - name: build
       shell: bash
-      run: mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release -Denable_test=1 && cmake --build .
+      run: |
+        mkdir build && cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release -Denable_test=1
+        cmake --build .
     - name: tests
       shell: bash
       run: cd build/tests && ctest
