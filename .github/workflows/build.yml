@@ -15,7 +15,7 @@ jobs:
       shell: cmd
       run: |
         mkdir build && cd build
-	  cmake .. -DCMAKE_BUILD_TYPE=Release -Denable_test=1
+        cmake .. -DCMAKE_BUILD_TYPE=Release -Denable_test=1
         cmake --build .
     - name: tests
       shell: cmd
@@ -26,7 +26,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-          submodules: true
+        submodules: true
     - name: setup
       shell: bash
       run: |
