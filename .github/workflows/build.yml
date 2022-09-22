@@ -17,3 +17,16 @@ jobs:
     - name: tests
       shell: cmd
       run: cd build/tests && ctest
+
+  linux:
+    runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v2
+      with:
+          submodules: true
+    - name: build
+      shell: bash
+      run: mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release -Denable_test=1 && cmake --build .
+    - name: tests
+      shell: bash
+      run: cd build/tests && ctest
