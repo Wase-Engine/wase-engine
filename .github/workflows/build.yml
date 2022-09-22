@@ -1,8 +1,6 @@
 name: build
 
-on:
-  pull_request:
-    branches: [ master, development ]
+on: pull_request
 
 jobs:
   windows:
