@@ -32,6 +32,7 @@ To include tests add `-D enable_test=1` to the `cmake ..` command. To change the
 ## Included dependencies
 - OpenGL loader [GLEW](http://glew.sourceforge.net/)
 - Window and input system: [GLFW](https://www.glfw.org/)
+- Logging [spdlog](https://github.com/gabime/spdlog)
 
 ## Compatible platforms
 - Windows

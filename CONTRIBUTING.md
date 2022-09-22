@@ -45,6 +45,11 @@ namespace wase::folder::folder
 
         // Use lowerCamelCase for method names
         int getPlayerScore() const; // If possible mark by const
+        /**
+         * Use JavaDoc style comments
+         *
+         * @param score: amount of score
+         **/
         void setPlayerScore(const int score); // If possible mark parameters by const
     protected:
     private:
