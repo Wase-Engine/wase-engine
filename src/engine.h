@@ -74,5 +74,6 @@ namespace wase
 		std::unique_ptr<wase::system::Window> m_Window = nullptr;
 
 		bool m_Initialized = false;
+		float m_LastFrameTime = 0.0f;
 	};
 }

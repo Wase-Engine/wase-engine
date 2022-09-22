@@ -33,7 +33,7 @@ namespace wase::system
 		 * 
 		 * @return if the window is still open
 		 */
-		bool isOpen();
+		bool isOpen() const;
 			
 	private:
 		GLFWwindow* m_Window = nullptr;
