@@ -38,8 +38,18 @@ namespace wase::folder::folder
     // For classes always follow the rule of five (https://en.cppreference.com/w/cpp/language/rule_of_three)
     // Order access specifiers like the following:
     public:
+        // For every access specifier we keep an order in defining things
+        // 1. Declare constructors and destructors
+        // 2. Declare all our methods
+        // 3. Declare variables
+
         // Use lowerCamelCase for method names
         int getPlayerScore() const; // If possible mark by const
+        /**
+         * Use JavaDoc style comments
+         *
+         * @param score: amount of score
+         **/
         void setPlayerScore(const int score); // If possible mark parameters by const
     protected:
     private:

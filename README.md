@@ -30,8 +30,9 @@ cmake build .
 To include tests add `-D enable_test=1` to the `cmake ..` command. To change the build type to Release change `CMAKE_BUILD_TYPE=Debug` to `Release`
 
 ## Included dependencies
-- OpenGL loader [GLEW](http://glew.sourceforge.net/)
+- OpenGL loader: [GLEW](http://glew.sourceforge.net/)
 - Window and input system: [GLFW](https://www.glfw.org/)
+- Logging: [spdlog](https://github.com/gabime/spdlog)
 
 ## Compatible platforms
 - Windows
