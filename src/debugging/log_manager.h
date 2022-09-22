@@ -10,11 +10,20 @@ namespace wase::debugging
 	class LogManager
 	{
 	public:
+		/**
+		 * Initialize the logger
+		 */
 		static void initialize();
+
+		/**
+		 * Shut down the logger
+		 */
 		static void shutdown();
 
 		/**
 		 * Get the core logger.
+		 * 
+		 * @return the core logger
 		 */
 		static std::shared_ptr<spdlog::logger>& getCoreLogger();
 
