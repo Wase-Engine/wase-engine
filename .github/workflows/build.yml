@@ -41,3 +41,19 @@ jobs:
     - name: tests
       shell: bash
       run: cd build/tests && ctest
+
+  macos:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+    - name: build
+      shell: bash
+      run: |
+        mkdir build && cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release -Denable_test=1
+        cmake --build .
+    - name: tests
+      shell: bash
+      run: cd build/tests && ctest
