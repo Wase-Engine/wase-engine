@@ -5,6 +5,7 @@
 
 #include <debugging/log_manager.h>
 #include <debugging/log.h>
+#include <time/time.h>
 
 namespace wase
 {
@@ -40,6 +41,12 @@ namespace wase
 
 		while (m_Window->isOpen())
 		{
+			const float time = (float)glfwGetTime();
+			wase::time::Time::setDeltaTime(time - m_LastFrameTime);
+			m_LastFrameTime = time;
+
+			WASE_CORE_INFO(wase::time::Time::getDeltaTime());
+			
 			m_Window->update();
 		}
 	}

@@ -29,7 +29,7 @@ namespace wase::system
 		glfwPollEvents();
 	}
 
-	bool Window::isOpen()
+	bool Window::isOpen() const
 	{
 		return glfwWindowShouldClose(m_Window) == 0;
 	}

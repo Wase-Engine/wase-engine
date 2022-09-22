@@ -7,7 +7,7 @@
 
 namespace wase::debugging
 {
-	class LogManager
+	class LogManager final
 	{
 	public:
 		/**
@@ -28,6 +28,8 @@ namespace wase::debugging
 		static std::shared_ptr<spdlog::logger>& getCoreLogger();
 
 	private:
+		LogManager() = default;
+
 		static std::shared_ptr<spdlog::logger> m_CoreLogger;
 	};
 }
