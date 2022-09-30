@@ -1,7 +1,5 @@
 #include <input/input.h>
 
-#include <debugging/log.h>
-
 namespace wase::input
 {
 	GLFWwindow* Input::m_Window = nullptr;

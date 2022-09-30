@@ -6,11 +6,9 @@ namespace wase::time
 	{
 	public:
 		/**
-		 * Set the delta time.
-		 * 
-		 * @param deltaTime: the delta time
+		 * Update the time manager
 		 */
-		static void setDeltaTime(const float time);
+		static void update();
 		
 		/**
 		 * Get the delta time.
@@ -23,5 +21,6 @@ namespace wase::time
 		Time() = default;
 		
 		static float m_DeltaTime;
+		static float m_LastFrameTime;
 	};
 }

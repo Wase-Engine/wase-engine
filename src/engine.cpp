@@ -44,10 +44,8 @@ namespace wase
 
 		while (m_Window->isOpen())
 		{
-			const float time = (float)glfwGetTime();
-			wase::time::Time::setDeltaTime(time - m_LastFrameTime);
-			m_LastFrameTime = time;
-			
+			wase::time::Time::update();
+			// Logic here
 			wase::input::Input::update();
 			m_Window->update();
 		}

@@ -32,9 +32,6 @@ namespace wase::system
 
 	void Window::update()
 	{
-		if (wase::input::Input::getKey(GLFW_KEY_ESCAPE))
-			glfwSetWindowShouldClose(m_Window, GLFW_TRUE);
-
 		glfwSwapBuffers(m_Window);
 		glfwPollEvents();
 	}
