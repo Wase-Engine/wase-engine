@@ -6,6 +6,7 @@
 #include <debugging/log_manager.h>
 #include <debugging/log.h>
 #include <time/time.h>
+#include <input/input.h>
 
 namespace wase
 {
@@ -28,7 +29,9 @@ namespace wase
 			return;
 		if (!this->initializeGLEW())
 			return;
-
+		
+		wase::input::Input::initialize(m_Window->getGLFWWindow());
+		
 		WASE_CORE_INFO("Successfully initialized Wase Engine");
 
 		m_Initialized = true;
@@ -41,12 +44,9 @@ namespace wase
 
 		while (m_Window->isOpen())
 		{
-			const float time = (float)glfwGetTime();
-			wase::time::Time::setDeltaTime(time - m_LastFrameTime);
-			m_LastFrameTime = time;
-
-			WASE_CORE_INFO(wase::time::Time::getDeltaTime());
-			
+			wase::time::Time::update();
+			// Logic here
+			wase::input::Input::update();
 			m_Window->update();
 		}
 	}
@@ -70,13 +70,6 @@ namespace wase
 			
 			return false;
 		}
-
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-#ifdef __APPLE__
-		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-#endif
 		
 		return true;
 	}
