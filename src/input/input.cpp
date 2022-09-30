@@ -5,6 +5,11 @@ namespace wase::input
 	GLFWwindow* Input::m_Window = nullptr;
 	std::unordered_map<int, KeyState> Input::m_Keys;
 	std::unordered_map<int, KeyState> Input::m_MouseButtons;
+	
+	float Input::m_MouseX = 0.0;
+	float Input::m_MouseY = 0.0;
+	float Input::m_MouseMovedX = 0.0;
+	float Input::m_MouseMovedY = 0.0;
 
 	void Input::initialize(GLFWwindow* window)
 	{
@@ -12,6 +17,7 @@ namespace wase::input
 		
 		glfwSetKeyCallback(window, keyCallback);
 		glfwSetMouseButtonCallback(window, mouseButtonCallback);
+		glfwSetCursorPosCallback(window, cursorPositionCallback);
 	}
 
 	void Input::update()
@@ -31,6 +37,9 @@ namespace wase::input
 			else if (buttonState == KeyState::RELEASED)
 				buttonState = KeyState::IDLE;
 		}
+
+		m_MouseMovedX = 0.0f;
+		m_MouseMovedY = 0.0f;
 	}
 
 	void Input::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -48,8 +57,16 @@ namespace wase::input
 		else if (action == GLFW_RELEASE)
 			m_MouseButtons[button] = KeyState::RELEASED;
 	}
+	
+	void Input::cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
+	{
+		m_MouseMovedX = static_cast<float>(xpos - m_MouseX);
+		m_MouseMovedY = static_cast<float>(ypos - m_MouseY);
+		m_MouseX = static_cast<float>(xpos);
+		m_MouseY = static_cast<float>(ypos);
+	}
 
-	bool Input::getKey(const int key)
+	bool Input::isKeyDown(const int key)
 	{
 		if (!m_Keys.count(key))
 			return false;
@@ -57,7 +74,7 @@ namespace wase::input
 		return m_Keys[key] > 0;
 	}
 
-	bool Input::getKeyDown(const int key)
+	bool Input::isKeyPressed(const int key)
 	{
 		if (!m_Keys.count(key))
 			return false;
@@ -65,7 +82,7 @@ namespace wase::input
 		return m_Keys[key] == KeyState::DOWN;
 	}
 	
-	bool Input::getKeyUp(const int key)
+	bool Input::isKeyReleased(const int key)
 	{
 		if (!m_Keys.count(key))
 			return false;
@@ -73,7 +90,7 @@ namespace wase::input
 		return m_Keys[key] == KeyState::RELEASED;
 	}
 
-	bool Input::getMouseButton(const int button)
+	bool Input::isMouseButtonDown(const int button)
 	{
 		if (!m_MouseButtons.count(button))
 			return false;
@@ -81,7 +98,7 @@ namespace wase::input
 		return m_MouseButtons[button] > 0;
 	}
 
-	bool Input::getMouseButtonDown(const int button)
+	bool Input::isMouseButtonPressed(const int button)
 	{
 		if (!m_MouseButtons.count(button))
 			return false;
@@ -89,11 +106,36 @@ namespace wase::input
 		return m_MouseButtons[button] == KeyState::DOWN;
 	}
 
-	bool Input::getMouseButtonUp(const int button)
+	bool Input::isMouseButtonReleased(const int button)
 	{
 		if (!m_MouseButtons.count(button))
 			return false;
 
 		return m_MouseButtons[button] == KeyState::RELEASED;
+	}
+
+	float Input::getMouseX()
+	{
+		return m_MouseX;
+	}
+
+	float Input::getMouseY()
+	{
+		return m_MouseY;
+	}
+
+	wase::math::Vector2 Input::getMousePosition()
+	{
+		return wase::math::Vector2(m_MouseX, m_MouseY);
+	}
+
+	float Input::getMouseMovedX()
+	{
+		return m_MouseMovedX;
+	}
+
+	float Input::getMouseMovedY()
+	{
+		return m_MouseMovedY;
 	}
 }

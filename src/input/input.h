@@ -6,6 +6,7 @@
 #include <GLFW/glfw3.h>
 
 #include <input/key_state.h>
+#include <math/vector2.h>
 
 namespace wase::input
 {
@@ -30,7 +31,7 @@ namespace wase::input
 		 * @param key: The key that is being checked
 		 * @return true if the key is held down
 		 */
-		static bool getKey(const int key);
+		static bool isKeyDown(const int key);
 		
 		/**
 		 * Check if a key is pressed down once
@@ -38,7 +39,7 @@ namespace wase::input
 		 * @param key: The key that is being checked
 		 * @return true if the key is pressed down
 		 */
-		static bool getKeyDown(const int key);
+		static bool isKeyPressed(const int key);
 
 		/**
 		 * Check if a key is released
@@ -46,7 +47,7 @@ namespace wase::input
 		 * @param key: The key that is being checked
 		 * @return true if the key is released
 		 */
-		static bool getKeyUp(const int key);
+		static bool isKeyReleased(const int key);
 
 		/**
 		 * Check if a mouse button is being held down
@@ -54,7 +55,7 @@ namespace wase::input
 		 * @param button: The button that is being checked
 		 * @return true if the button is held down
 		 */
-		static bool getMouseButton(const int button);
+		static bool isMouseButtonDown(const int button);
 
 		/**
 		 * Check if a mouse button is pressed down once
@@ -62,7 +63,7 @@ namespace wase::input
 		 * @param button: The button that is being checked
 		 * @return true if the button is pressed down
 		 */
-		static bool getMouseButtonDown(const int button);
+		static bool isMouseButtonPressed(const int button);
 
 		/**
 		 * Check if a mouse button is released
@@ -70,12 +71,50 @@ namespace wase::input
 		 * @param button: The button that is being checked
 		 * @return true if the button is released
 		 */
-		static bool getMouseButtonUp(const int button);
+		static bool isMouseButtonReleased(const int button);
+
+		/**
+		 * Get the mouse x position
+		 * 
+		 * @return The mouse x position
+		 */
+		static float getMouseX();
+		
+		/**
+		 * Get the mouse y position
+		 *
+		 * @return The mouse y position
+		 */
+		static float getMouseY();
+
+		/**
+		 * Get the mouse position
+		 * 
+		 * @return The mouse position
+		 */
+		static wase::math::Vector2 getMousePosition();
+
+		/**
+		 * Get the amount the mouse moved in the x axis since the last frame
+		 *
+		 * @return the amount the mouse moved in the x axis since the last frame
+		 */
+		static float getMouseMovedX();
+
+		/**
+		 * Get the amount the mouse moved in the y axis since the last frame
+		 *
+		 * @return the amount the mouse moved in the y axis since the last frame
+		 */
+		static float getMouseMovedY();
 
 	private:
 		static GLFWwindow* m_Window;
 		static std::unordered_map<int, KeyState> m_Keys;
 		static std::unordered_map<int, KeyState> m_MouseButtons;
+		
+		static float m_MouseX, m_MouseMovedX;
+		static float m_MouseY, m_MouseMovedY;
 
 		/**
 		 * GLFW key callback
@@ -86,5 +125,10 @@ namespace wase::input
 		 * GLFW mouse callback
 		 */
 		static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
+
+		/**
+		 * GLFW cursor position callback
+		 */
+		static void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
 	};
 }
