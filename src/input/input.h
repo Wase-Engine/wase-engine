@@ -108,6 +108,13 @@ namespace wase::input
 		 */
 		static float getMouseMovedY();
 
+		/**
+		 * Get the amount the y axis of the scrollwheel has moved since last frame
+		 * 
+		 * @return the amount the y axis of the scrollwheel has moved since last frame
+		 */
+		static float getMouseScroll();
+
 	private:
 		static GLFWwindow* m_Window;
 		static std::unordered_map<int, KeyState> m_Keys;
@@ -115,6 +122,7 @@ namespace wase::input
 		
 		static float m_MouseX, m_MouseMovedX;
 		static float m_MouseY, m_MouseMovedY;
+		static float m_MouseScroll;
 
 		/**
 		 * GLFW key callback
@@ -130,5 +138,10 @@ namespace wase::input
 		 * GLFW cursor position callback
 		 */
 		static void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
+
+		/**
+		 * GLFW scroll callback
+		 */
+		static void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
 	};
 }

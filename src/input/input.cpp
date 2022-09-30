@@ -10,6 +10,7 @@ namespace wase::input
 	float Input::m_MouseY = 0.0;
 	float Input::m_MouseMovedX = 0.0;
 	float Input::m_MouseMovedY = 0.0;
+	float Input::m_MouseScroll = 0.0;
 
 	void Input::initialize(GLFWwindow* window)
 	{
@@ -18,6 +19,7 @@ namespace wase::input
 		glfwSetKeyCallback(window, keyCallback);
 		glfwSetMouseButtonCallback(window, mouseButtonCallback);
 		glfwSetCursorPosCallback(window, cursorPositionCallback);
+		glfwSetScrollCallback(window, scrollCallback);
 	}
 
 	void Input::update()
@@ -40,6 +42,7 @@ namespace wase::input
 
 		m_MouseMovedX = 0.0f;
 		m_MouseMovedY = 0.0f;
+		m_MouseScroll = 0.0f;
 	}
 
 	void Input::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -64,6 +67,11 @@ namespace wase::input
 		m_MouseMovedY = static_cast<float>(ypos - m_MouseY);
 		m_MouseX = static_cast<float>(xpos);
 		m_MouseY = static_cast<float>(ypos);
+	}
+
+	void Input::scrollCallback(GLFWwindow* window, double xoffset, double yoffset)
+	{
+		m_MouseScroll = static_cast<float>(yoffset);
 	}
 
 	bool Input::isKeyDown(const int key)
@@ -137,5 +145,10 @@ namespace wase::input
 	float Input::getMouseMovedY()
 	{
 		return m_MouseMovedY;
+	}
+
+	float Input::getMouseScroll()
+	{
+		return m_MouseScroll;
 	}
 }
