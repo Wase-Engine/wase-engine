@@ -2,6 +2,8 @@
 
 #include <spdlog/spdlog.h>
 
+#include <debugging/log_manager.h>
+
 #ifdef WASE_DEBUG
 #define WASE_CORE_TRACE(...) ::wase::debugging::LogManager::getCoreLogger()->trace(__VA_ARGS__)
 #define WASE_CORE_INFO(...) ::wase::debugging::LogManager::getCoreLogger()->info(__VA_ARGS__)
