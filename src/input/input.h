@@ -9,7 +9,7 @@
 
 namespace wase::input
 {
-	class Input
+	class Input final
 	{
 	public:
 		/**
@@ -48,13 +48,43 @@ namespace wase::input
 		 */
 		static bool getKeyUp(const int key);
 
+		/**
+		 * Check if a mouse button is being held down
+		 *
+		 * @param button: The button that is being checked
+		 * @return true if the button is held down
+		 */
+		static bool getMouseButton(const int button);
+
+		/**
+		 * Check if a mouse button is pressed down once
+		 *
+		 * @param button: The button that is being checked
+		 * @return true if the button is pressed down
+		 */
+		static bool getMouseButtonDown(const int button);
+
+		/**
+		 * Check if a mouse button is released
+		 *
+		 * @param button: The button that is being checked
+		 * @return true if the button is released
+		 */
+		static bool getMouseButtonUp(const int button);
+
 	private:
 		static GLFWwindow* m_Window;
 		static std::unordered_map<int, KeyState> m_Keys;
+		static std::unordered_map<int, KeyState> m_MouseButtons;
 
 		/**
 		 * GLFW key callback
 		 */
-		static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+		static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+
+		/**
+		 * GLFW mouse callback
+		 */
+		static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
 	};
 }
