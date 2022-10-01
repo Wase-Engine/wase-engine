@@ -116,14 +116,6 @@ namespace wase::input
 		static float getMouseScroll();
 
 	private:
-		static GLFWwindow* m_Window;
-		static std::unordered_map<int, KeyState> m_Keys;
-		static std::unordered_map<int, KeyState> m_MouseButtons;
-		
-		static float m_MouseX, m_MouseMovedX;
-		static float m_MouseY, m_MouseMovedY;
-		static float m_MouseScroll;
-
 		/**
 		 * GLFW key callback
 		 */
@@ -143,5 +135,13 @@ namespace wase::input
 		 * GLFW scroll callback
 		 */
 		static void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+
+		static GLFWwindow* m_Window;
+		static std::unordered_map<int, KeyState> m_Keys;
+		static std::unordered_map<int, KeyState> m_MouseButtons;
+
+		static float m_MouseX, m_MouseMovedX;
+		static float m_MouseY, m_MouseMovedY;
+		static float m_MouseScroll;
 	};
 }
