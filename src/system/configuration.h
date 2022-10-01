@@ -1,11 +1,19 @@
 #pragma once
 
+#include <string>
+#include <unordered_map>
+#include <memory>
+
+#include <scene/scene.h>
+
 namespace wase::system
 {
 	struct Configuration
 	{
-		const char* m_Name = "Wase Engine";
-		unsigned int m_WindowWidth = 1280, m_WindowHeight = 720;
-		bool m_Vsync = true;
+		const char* name = "Wase Engine";
+		unsigned int windowWidth = 1280, windowHeight = 720;
+		bool vsync = true;
+		std::unordered_map<std::string, std::shared_ptr<wase::scene::Scene>> scenes;
+		std::string startScene;
 	};
 }

@@ -14,12 +14,12 @@ namespace wase::system
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 
-		m_Window = glfwCreateWindow(config.m_WindowWidth, config.m_WindowHeight, config.m_Name, nullptr, nullptr);
+		m_Window = glfwCreateWindow(config.windowWidth, config.windowHeight, config.name, nullptr, nullptr);
 		if (!m_Window)
 			return false;
 
 		glfwMakeContextCurrent(m_Window);
-		glfwSwapInterval(config.m_Vsync);
+		glfwSwapInterval(config.vsync);
 
 		return true;
 	}

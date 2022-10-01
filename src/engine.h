@@ -4,6 +4,7 @@
 
 #include <system/configuration.h>
 #include <system/window.h>
+#include <scene/scene_manager.h>
 
 namespace wase
 {
@@ -18,7 +19,7 @@ namespace wase
 		/**
 		 * Get the instance of the engine.
 		 * 
-		 * @return The engine instance
+		 * @return the engine instance
 		 */
 		static Engine& get();
 
@@ -38,6 +39,13 @@ namespace wase
 		 * Shut down the engine and all running processes
 		 */
 		void shutdown();
+
+		/**
+		 * Get the scene manager
+		 * 
+		 * @return the scene manager
+		 */
+		std::shared_ptr<wase::scene::SceneManager> getSceneManager() const;
 
 	private:		
 		Engine() = default;
@@ -68,10 +76,18 @@ namespace wase
 		 * @return if the window was initialized successfully
 		 */
 		bool initializeWindow();
+		
+		/**
+		 * Initialize the scene manager
+		 * 
+		 * @return if the scene manager was initialized successfully
+		 */
+		bool initializeSceneManager();
 
 		wase::system::Configuration m_Config;
 
 		std::unique_ptr<wase::system::Window> m_Window = nullptr;
+		std::shared_ptr<wase::scene::SceneManager> m_SceneManager = nullptr;
 
 		bool m_Initialized = false;
 	};
