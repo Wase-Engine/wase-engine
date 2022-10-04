@@ -57,6 +57,10 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/spdlog EXCLUDE_FROM_ALL)
 target_link_libraries(wase-engine spdlog)
 target_include_directories(wase-engine PUBLIC ${PROJECT_SOURCE_DIR}/vendor/spdlog/include)
 
+# GLM
+add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/glm EXCLUDE_FROM_ALL)
+target_link_libraries(wase-engine glm)
+
 # Tests
 if(DEFINED enable_test)
   add_subdirectory(tests)
