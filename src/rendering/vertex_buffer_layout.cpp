@@ -14,6 +14,30 @@ namespace wase::rendering
 		return m_Stride;
 	}
 
+	void VertexBufferLayout::pushFloat(const unsigned int count)
+	{
+		VertexBufferElement e{ GL_FLOAT, count, GL_FALSE };
+
+		m_Elements.push_back(e);
+		m_Stride += count * VertexBufferElement::getSizeOfType(GL_FLOAT);
+	}
+
+	void VertexBufferLayout::pushUInt(const unsigned int count)
+	{
+		VertexBufferElement e{ GL_UNSIGNED_INT, count, GL_FALSE };
+
+		m_Elements.push_back(e);
+		m_Stride += count * VertexBufferElement::getSizeOfType(GL_UNSIGNED_INT);
+	}
+
+	void VertexBufferLayout::pushUChar(const unsigned int count)
+	{
+		VertexBufferElement e{ GL_UNSIGNED_BYTE, count, GL_TRUE };
+
+		m_Elements.push_back(e);
+		m_Stride += count * VertexBufferElement::getSizeOfType(GL_UNSIGNED_BYTE);
+	}
+
 	unsigned int VertexBufferElement::getSizeOfType(unsigned int type)
 	{
 		switch (type)

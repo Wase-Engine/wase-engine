@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <type_traits>
 
 #include <GL/glew.h>
 
@@ -38,50 +39,26 @@ namespace wase::rendering
 		 */
 		unsigned int getStride() const;
 
-		template<typename T>
-		void push(const unsigned int count) = delete;
-
 		/**
 		 * Push a float to the layout
 		 *
 		 * @param count: the number of floats to push
 		 */
-		template<>
-		void push<float>(const unsigned int count)
-		{
-			VertexBufferElement e{ GL_FLOAT, count, GL_FALSE };
-
-			m_Elements.push_back(e);
-			m_Stride += count * VertexBufferElement::getSizeOfType(GL_FLOAT);
-		}
+		void pushFloat(const unsigned int count);
 
 		/**
 		 * Push an unsigned int to the layout
 		 *
 		 * @param count: the number of unsigned integers to push
 		 */
-		template<>
-		void push<unsigned int>(const unsigned int count)
-		{
-			VertexBufferElement e{ GL_UNSIGNED_INT, count, GL_FALSE };
-
-			m_Elements.push_back(e);
-			m_Stride += count * VertexBufferElement::getSizeOfType(GL_UNSIGNED_INT);
-		}
+		void pushUInt(const unsigned int count);
 
 		/**
 		 * Push an unsigned char to the layout
 		 *
 		 * @param count: the number of unsigned chars to push
 		 */
-		template<>
-		void push<unsigned char>(const unsigned int count)
-		{
-			VertexBufferElement e{ GL_UNSIGNED_BYTE, count, GL_TRUE };
-
-			m_Elements.push_back(e);
-			m_Stride += count * VertexBufferElement::getSizeOfType(GL_UNSIGNED_BYTE);
-		}
+		void pushUChar(const unsigned int count);
 
 	private:
 		std::vector<VertexBufferElement> m_Elements;
