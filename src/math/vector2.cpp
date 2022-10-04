@@ -77,9 +77,7 @@ namespace wase::math
 
 	Vector2 Vector2::getNormalized() const
 	{
-		const float magnitude = getMagnitude();
-		
-		return Vector2(x / magnitude, y / magnitude);
+		return *this / getMagnitude();
 	}
 
 	float Vector2::distance(Vector2 vector1, Vector2 vector2)
