@@ -11,18 +11,6 @@ namespace wase
 	class Engine
 	{
 	public:
-		Engine(const Engine&) = delete;
-		Engine& operator=(const Engine&) = delete;
-		Engine(Engine&&) = default;
-		Engine& operator=(Engine&&) = default;
-
-		/**
-		 * Get the instance of the engine.
-		 * 
-		 * @return the engine instance
-		 */
-		static Engine& get();
-
 		/**
 		 * Initialize the engine.
 		 * 
@@ -47,10 +35,7 @@ namespace wase
 		 */
 		std::shared_ptr<wase::scene::SceneManager> getSceneManager() const;
 
-	private:		
-		Engine() = default;
-		~Engine() = default;
-
+	private:
 		/**
 		 * Initialize GLFW
 		 * 

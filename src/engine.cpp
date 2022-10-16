@@ -10,13 +10,6 @@
 
 namespace wase
 {
-	Engine& Engine::get()
-	{
-		static Engine engine;
-
-		return engine;
-	}
-
 	void Engine::initialize(const wase::system::Configuration& config)
 	{
 		m_Config = config;
