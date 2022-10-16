@@ -5,9 +5,6 @@
 
 namespace wase::time
 {
-	float Time::m_DeltaTime = 0.0f;
-	float Time::m_LastFrameTime = 0.0f;
-
 	void Time::update()
 	{
 		const float timeSinceStart = (float)glfwGetTime();

@@ -22,7 +22,7 @@ namespace wase::scene
 		return true;
 	}
 	
-	void SceneManager::update()
+	void SceneManager::update(const float deltaTime)
 	{
 		if (m_NewCurrentScene)
 		{
@@ -30,7 +30,7 @@ namespace wase::scene
 			m_NewCurrentScene = false;
 		}
 		
-		m_CurrentScene->update();
+		m_CurrentScene->update(deltaTime);
 	}
 
 	void SceneManager::addScenes(std::unordered_map<std::string, std::shared_ptr<Scene>>& scenes)

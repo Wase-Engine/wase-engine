@@ -12,7 +12,7 @@ namespace wase::scene
 
 	}
 	
-	void Scene::update()
+	void Scene::update(const float deltaTime)
 	{
 		
 	}

@@ -37,10 +37,10 @@ namespace wase
 
 		while (m_Window->isOpen())
 		{
-			wase::time::Time::update();
+			m_Time.update();
 			// Logic here
-			m_SceneManager->update();
-			wase::input::Input::update();
+			m_SceneManager->update(m_Time.getDeltaTime());
+			m_Input->update();
 			m_Window->update();
 		}
 	}
@@ -101,7 +101,8 @@ namespace wase
 			return false;
 		}
 		
-		wase::input::Input::initialize(m_Window->getGLFWWindow());
+		m_Input = std::make_shared<wase::input::Input>();
+		m_Input->initialize(m_Window->getGLFWWindow());
 
 		return true;
 	}
@@ -110,7 +111,7 @@ namespace wase
 	{
 		m_SceneManager = std::make_unique<wase::scene::SceneManager>();
 		
-		if (!m_SceneManager->initialize(m_Config, { m_SceneManager }))
+		if (!m_SceneManager->initialize(m_Config, { m_SceneManager, m_Input }))
 		{
 			WASE_CORE_CRITICAL("Failed to initialize the SceneManager");
 			

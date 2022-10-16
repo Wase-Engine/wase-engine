@@ -20,7 +20,7 @@ namespace wase::scene
 		/**
 		 * Gets called every frame
 		 */
-		virtual void update();
+		virtual void update(const float deltaTime);
 
 	protected:
 		Scene() = default;

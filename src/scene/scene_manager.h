@@ -32,7 +32,7 @@ namespace wase::scene
 		/**
 		 * Update the scene manager
 		 */
-		void update();
+		void update(const float deltaTime);
 
 		/**
 		 * Set the current scene
