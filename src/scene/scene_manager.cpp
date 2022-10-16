@@ -1,7 +1,27 @@
 #include <scene/scene_manager.h>
+#include <debugging/log.h>
 
 namespace wase::scene
 {
+	bool SceneManager::initialize(wase::system::Configuration& config, const SceneContext& context)
+	{
+		this->addScenes(config.scenes);
+
+		if (!this->hasScene(config.startScene))
+		{
+			WASE_CORE_CRITICAL("Failed to find start scene");
+
+			return false;
+		}
+
+		this->setActiveScene(config.startScene);
+		
+		for (auto& [name, scene] : m_Scenes)
+			scene->initialize(context);
+
+		return true;
+	}
+	
 	void SceneManager::update()
 	{
 		if (m_NewCurrentScene)
@@ -13,15 +33,9 @@ namespace wase::scene
 		m_CurrentScene->update();
 	}
 
-	void SceneManager::addScene(const std::string& name, const std::shared_ptr<Scene>& scene)
+	void SceneManager::addScenes(std::unordered_map<std::string, std::shared_ptr<Scene>>& scenes)
 	{
-		m_Scenes[name] = scene;
-	}
-
-	void SceneManager::addScenes(const std::unordered_map<std::string, std::shared_ptr<Scene>>& scenes)
-	{
-		for (const auto& [name, scene] : scenes)
-			m_Scenes[name] = scene;
+		m_Scenes = std::move(scenes);
 	}
 
 	void SceneManager::setActiveScene(const std::string& name)

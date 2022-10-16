@@ -6,6 +6,11 @@
 
 #include <scene/scene.h>
 
+namespace wase::scene
+{
+	class Scene;
+}
+
 namespace wase::system
 {
 	struct Configuration

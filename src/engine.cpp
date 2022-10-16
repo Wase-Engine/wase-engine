@@ -109,17 +109,13 @@ namespace wase
 	bool Engine::initializeSceneManager()
 	{
 		m_SceneManager = std::make_unique<wase::scene::SceneManager>();
-
-		m_SceneManager->addScenes(m_Config.scenes);
-
-		if (!m_SceneManager->hasScene(m_Config.startScene))
+		
+		if (!m_SceneManager->initialize(m_Config, { m_SceneManager }))
 		{
-			WASE_CORE_CRITICAL("Failed to find start scene");
+			WASE_CORE_CRITICAL("Failed to initialize the SceneManager");
 			
 			return false;
 		}
-
-		m_SceneManager->setActiveScene(m_Config.startScene);
 
 		return true;
 	}
