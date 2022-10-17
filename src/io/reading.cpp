@@ -52,7 +52,7 @@ namespace wase::io
 
         for (auto const& dir_entry: fs::directory_iterator{fsPath}) {
             if (dir_entry.is_regular_file()) {
-                files.emplace_back(dir_entry.path().filename());
+                files.push_back(dir_entry.path().filename());
             }
         }
         return files;
@@ -69,7 +69,7 @@ namespace wase::io
 
         for (auto const& dir_entry : fs::directory_iterator{fsPath}) {
             if (dir_entry.is_directory()) {
-                folders.emplace_back(dir_entry.path().filename());
+                folders.push_back(dir_entry.path().filename());
             }
         }
 
