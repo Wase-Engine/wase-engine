@@ -20,16 +20,16 @@ namespace wase::io
     /**
      * Checks if a file exist
      *
-     * @param path: the path to the file
-     * @return boolean
+     * @param path: the path to the potential file
+     * @return true if file exist, false otherwise
      */
      bool fileExist(const char* path);
 
      /**
       * Checks if a folder exist
       *
-      * @param path: path to the folder
-      * @return boolean
+      * @param path: path to the potential folder
+      * @return true if file exist, false otherwise
       */
       bool folderExist(const char* path);
 
@@ -37,7 +37,7 @@ namespace wase::io
        * Returns the names and extension of the files at the given path
        *
        * @param path: path to the folder
-       * @return std::vector with the file names
+       * @return std::vector<string> with the file names
        */
        std::vector<std::string> getFiles(const char* path);
 
@@ -45,7 +45,7 @@ namespace wase::io
         * Return the names of the folders at the given path
         *
         * @param path: path to the folder
-        * @return std::vector with the folder names
+        * @return std::vector<string> with the folder names
         */
         std::vector<std::string> getFolders(const char* path);
 }
