@@ -1,12 +1,11 @@
 #pragma once
 
 #include <unordered_map>
-#include <memory>
 #include <string>
 
-#include <scene/scene.h>
 #include <system/configuration.h>
 #include <scene/scene_context.h>
+#include <scene/scene.h>
 
 namespace wase::system
 {
@@ -56,6 +55,7 @@ namespace wase::scene
 		 */
 		void addScenes(std::unordered_map<std::string, std::shared_ptr<Scene>>& scenes);
 
+	private:
 		std::unordered_map<std::string, std::shared_ptr<Scene>> m_Scenes;
 		std::shared_ptr<Scene> m_CurrentScene;
 		bool m_NewCurrentScene = true;

@@ -30,13 +30,6 @@ namespace wase
 		 */
 		void shutdown();
 
-		/**
-		 * Get the scene manager
-		 * 
-		 * @return the scene manager
-		 */
-		std::shared_ptr<wase::scene::SceneManager> getSceneManager() const;
-
 	private:
 		/**
 		 * Initialize GLFW

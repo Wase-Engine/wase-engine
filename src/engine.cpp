@@ -56,11 +56,6 @@ namespace wase
 		wase::debugging::LogManager::shutdown();
 	}
 
-	std::shared_ptr<wase::scene::SceneManager> Engine::getSceneManager() const
-	{
-		return m_SceneManager;
-	}
-
 	bool Engine::initializeGLFW()
 	{
 		if (!glfwInit())
