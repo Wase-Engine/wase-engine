@@ -1,35 +1,37 @@
 #pragma once
 
 #include <unordered_map>
-#include <memory>
 #include <string>
 
+#include <system/configuration.h>
+#include <scene/scene_context.h>
 #include <scene/scene.h>
+
+namespace wase::system
+{
+	struct Configuration;
+}
 
 namespace wase::scene
 {
+	class Scene;
+	struct SceneContext;
+
 	class SceneManager
 	{
-	public:		
+	public:
+		/**
+		 * Initializes the scene manager
+		 * 
+		 * @param config: the configuration to use
+		 * @return if the scene manager was initialized successfully
+		 */
+		bool initialize(wase::system::Configuration& config, const SceneContext& context);
+
 		/**
 		 * Update the scene manager
 		 */
-		void update();
-
-		/**
-		 * Add a scene to the scene manager
-		 *
-		 * @param name: the name of the scene
-		 * @param scene: the scene to add
-		 */
-		void addScene(const std::string& name, const std::shared_ptr<Scene>& scene);
-
-		/**
-		 * Add multiple scenes at once to the scene manager
-		 * 
-		 * @param scenes: a map with scenes(with string name) to add
-		 */
-		void addScenes(const std::unordered_map<std::string, std::shared_ptr<Scene>>& scenes);
+		void update(const float deltaTime);
 
 		/**
 		 * Set the current scene
@@ -45,6 +47,13 @@ namespace wase::scene
 		 * @return if the scene manager has a scene with the given name
 		 */
 		bool hasScene(const std::string& name) const;
+		
+		/**
+		 * Add multiple scenes at once to the scene manager
+		 *
+		 * @param scenes: a map with scenes(with string name) to add
+		 */
+		void addScenes(std::unordered_map<std::string, std::shared_ptr<Scene>>& scenes);
 
 	private:
 		std::unordered_map<std::string, std::shared_ptr<Scene>> m_Scenes;

@@ -1,10 +1,17 @@
 #pragma once
 
+#include <scene/scene_context.h>
+
 namespace wase::scene
 {
 	class Scene
 	{
 	public:
+		/**
+		 * Initialize the scene with a context
+		 */
+		void initialize(const SceneContext& context);
+		
 		/**
 		 * Gets called once on the first update
 		 */
@@ -13,7 +20,7 @@ namespace wase::scene
 		/**
 		 * Gets called every frame
 		 */
-		virtual void update();
+		virtual void update(const float deltaTime);
 
 	protected:
 		Scene() = default;
@@ -21,5 +28,7 @@ namespace wase::scene
 		Scene& operator=(const Scene&) = delete;
 		Scene(Scene&&) = default;
 		Scene& operator=(Scene&&) = default;
+
+		SceneContext m_Context;
 	};
 }

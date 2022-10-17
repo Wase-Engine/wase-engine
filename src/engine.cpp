@@ -10,13 +10,6 @@
 
 namespace wase
 {
-	Engine& Engine::get()
-	{
-		static Engine engine;
-
-		return engine;
-	}
-
 	void Engine::initialize(const wase::system::Configuration& config)
 	{
 		m_Config = config;
@@ -44,10 +37,10 @@ namespace wase
 
 		while (m_Window->isOpen())
 		{
-			wase::time::Time::update();
+			m_Time.update();
 			// Logic here
-			m_SceneManager->update();
-			wase::input::Input::update();
+			m_SceneManager->update(m_Time.getDeltaTime());
+			m_Input->update();
 			m_Window->update();
 		}
 	}
@@ -61,11 +54,6 @@ namespace wase
 
 		glfwTerminate();
 		wase::debugging::LogManager::shutdown();
-	}
-
-	std::shared_ptr<wase::scene::SceneManager> Engine::getSceneManager() const
-	{
-		return m_SceneManager;
 	}
 
 	bool Engine::initializeGLFW()
@@ -108,7 +96,8 @@ namespace wase
 			return false;
 		}
 		
-		wase::input::Input::initialize(m_Window->getGLFWWindow());
+		m_Input = std::make_shared<wase::input::Input>();
+		m_Input->initialize(m_Window->getGLFWWindow());
 
 		return true;
 	}
@@ -116,17 +105,13 @@ namespace wase
 	bool Engine::initializeSceneManager()
 	{
 		m_SceneManager = std::make_unique<wase::scene::SceneManager>();
-
-		m_SceneManager->addScenes(m_Config.scenes);
-
-		if (!m_SceneManager->hasScene(m_Config.startScene))
+		
+		if (!m_SceneManager->initialize(m_Config, { m_SceneManager, m_Input }))
 		{
-			WASE_CORE_CRITICAL("Failed to find start scene");
+			WASE_CORE_CRITICAL("Failed to initialize the SceneManager");
 			
 			return false;
 		}
-
-		m_SceneManager->setActiveScene(m_Config.startScene);
 
 		return true;
 	}

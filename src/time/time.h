@@ -2,25 +2,23 @@
 
 namespace wase::time
 {
-	class Time final
+	class Time
 	{
 	public:
 		/**
 		 * Update the time manager
 		 */
-		static void update();
+		void update();
 		
 		/**
 		 * Get the delta time.
 		 * 
 		 * @return the delta time
 		 */
-		static float getDeltaTime();
+		float getDeltaTime();
 
-	private:
-		Time() = default;
-		
-		static float m_DeltaTime;
-		static float m_LastFrameTime;
+	private:		
+		float m_DeltaTime = 0.0f;
+		float m_LastFrameTime = 0.0f;
 	};
 }

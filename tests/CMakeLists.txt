@@ -34,6 +34,7 @@ target_link_libraries(
     wase-engine-tests
     wase-engine
     GTest::gtest_main
+    gmock
 )
 
 include(GoogleTest)
