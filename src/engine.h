@@ -5,24 +5,14 @@
 #include <system/configuration.h>
 #include <system/window.h>
 #include <scene/scene_manager.h>
+#include <input/input.h>
+#include <time/time.h>
 
 namespace wase
 {
 	class Engine
 	{
 	public:
-		Engine(const Engine&) = delete;
-		Engine& operator=(const Engine&) = delete;
-		Engine(Engine&&) = default;
-		Engine& operator=(Engine&&) = default;
-
-		/**
-		 * Get the instance of the engine.
-		 * 
-		 * @return the engine instance
-		 */
-		static Engine& get();
-
 		/**
 		 * Initialize the engine.
 		 * 
@@ -40,17 +30,7 @@ namespace wase
 		 */
 		void shutdown();
 
-		/**
-		 * Get the scene manager
-		 * 
-		 * @return the scene manager
-		 */
-		std::shared_ptr<wase::scene::SceneManager> getSceneManager() const;
-
-	private:		
-		Engine() = default;
-		~Engine() = default;
-
+	private:
 		/**
 		 * Initialize GLFW
 		 * 
@@ -88,6 +68,8 @@ namespace wase
 
 		std::unique_ptr<wase::system::Window> m_Window = nullptr;
 		std::shared_ptr<wase::scene::SceneManager> m_SceneManager = nullptr;
+		std::shared_ptr<wase::input::Input> m_Input = nullptr;
+		wase::time::Time m_Time;
 
 		bool m_Initialized = false;
 	};

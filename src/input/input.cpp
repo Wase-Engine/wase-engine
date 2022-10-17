@@ -2,24 +2,13 @@
 
 namespace wase::input
 {
-	GLFWwindow* Input::m_Window = nullptr;
-	std::unordered_map<int, KeyState> Input::m_Keys;
-	std::unordered_map<int, KeyState> Input::m_MouseButtons;
-	
-	float Input::m_MouseX = 0.0;
-	float Input::m_MouseY = 0.0;
-	float Input::m_MouseMovedX = 0.0;
-	float Input::m_MouseMovedY = 0.0;
-	float Input::m_MouseScroll = 0.0;
-
 	void Input::initialize(GLFWwindow* window)
 	{
-		m_Window = window;
-		
-		glfwSetKeyCallback(window, keyCallback);
-		glfwSetMouseButtonCallback(window, mouseButtonCallback);
-		glfwSetCursorPosCallback(window, cursorPositionCallback);
-		glfwSetScrollCallback(window, scrollCallback);
+		glfwSetWindowUserPointer(window, this);
+		glfwSetKeyCallback(window, glfwKeyCallback);
+		glfwSetMouseButtonCallback(window, glfwMouseButtonCallback);
+		glfwSetCursorPosCallback(window, glfwCursorPositionCallback);
+		glfwSetScrollCallback(window, glfwScrollCallback);
 	}
 
 	void Input::update()
@@ -150,5 +139,33 @@ namespace wase::input
 	float Input::getMouseScroll()
 	{
 		return m_MouseScroll;
+	}
+
+	static void glfwKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+	{
+		Input* input = reinterpret_cast<Input*>(glfwGetWindowUserPointer(window));
+
+		input->keyCallback(window, key, scancode, action, mods);
+	}
+
+	static void glfwMouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+	{
+		Input* input = reinterpret_cast<Input*>(glfwGetWindowUserPointer(window));
+
+		input->mouseButtonCallback(window, button, action, mods);
+	}
+
+	static void glfwCursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
+	{
+		Input* input = reinterpret_cast<Input*>(glfwGetWindowUserPointer(window));
+
+		input->cursorPositionCallback(window, xpos, ypos);
+	}
+
+	static void glfwScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
+	{
+		Input* input = reinterpret_cast<Input*>(glfwGetWindowUserPointer(window));
+
+		input->scrollCallback(window, xoffset, yoffset);
 	}
 }
