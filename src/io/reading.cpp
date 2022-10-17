@@ -32,45 +32,42 @@ namespace wase::io
 	}
 
     bool fileExist(const char* path) {
-        const fs::path fsPath{path};
-        return fs::is_regular_file(fsPath);
+        return fs::is_regular_file(fs::path(path));
     }
 
     bool folderExist(const char* path) {
-        const fs::path fsPath{path};
-        return fs::is_directory(path);
+        return fs::is_directory(fs::path(path));
     }
 
     std::vector<std::string> getFiles(const char* path) {
-        const fs::path fsPath{path};
-        std::vector<std::string> files{};
+        std::vector<std::string> files;
 
         if (!folderExist(path)) {
             WASE_CORE_WARN("Folder doesn't exist");
+
             return files;
         }
 
-        for (auto const& dir_entry: fs::directory_iterator{fsPath}) {
-            if (dir_entry.is_regular_file()) {
+        for (auto const& dir_entry: fs::directory_iterator{fs::path(path)}) {
+            if (dir_entry.is_regular_file())
                 files.push_back(dir_entry.path().filename().u8string());
-            }
         }
+
         return files;
     }
 
     std::vector<std::string> getFolders(const char* path) {
-        const fs::path fsPath{path};
-        std::vector<std::string> folders{};
+        std::vector<std::string> folders;
 
         if (!folderExist(path)) {
             WASE_CORE_WARN("Folder doesn't exist");
+
             return folders;
         }
 
-        for (auto const& dir_entry : fs::directory_iterator{fsPath}) {
-            if (dir_entry.is_directory()) {
+        for (auto const& dir_entry : fs::directory_iterator{fs::path(path)}) {
+            if (dir_entry.is_directory())
                 folders.push_back(dir_entry.path().filename().u8string());
-            }
         }
 
         return folders;
