@@ -10,3 +10,6 @@
 [submodule "vendor/glm"]
 	path = vendor/glm
 	url = https://github.com/g-truc/glm
+[submodule "vendor/libsndfile"]
+	path = vendor/libsndfile
+	url = https://github.com/libsndfile/libsndfile.git
