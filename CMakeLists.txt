@@ -61,6 +61,11 @@ target_include_directories(wase-engine PUBLIC ${PROJECT_SOURCE_DIR}/vendor/spdlo
 add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/glm EXCLUDE_FROM_ALL)
 target_link_libraries(wase-engine glm)
 
+# OpenAL
+add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/openal-soft EXCLUDE_FROM_ALL)
+target_link_libraries(wase-engine OpenAL)
+target_include_directories(wase-engine PUBLIC ${PROJECT_SOURCE_DIR}/vendor/openal-soft/include)
+
 # Tests
 if(DEFINED enable_test)
   add_subdirectory(tests)
