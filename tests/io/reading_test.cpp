@@ -1,4 +1,5 @@
 #include <string>
+#include <algorithm>
 
 #include <gtest/gtest.h>
 
@@ -32,6 +33,8 @@ TEST(IOReadingTest, FolderExist)
 TEST(IOReadingTest, GetFiles)
 {
 	std::vector<std::string> files = getFiles("assets/io");
+
+	std::sort(files.begin(), files.end());
 
 	EXPECT_EQ(files.size(), 2);
 	EXPECT_EQ(files[0], "test_file1.txt");
