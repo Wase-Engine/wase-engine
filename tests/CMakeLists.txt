@@ -40,3 +40,5 @@ target_link_libraries(
 include(GoogleTest)
 
 gtest_discover_tests(wase-engine-tests)
+
+file(COPY assets/ DESTINATION ${CMAKE_BINARY_DIR}/tests/assets)
