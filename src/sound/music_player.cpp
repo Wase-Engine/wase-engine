@@ -5,7 +5,7 @@
 
 namespace wase::sound
 {
-	void MusicBuffer::play()
+	void MusicPlayer::play()
 	{
 		ALsizei i;
 
@@ -41,7 +41,7 @@ namespace wase::sound
 
 	}
 
-	void MusicBuffer::loadMusic(const char* filename)
+	void MusicPlayer::loadMusic(const char* filename)
 	{
 		alGenSources(1, &m_Source);
 		alGenBuffers(NUM_BUFFERS, m_Buffers);
@@ -81,7 +81,7 @@ namespace wase::sound
 
 	}
 
-	void MusicBuffer::cleanUp()
+	void MusicPlayer::cleanUp()
 	{
 		alDeleteSources(1, &m_Source);
 
@@ -95,7 +95,7 @@ namespace wase::sound
 		alDeleteBuffers(NUM_BUFFERS, m_Buffers);
 	}
 
-	void MusicBuffer::updateBufferStream()
+	void MusicPlayer::updateBufferStream()
 	{
 		ALint processed, state;
 
@@ -153,7 +153,7 @@ namespace wase::sound
 
 	}
 
-	ALint MusicBuffer::getSource()
+	ALint MusicPlayer::getSource()
 	{
 		return m_Source;
 	}
