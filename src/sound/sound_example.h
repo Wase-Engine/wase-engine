@@ -2,7 +2,7 @@
 #include "sound_device.h"
 #include "sound_buffer.h"
 #include "sound_source.h"
-#include "music_buffer.h"
+#include "music_player.h"
 #include <system/configuration.h>
 #include <engine.h>
 
