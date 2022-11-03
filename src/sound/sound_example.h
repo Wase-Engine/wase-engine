@@ -32,12 +32,15 @@ void SoundExample()
     mySpeaker2.Play(sound2);
     mySpeaker3.Play(sound3);
 
-    wase::sound::MusicBuffer music("africa-toto.wav");
+    MP_LOAD("date a live.wav");
+    MP_PLAY();
 
     while (1)
     {
-            music.UpdateBufferStream();
+            MP_UPDATE();
     }
+
+    MP_CLEAN();
 
     wase::Engine engine;
     engine.initialize(config);
