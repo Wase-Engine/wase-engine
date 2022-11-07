@@ -39,8 +39,6 @@ namespace wase::sound
 		static void updateBufferStream();
 
 		/**
-		 * @brief 
-		 * 
 		 * @return The static variable m_Source
 		 */
 		static ALint getSource();
