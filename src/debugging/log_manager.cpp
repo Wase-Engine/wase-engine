@@ -21,6 +21,9 @@ namespace wase::debugging
 
 	std::shared_ptr<spdlog::logger>& LogManager::getCoreLogger()
 	{
+		if (!m_CoreLogger)
+			initialize();
+
 		return m_CoreLogger;
 	}
 }

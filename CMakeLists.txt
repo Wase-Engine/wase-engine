@@ -25,6 +25,7 @@ add_library(wase-engine ${sources})
 
 target_include_directories(wase-engine PUBLIC 
     ${PROJECT_SOURCE_DIR}/src
+    ${PROJECT_SOURCE_DIR}/vendor/stb_image
 )
 
 foreach(source IN LISTS sources)
