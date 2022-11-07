@@ -46,10 +46,11 @@ namespace wase::sound
 		static ALint getSource();
 
 	private:
+		MusicPlayer();
+		static const int BUFFER_SAMPLES;
+		static const int NUM_BUFFERS;
 		static ALuint m_Source;
-		static const int BUFFER_SAMPLES = 8192;
-		static const int NUM_BUFFERS = 4;
-		static ALuint m_Buffers[NUM_BUFFERS];
+		static ALuint m_Buffers[];
 		static SNDFILE* m_SndFile;
 		static SF_INFO m_Sfinfo;
 		static short* m_Membuf;

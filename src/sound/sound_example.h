@@ -21,6 +21,7 @@ void SoundExample()
 
     // put sounds in your build folder.
     wase::sound::SoundDevice* soundDevice = LISTENER;
+    SB_INIT();
     uint32_t sound1 = SB_LOAD("1.wav");
     uint32_t sound2 = SB_LOAD("2.wav");
     uint32_t sound3 = SB_LOAD("3.wav");
@@ -41,6 +42,7 @@ void SoundExample()
     }
 
     MP_CLEAN();
+    SB_CLEAN();
 
     wase::Engine engine;
     engine.initialize(config);

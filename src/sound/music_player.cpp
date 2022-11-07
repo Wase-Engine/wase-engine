@@ -5,6 +5,15 @@
 
 namespace wase::sound
 {
+	const int MusicPlayer::BUFFER_SAMPLES = 8192;
+	const int MusicPlayer::NUM_BUFFERS = 4;
+	ALuint MusicPlayer::m_Source = 0;
+	ALuint MusicPlayer::m_Buffers[NUM_BUFFERS];
+	SNDFILE* MusicPlayer::m_SndFile;
+	SF_INFO MusicPlayer::m_Sfinfo;
+	short* MusicPlayer::m_Membuf;
+	ALenum MusicPlayer::m_Format;
+
 	void MusicPlayer::play()
 	{
 		ALsizei i;
