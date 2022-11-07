@@ -1,32 +1,65 @@
 #pragma once
 #include <alc.h>
+#include <math/vector3.h>
 
 #define SD_INIT wase::sound::SoundDevice::init()
-#define LISTENER wase::sound::SoundDevice::get()
+#define SD_CLEAN wase::sound::SoundDevice::cleanUp()
 
 namespace wase::sound
 {
     class SoundDevice
     {
     public:
-        static SoundDevice* get();
+        /**
+         * Initializes the sound device.
+         */
         static void init();
 
-        void GetLocation(float &x, float& y, float& z);
-	    void GetOrientation(float &ori);
-	    float GetGain();
+        /**
+         * Gets the listener's current locaiton
+         * 
+         * @return the listener's current location
+         */
+        static math::Vector3 getLocation();
 
-	    void SetLocation(const float& x, const float& y, const float& z);
-	    void SetOrientation(
-		const float& atx, const float& aty, const float& atz,
-		const float& upx, const float& upy, const float& upz);
-	    void SetGain(const float& val);
+        /**
+         * Gets the current listener Orientation as 'at' and 'up'
+         * 
+         * @return float array with 6 slots available example: float myvar[6]
+         */
+	    static float getOrientation();
 
-        ~SoundDevice();
+        /**
+         * Gets the current volume of our listener
+         * 
+         * @return current volume
+         */
+	    static float getGain();
+
+        /**
+         * Sets the location of our listener
+         */
+	    static void setLocation(math::Vector3 location);
+
+        /**
+         * Sets the orientation of our listener using 'look at' (or foward vector) and 'up' direction
+         */
+	    static void setOrientation(math::Vector3 atVector, math::Vector3 upVector);
+
+        /**
+         * Sets the master volume of our listeners. capped between 0 and 5 for now.
+         */
+	    static void setGain(const float& val);
+
+        /**
+         * Sets m_ALCContext to nullptr, destroys m_ALCContext, and closes m_ALCDevice
+         */
+        static void cleanUp();
+
     private:
         SoundDevice();
         
-        ALCdevice* m_ALCDevice;
-        ALCcontext* m_ALCContext;
+        static ALCdevice* m_ALCDevice;
+        static ALCcontext* m_ALCContext;
     };
 }

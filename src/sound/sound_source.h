@@ -6,17 +6,41 @@ namespace wase::sound
     class SoundSource
     {
     public:
-        ~SoundSource();
         SoundSource();
-        void Play(const ALuint buffer_to_play);
-        void Stop();
-	    void Pause();
-	    void Resume();
 
-        void SetLooping(const bool& loop);
+        /**
+         * Plays the buffer from the argument and sets m_Buffer to the argument (buffer_to_play)
+         */
+        void play(const ALuint buffer_to_play);
 
+        /**
+         * Stops playing
+         */
+        void stop();
+
+        /**
+         * Pauses the sound
+         */
+	    void pause();
+
+        /**
+         * Resumes the sound
+         */
+	    void resume();
+
+        /**
+         * Sets whether or not the sound is looping
+         */
+        void setLooping(const bool& loop);
+
+        /**
+         * Checks if the sound is still playing
+         * 
+         * @return if the sound is still playing
+         */
 	    bool isPlaying();
 
+        void cleanUp();
 
     private:
         ALuint m_Source;

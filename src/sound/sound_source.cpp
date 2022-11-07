@@ -9,12 +9,7 @@ namespace wase::sound
         alSourcei(m_Source, AL_BUFFER, m_Buffer);
     }
 
-    SoundSource::~SoundSource()
-    {
-        alDeleteSources(1, &m_Source);
-    }
-
-    void SoundSource::Play(const ALuint buffer_to_play)
+    void SoundSource::play(const ALuint buffer_to_play)
     {
         if (buffer_to_play != m_Buffer)
         {
@@ -25,22 +20,22 @@ namespace wase::sound
         alSourcePlay(m_Source);
     }
 
-    void SoundSource::Stop()
+    void SoundSource::stop()
     {
         alSourceStop(m_Source);
     }
 
-    void SoundSource::Pause()
+    void SoundSource::pause()
     {
         alSourcePause(m_Source);
     }
 
-    void SoundSource::Resume()
+    void SoundSource::resume()
     {
         alSourcePlay(m_Source);
     }
 
-    void SoundSource::SetLooping(const bool& loop)
+    void SoundSource::setLooping(const bool& loop)
     {
         alSourcei(m_Source, AL_LOOPING, (ALint)loop);
     }
@@ -52,4 +47,8 @@ namespace wase::sound
         return (playState == AL_PLAYING);
     }
 
+    void SoundSource::cleanUp()
+    {
+        alDeleteSources(1, &m_Source);
+    }
 }

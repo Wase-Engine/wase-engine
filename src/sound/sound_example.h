@@ -43,6 +43,9 @@ void SoundExample()
 
     MP_CLEAN();
     SB_CLEAN();
+    mySpeaker.cleanUp()
+    mySpeaker2.cleanUp()
+    mySpeaker3.cleanUp()
 
     wase::Engine engine;
     engine.initialize(config);

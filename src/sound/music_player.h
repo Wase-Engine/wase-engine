@@ -19,8 +19,8 @@ namespace wase::sound
 		static void play();
 
 		/**
-		 *  Loads some music to play. 
-		 * 	More efficient than using the other sound classes for longer sounds.
+		 * Loads some music to play. 
+		 * More efficient than using the other sound classes for longer sounds.
 		 * 
 		 * @param filename: the file to load
 		 */

@@ -39,7 +39,6 @@ namespace wase::sound
     private:
         SoundBuffer();
         
-        
         static std::vector<ALuint> m_SoundEffectBuffers;
     };
 }
