@@ -2,15 +2,41 @@
 #include <al.h>
 #include <stdio.h>
 #include <vector>
+#include <iostream>
+#include <cstring>
 
 namespace wase::sound
 {
     ALCdevice* SoundDevice::m_ALCDevice = nullptr;
     ALCcontext* SoundDevice::m_ALCContext = nullptr;
 
+    void SoundDevice::list_audio_devices(const ALCchar *devices)
+    {
+        const ALCchar *device = devices, *next = devices + 1;
+        size_t len = 0;
+
+        fprintf(stdout, "Devices list:\n");
+        fprintf(stdout, "----------\n");
+        while (device && *device != '\0' && next && *next != '\0') {
+                fprintf(stdout, "%s\n", device);
+                len = strlen(device);
+                device += (len + 1);
+                next += (len + 2);
+        }
+        fprintf(stdout, "----------\n");
+    }
+
     void SoundDevice::init()
     {
-         m_ALCDevice = alcOpenDevice(nullptr); // nullptr = get defualt device.
+        ALboolean enumeration;
+
+        enumeration = alcIsExtensionPresent(NULL, "ALC_ENUMERATION_EXT");
+        if (enumeration == AL_TRUE)
+        {
+            list_audio_devices(alcGetString(NULL, ALC_DEVICE_SPECIFIER));
+        }
+
+        m_ALCDevice = alcOpenDevice(nullptr); // nullptr = get defualt device.
         if (!m_ALCDevice) throw("Failed to get sound device.");
         
         m_ALCContext = alcCreateContext(m_ALCDevice, nullptr); // Make context.
@@ -26,6 +52,8 @@ namespace wase::sound
         if (!name || alcGetError(m_ALCDevice) != AL_NO_ERROR)
             name = alcGetString(m_ALCDevice, ALC_DEVICE_SPECIFIER);
         printf("Opened \"%s\"\n", name);
+
+
     }
 
     math::Vector3 SoundDevice::getLocation()

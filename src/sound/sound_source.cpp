@@ -3,9 +3,14 @@
 
 namespace wase::sound
 {
-    SoundSource::SoundSource()
+    SoundSource::SoundSource(math::Vector3 position, math::Vector3 velocity, float pitch, float gain, bool looping)
     {
         alGenSources(1, &m_Source);
+        alSource3f(m_Source, AL_POSITION, position.x, position.y, position.z);
+        alSource3f(m_Source, AL_VELOCITY, velocity.x, velocity.y, velocity.z);
+        alSourcef(m_Source, AL_PITCH, pitch);
+        alSourcef(m_Source, AL_GAIN, gain);
+        alSourcei(m_Source, AL_LOOPING, looping);
         alSourcei(m_Source, AL_BUFFER, m_Buffer);
     }
 

@@ -5,31 +5,28 @@
 #include "music_player.h"
 #include <system/configuration.h>
 #include <engine.h>
-#include <iostream>
+#include "math/vector3.h"
 
 namespace wase::sound
 {
     void SoundExample()
     {
         // put sounds in your build folder.
+        // only mono sounds are affected by position
         wase::sound::SoundDevice::init();
         SoundBuffer::init();
-        uint32_t sound1 = SoundBuffer::load("1.wav");
-        uint32_t sound2 = SoundBuffer::load("2.wav");
-        uint32_t sound3 = SoundBuffer::load("3.wav");
+        uint32_t sound1 = SoundBuffer::load("mono.wav");
+        uint32_t sound2 = SoundBuffer::load("stereo.wav");
 
-        wase::sound::SoundSource mySpeaker;
-        wase::sound::SoundSource mySpeaker2;
-        wase::sound::SoundSource mySpeaker3;
+        // try changing the position of both of these.
+        wase::sound::SoundSource mySpeaker(math::Vector3(0.0f, 0.0f, 0.0f));
+        wase::sound::SoundSource mySpeaker2(math::Vector3(0.0f, 0.0f, 0.0f)); 
 
         mySpeaker.play(sound1);
         mySpeaker2.play(sound2);
-        mySpeaker3.play(sound3);
 
-        MusicPlayer::loadMusic("date a live.wav");
+        MusicPlayer::loadMusic("music.wav");
         MusicPlayer::play();
-
-        std::cout << "while\n";
 
         while (1)
         {
@@ -40,7 +37,6 @@ namespace wase::sound
         SoundBuffer::cleanUp();
         mySpeaker.cleanUp();
         mySpeaker2.cleanUp();
-        mySpeaker3.cleanUp();
         SoundDevice::cleanUp();
     }
 }
