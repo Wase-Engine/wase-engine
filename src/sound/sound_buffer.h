@@ -1,6 +1,6 @@
 #pragma once
-#include <al.h>
 #include <vector>
+#include <al.h>
 
 namespace wase::sound
 {

@@ -1,10 +1,10 @@
-#include "sound_buffer.h"
-#include <sndfile.h>
-#include <inttypes.h>
-#include <alext.h>
+#include <iostream>
 #include <limits.h> 
 #include <cstdlib>
-#include <iostream>
+#include <inttypes.h>
+#include <sndfile.h>
+#include <alext.h>
+#include "sound_buffer.h"
 
 namespace wase::sound
 {

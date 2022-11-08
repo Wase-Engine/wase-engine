@@ -110,7 +110,7 @@ namespace wase::sound
 
 		// clear error 
 		alGetError();
-		/* Get relevant source info */
+		// Get relevant source info 
 		alGetSourcei(m_Source, AL_SOURCE_STATE, &state);
 		alGetSourcei(m_Source, AL_BUFFERS_PROCESSED, &processed);
 		if (alGetError() != AL_NO_ERROR)
@@ -118,7 +118,7 @@ namespace wase::sound
 			throw("error checking music source state");
 		}
 
-		/* Unqueue and handle each processed buffer */
+		// Unqueue and handle each processed buffer
 		while (processed > 0)
 		{
 			ALuint bufid;
@@ -127,8 +127,8 @@ namespace wase::sound
 			alSourceUnqueueBuffers(m_Source, 1, &bufid);
 			processed--;
 
-			/* Read the next chunk of data, refill the buffer, and queue it
-			* back on the source */
+			// Read the next chunk of data, refill the buffer, and queue it
+			// back on the source
 			slen = sf_readf_short(m_SndFile, m_Membuf, BUFFER_SAMPLES);
 			if (slen > 0)
 			{
@@ -143,12 +143,12 @@ namespace wase::sound
 			}
 		}
 
-		/* Make sure the source hasn't underrun */
+		// Make sure the source hasn't underrun 
 		if (state != AL_PLAYING && state != AL_PAUSED)
 		{
 			ALint queued;
 
-			/* If no buffers are queued, playback is finished */
+			// If no buffers are queued, playback is finished 
 			alGetSourcei(m_Source, AL_BUFFERS_QUEUED, &queued);
 			if (queued == 0)
 				return;

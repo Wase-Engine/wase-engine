@@ -1,5 +1,5 @@
-#include "sound_source.h"
 #include <iostream>
+#include "sound_source.h"
 
 namespace wase::sound
 {

@@ -10,7 +10,7 @@ namespace wase::sound
         /**
          *  Lists all audio devices.
          */
-        static void list_audio_devices(const ALCchar *devices);
+        static void listAudioDevices(const ALCchar *devices);
 
         /**
          * Initializes the sound device.
