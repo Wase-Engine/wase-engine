@@ -2,11 +2,6 @@
 #include <AL/al.h>
 #include <sndfile.h>
 
-#define MP_LOAD wase::sound::MusicPlayer::loadMusic
-#define MP_PLAY wase::sound::MusicPlayer::play
-#define MP_UPDATE wase::sound::MusicPlayer::updateBufferStream
-#define MP_CLEAN wase::sound::MusicPlayer::cleanUp
-
 namespace wase::sound
 {
 	class MusicPlayer

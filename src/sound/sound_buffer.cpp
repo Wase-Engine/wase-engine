@@ -85,7 +85,7 @@ namespace wase::sound
 
 		free(membuf);
 		sf_close(sndfile);
-
+		
 		// Check if an error occured, and clean up if so
 		err = alGetError();
 		if (err != AL_NO_ERROR)
@@ -95,8 +95,6 @@ namespace wase::sound
 				alDeleteBuffers(1, &buffer);
 			return 0;
 		}
-
-		
 
 		m_SoundEffectBuffers.push_back(buffer);  // add to the list of known buffers
 		return buffer;

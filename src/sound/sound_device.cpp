@@ -43,10 +43,6 @@ namespace wase::sound
         return ori;
     }
 
-    /// <summary>
-    /// Gets the current volume of our listener.
-    /// </summary>
-    /// <returns>current volume</returns>
     float SoundDevice::getGain()
     {
         float curr_gain;

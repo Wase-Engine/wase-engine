@@ -2,11 +2,6 @@
 #include <al.h>
 #include <vector>
 
-#define SB_INIT wase::sound::SoundBuffer::init
-#define SB_LOAD wase::sound::SoundBuffer::load
-#define SB_UNLOAD wase::sound::SoundBuffer::unload
-#define SB_CLEAN wase::sound::SoundBuffer::cleanUp
-
 namespace wase::sound
 {
     class SoundBuffer

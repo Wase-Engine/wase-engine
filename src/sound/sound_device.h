@@ -2,9 +2,6 @@
 #include <alc.h>
 #include <math/vector3.h>
 
-#define SD_INIT wase::sound::SoundDevice::init()
-#define SD_CLEAN wase::sound::SoundDevice::cleanUp()
-
 namespace wase::sound
 {
     class SoundDevice
