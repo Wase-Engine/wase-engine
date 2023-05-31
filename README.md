@@ -24,7 +24,7 @@ You can choose to build Wase Engine yourself from the source code or you can dow
 mkdir build
 cd build
 cmake .. -DCMAKE_BUILD_TYPE=Debug
-cmake build .
+cmake --build .
 ```
 
 To include tests add `-D enable_test=1` to the `cmake ..` command. To change the build type to Release change `CMAKE_BUILD_TYPE=Debug` to `Release`
