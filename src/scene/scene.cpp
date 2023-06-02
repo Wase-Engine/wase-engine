@@ -7,6 +7,11 @@ namespace wase::scene
 		m_Context = context;
 	}
 
+	void Scene::updateWorld(const float deltaTime)
+	{
+		m_World.update(deltaTime);
+	}
+
 	void Scene::start()
 	{
 

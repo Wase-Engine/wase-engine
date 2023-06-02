@@ -62,6 +62,10 @@ target_include_directories(wase-engine PUBLIC ${PROJECT_SOURCE_DIR}/vendor/spdlo
 add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/glm EXCLUDE_FROM_ALL)
 target_link_libraries(wase-engine glm)
 
+# Wase ECS
+add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/wase-ecs EXCLUDE_FROM_ALL)
+target_link_libraries(wase-engine wase-ecs)
+
 # Tests
 if(DEFINED enable_test)
   add_subdirectory(tests)

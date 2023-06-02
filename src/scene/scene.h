@@ -1,5 +1,7 @@
 #pragma once
 
+#include <ecs.h>
+
 #include <scene/scene_context.h>
 
 namespace wase::scene
@@ -11,6 +13,13 @@ namespace wase::scene
 		 * Initialize the scene with a context
 		 */
 		void initialize(const SceneContext& context);
+
+		/**
+		 * Update the ECS systems
+		 * 
+		 * @param deltaTime The time between frames
+		 */
+		void updateWorld(const float deltaTime);
 		
 		/**
 		 * Gets called once on the first update
@@ -30,5 +39,6 @@ namespace wase::scene
 		Scene& operator=(Scene&&) = default;
 
 		SceneContext m_Context;
+		wase::ecs::World m_World;
 	};
 }

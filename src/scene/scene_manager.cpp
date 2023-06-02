@@ -30,6 +30,7 @@ namespace wase::scene
 			m_NewCurrentScene = false;
 		}
 		
+		m_CurrentScene->updateWorld(deltaTime);
 		m_CurrentScene->update(deltaTime);
 	}
 
