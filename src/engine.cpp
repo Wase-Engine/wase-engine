@@ -38,7 +38,6 @@ namespace wase
 		while (m_Window->isOpen())
 		{
 			m_Time.update();
-			// Logic here
 			m_SceneManager->update(m_Time.getDeltaTime());
 			m_Input->update();
 			m_Window->update();
