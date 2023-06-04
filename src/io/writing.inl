@@ -1,6 +1,7 @@
 #pragma once
 
 #include <filesystem>
+#include <stdexcept>
 #include <fstream>
 
 #include <io/writing.h>
@@ -39,7 +40,7 @@ namespace wase::io
 			}
 			else
 			{
-				throw std::exception("Unable to open the file.");
+				throw std::runtime_error("Unable to open the file.");
 			}
 		}
 		catch (const std::exception& exception)
