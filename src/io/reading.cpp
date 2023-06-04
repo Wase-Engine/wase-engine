@@ -1,8 +1,11 @@
+#include <filesystem>
 #include <fstream>
 #include <sstream>
 
 #include <io/reading.h>
 #include <debugging/log.h>
+
+namespace fs = std::filesystem;
 
 namespace wase::io
 {

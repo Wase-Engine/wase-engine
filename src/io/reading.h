@@ -1,10 +1,7 @@
 #pragma once
 
 #include <string>
-#include <filesystem>
 #include <vector>
-
-namespace fs = std::filesystem;
 
 namespace wase::io
 {
