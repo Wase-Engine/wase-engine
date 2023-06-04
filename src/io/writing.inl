@@ -16,7 +16,8 @@ namespace wase::io
 		try
 		{
 			std::ofstream newFile(path);
-			newFile << content;
+			if (content != nullptr)
+				newFile << content;
 			newFile.close();
 		}
 		catch (const std::exception& exception)

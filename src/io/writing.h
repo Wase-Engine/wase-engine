@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace wase::io
 {
 	/**
@@ -22,8 +24,8 @@ namespace wase::io
 	 * 
 	 * @param path: the path to the file to 
 	 */
-	template<typename T = char>
-	void createFile(const char* path, const T& content = NULL);
+	template<typename T = char*>
+	void createFile(const char* path, const T& content = nullptr);
 
 	/**
 	 * Create a new folder
