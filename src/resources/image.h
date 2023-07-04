@@ -8,5 +8,6 @@ namespace wase::resources
 		int width;
 		int height;
 		int channels;
+		unsigned int format;
 	};
 }

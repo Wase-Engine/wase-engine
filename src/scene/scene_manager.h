@@ -26,7 +26,7 @@ namespace wase::scene
 		 * @param config: the configuration to use
 		 * @return if the scene manager was initialized successfully
 		 */
-		bool initialize(wase::system::Configuration& config, const SceneContext& context);
+		bool initialize(system::Configuration& config, const SceneContext& context);
 
 		/**
 		 * Update the scene manager
