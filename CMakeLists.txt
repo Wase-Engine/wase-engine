@@ -12,6 +12,8 @@ file(GLOB_RECURSE sources
     "src/*.h"
     "src/*.cpp"
     "src/*.inl"
+    "assets/*.vert"
+    "assets/*.frag"
 )
 
 if(NOT CMAKE_BUILD_TYPE)

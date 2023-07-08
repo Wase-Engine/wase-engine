@@ -10,6 +10,7 @@
 #include <rendering/vbo.h>
 #include <rendering/ibo.h>
 #include <rendering/vao.h>
+#include <rendering/texture.h>
 #include <rendering/shader.h>
 
 namespace wase::ecs::components
@@ -23,6 +24,7 @@ namespace wase::ecs::components
 		std::shared_ptr<rendering::VAO> vao;
 		std::shared_ptr<rendering::VBO> vbo;
 		std::shared_ptr<rendering::IBO> ibo;
+		std::shared_ptr<rendering::Texture> texture;
 		std::shared_ptr<rendering::Shader> shader;
 	};
 }

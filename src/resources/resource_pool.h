@@ -24,7 +24,7 @@ namespace wase::resources
 		 * @param name: the reference name of the image
 		 * @return the image
 		 */
-		const Image* getImage(const std::string& name);
+		Image* getImage(const std::string& name);
 
 		/**
 		 * Returns the amount of resources loaded

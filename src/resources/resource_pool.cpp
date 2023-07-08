@@ -10,6 +10,8 @@ namespace wase::resources
 {
 	void ResourcePool::loadImage(const std::string& name, const char* path)
 	{
+		stbi_set_flip_vertically_on_load(true);
+		
 		int width, height, channels;
 		unsigned int format;
 		unsigned char* data = stbi_load(path, &width, &height, &channels, 0);
@@ -49,7 +51,7 @@ namespace wase::resources
 		return m_Count;
 	}
 
-	const Image* ResourcePool::getImage(const std::string& name)
+	Image* ResourcePool::getImage(const std::string& name)
 	{
 		if (m_Images.count(name) == 0)
 		{

@@ -19,10 +19,11 @@ namespace wase::ecs::systems
 		components::TextureComponent& texture = m_ComponentPool->getComponent<components::TextureComponent>(entity->getId());
 
 		float vertices[] = {
-			 0.5f,  0.5f,  // TR
-			 0.5f, -0.5f,  // BR
-			-0.5f, -0.5f,  // BL
-			-0.5f,  0.5f   // TL 
+			// Positions  // TexCoords
+			 0.5f,  0.5f, 1.0f, 1.0f,  // TR
+			 0.5f, -0.5f, 1.0f, 0.0f,  // BR
+			-0.5f, -0.5f, 0.0f, 0.0f,  // BL
+			-0.5f,  0.5f, 0.0f, 1.0f   // TL 
 		};
 
 		unsigned int indices[] = {
@@ -43,10 +44,13 @@ namespace wase::ecs::systems
 	
 		rendering::VertexBufferLayout layout;
 		layout.pushFloat(2);
+		layout.pushFloat(2);
 
 		texture.vao->addBuffer(texture.vbo.get(), layout);
+
+		texture.texture = std::make_shared<rendering::Texture>(m_ResourcePool->getImage(texture.image), 0);
 		
-		texture.shader = std::make_shared<rendering::Shader>("assets/shader.vert", "assets/shader.frag");
+		texture.shader = std::make_shared<rendering::Shader>("wase-assets/shaders/sprite.vert", "wase-assets/shaders/sprite.frag");
 	}
 
 	void SpriteRenderer::update(const float deltaTime)
@@ -56,11 +60,9 @@ namespace wase::ecs::systems
 			components::TransformComponent& transform = m_ComponentPool->getComponent<components::TransformComponent>(entity->getId());
 			components::TextureComponent& texture = m_ComponentPool->getComponent<components::TextureComponent>(entity->getId());
 
-			//glActiveTexture(GL_TEXTURE0);
-			//glBindTexture(GL_TEXTURE_2D, texture.id);
-
 			texture.shader->bind();
 			texture.vao->bind();
+			texture.texture->bind();
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 		}
 	}
