@@ -7,6 +7,8 @@
 
 namespace wase::system
 {
+	struct Configuration;
+
 	class Window
 	{
 	public:

@@ -88,7 +88,7 @@ namespace wase
 
 	bool Engine::initializeWindow()
 	{
-		m_Window = std::make_unique<wase::system::Window>();
+		m_Window = std::make_shared<wase::system::Window>();
 		if (!m_Window->initialize(m_Config))
 		{
 			WASE_CORE_CRITICAL("Failed to initialize window");
@@ -106,7 +106,7 @@ namespace wase
 	{
 		m_SceneManager = std::make_unique<wase::scene::SceneManager>();
 		
-		if (!m_SceneManager->initialize(m_Config, { m_SceneManager, m_Input, m_ResourcePool }))
+		if (!m_SceneManager->initialize(m_Config, { m_SceneManager, m_Input, m_ResourcePool, m_Window }))
 		{
 			WASE_CORE_CRITICAL("Failed to initialize the SceneManager");
 			
