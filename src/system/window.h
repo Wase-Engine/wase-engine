@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 
 #include <system/configuration.h>
+#include <math/vector2.h>
 
 namespace wase::system
 {
@@ -36,6 +37,13 @@ namespace wase::system
 		 * @return if the window is still open
 		 */
 		bool isOpen() const;
+
+		/**
+		 * Get the width and height of the window
+		 * 
+		 * @return the width and height of the window
+		 */
+		math::Vector2 getWindowSize() const;
 
 		/**
 		 * Get the GLFWwindow

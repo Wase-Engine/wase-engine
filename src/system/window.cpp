@@ -41,6 +41,15 @@ namespace wase::system
 		return glfwWindowShouldClose(m_Window) == 0;
 	}
 
+	math::Vector2 Window::getWindowSize() const
+	{
+		int width, height;
+		
+		glfwGetWindowSize(m_Window, &width, &height);
+
+		return math::Vector2(width, height);
+	}
+
 	GLFWwindow* Window::getGLFWWindow() const
 	{
 		return m_Window;
