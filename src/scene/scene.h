@@ -39,6 +39,6 @@ namespace wase::scene
 		Scene& operator=(Scene&&) = default;
 
 		SceneContext m_Context;
-		wase::ecs::World m_World;
+		ecs::World m_World;
 	};
 }

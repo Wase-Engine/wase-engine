@@ -3,7 +3,7 @@
 
 namespace wase::scene
 {
-	bool SceneManager::initialize(wase::system::Configuration& config, const SceneContext& context)
+	bool SceneManager::initialize(system::Configuration& config, const SceneContext& context)
 	{
 		this->addScenes(config.scenes);
 
@@ -30,8 +30,8 @@ namespace wase::scene
 			m_NewCurrentScene = false;
 		}
 		
-		m_CurrentScene->updateWorld(deltaTime);
 		m_CurrentScene->update(deltaTime);
+		m_CurrentScene->updateWorld(deltaTime);
 	}
 
 	void SceneManager::addScenes(std::unordered_map<std::string, std::shared_ptr<Scene>>& scenes)

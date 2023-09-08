@@ -18,7 +18,7 @@ namespace wase::system
 		const char* name = "Wase Engine";
 		unsigned int windowWidth = 1280, windowHeight = 720;
 		bool vsync = true;
-		std::unordered_map<std::string, std::shared_ptr<wase::scene::Scene>> scenes;
+		std::unordered_map<std::string, std::shared_ptr<scene::Scene>> scenes;
 		std::string startScene;
 	};
 }

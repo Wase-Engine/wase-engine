@@ -7,6 +7,7 @@
 #include <system/configuration.h>
 #include <system/window.h>
 #include <scene/scene_manager.h>
+#include <resources/resource_pool.h>
 #include <input/input.h>
 #include <time/time.h>
 
@@ -66,12 +67,15 @@ namespace wase
 		 */
 		bool initializeSceneManager();
 
-		wase::system::Configuration m_Config;
+		void initializeResourcePool();
 
-		std::unique_ptr<wase::system::Window> m_Window = nullptr;
-		std::shared_ptr<wase::scene::SceneManager> m_SceneManager = nullptr;
-		std::shared_ptr<wase::input::Input> m_Input = nullptr;
-		wase::time::Time m_Time;
+		system::Configuration m_Config;
+
+		std::unique_ptr<system::Window> m_Window = nullptr;
+		std::shared_ptr<scene::SceneManager> m_SceneManager = nullptr;
+		std::shared_ptr<input::Input> m_Input = nullptr;
+		std::shared_ptr<resources::ResourcePool> m_ResourcePool = nullptr;
+		time::Time m_Time;
 
 		bool m_Initialized = false;
 	};
