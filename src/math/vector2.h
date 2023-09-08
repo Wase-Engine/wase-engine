@@ -7,6 +7,7 @@ namespace wase::math
 		float x = 0;
 		float y = 0;
 
+		Vector2();
 		Vector2(const float x, const float y);
 
 		bool operator==(const Vector2& other) const;

@@ -52,7 +52,9 @@ namespace wase::system
 		 */
 		GLFWwindow* getGLFWWindow() const;
 			
-	private:
+	private:		
 		GLFWwindow* m_Window = nullptr;
 	};
+
+	void framebufferSizeCallback(GLFWwindow* window, int width, int height);
 }
