@@ -5,6 +5,7 @@
 #include <memory>
 
 #include <scene/scene.h>
+#include <system/window_mode.h>
 
 namespace wase::scene
 {
@@ -17,8 +18,9 @@ namespace wase::system
 	{
 		const char* name = "Wase Engine";
 		unsigned int windowWidth = 1280, windowHeight = 720;
+		WindowMode windowMode = WindowMode::WINDOWED;
 		bool vsync = true;
-		std::unordered_map<std::string, std::shared_ptr<wase::scene::Scene>> scenes;
+		std::unordered_map<std::string, std::shared_ptr<scene::Scene>> scenes;
 		std::string startScene;
 	};
 }

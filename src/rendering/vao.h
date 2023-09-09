@@ -26,7 +26,7 @@ namespace wase::rendering
 		 * @param vbo: the VBO to add
 		 * @param vbl: the layout of the VBO
 		 */
-		void addBuffer(const VBO& vbo, const VertexBufferLayout& vbl) const;
+		void addBuffer(const VBO* vbo, const VertexBufferLayout& vbl) const;
 
 	private:
 		unsigned int m_ID;
