@@ -8,7 +8,20 @@
 
 namespace wase::resources
 {
-	void ResourcePool::loadImage(const std::string& name, const char* path)
+	void ResourcePool::initialize(const std::vector<Resource>& resources)
+	{
+		for (const Resource& resource : resources)
+		{
+			switch (resource.type)
+			{
+			case ResourceType::IMAGE:
+				loadImage(resource.name, resource.path);
+				break;
+			}
+		}
+	}
+
+	void ResourcePool::loadImage(const std::string& name, const std::string& path)
 	{
 		if (m_Images.count(name) > 0)
 		{
@@ -20,7 +33,7 @@ namespace wase::resources
 		
 		int width, height, channels;
 		unsigned int format;
-		unsigned char* data = stbi_load(path, &width, &height, &channels, 0);
+		unsigned char* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
 		if (data)
 		{
 			if (channels == 1)

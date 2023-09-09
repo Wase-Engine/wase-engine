@@ -4,9 +4,11 @@
 #include <unordered_map>
 #include <functional>
 #include <memory>
+#include <vector>
 
 #include <scene/scene.h>
 #include <system/window_mode.h>
+#include <resources/resource.h>
 
 namespace wase::scene
 {
@@ -23,5 +25,6 @@ namespace wase::system
 		bool vsync = true;
 		std::unordered_map<std::string, std::function<std::shared_ptr<scene::Scene>()>> scenes;
 		std::string startScene;
+		std::vector<wase::resources::Resource> resources;
 	};
 }

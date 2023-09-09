@@ -15,7 +15,7 @@ namespace wase
 		m_Config = config;
 
 		this->initializeLogger();
-		this->initializeResourcePool();
+		this->initializeResourcePool(config.resources);
 
 		if (!this->initializeGLFW())
 			return;
@@ -117,8 +117,9 @@ namespace wase
 		return true;
 	}
 
-	void Engine::initializeResourcePool()
+	void Engine::initializeResourcePool(const std::vector<resources::Resource>& resources)
 	{
 		m_ResourcePool = std::make_shared<wase::resources::ResourcePool>();
+		m_ResourcePool->initialize(resources);
 	}
 }

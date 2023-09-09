@@ -1,9 +1,11 @@
 #pragma once
 
 #include <unordered_map>
+#include <vector>
 #include <string>
 
 #include <resources/image.h>
+#include <resources/resource.h>
 
 namespace wase::resources
 {
@@ -11,12 +13,19 @@ namespace wase::resources
 	{
 	public:
 		/**
+		 * Initialize the ResourcePool with a list of resources to load
+		 * 
+		 * @param resources The list of resources to load
+		 */
+		void initialize(const std::vector<Resource>& resources);
+
+		/**
 		 * Load an image
 		 * 
 		 * @param name: the reference name of the image
 		 * @param path: the path to the image
 		 */
-		void loadImage(const std::string& name, const char* path);
+		void loadImage(const std::string& name, const std::string& path);
 
 		/**
 		 * Get an image
