@@ -22,5 +22,11 @@ namespace wase::scene
 		std::shared_ptr<input::Input> input;
 		std::shared_ptr<resources::ResourcePool> resourcePool;
 		std::shared_ptr<system::Window> window;
+
+		SceneContext() = default;
+		SceneContext(std::shared_ptr<SceneManager> sceneManager, std::shared_ptr<input::Input> input, std::shared_ptr<resources::ResourcePool> resourcePool, std::shared_ptr<system::Window> window)
+			: sceneManager(sceneManager), input(input), resourcePool(resourcePool), window(window)
+		{
+		}
 	};
 }

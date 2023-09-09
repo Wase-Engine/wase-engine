@@ -1,6 +1,8 @@
 #pragma once
 
 #include <unordered_map>
+#include <memory>
+#include <functional>
 #include <string>
 
 #include <system/configuration.h>
@@ -26,7 +28,7 @@ namespace wase::scene
 		 * @param config: the configuration to use
 		 * @return if the scene manager was initialized successfully
 		 */
-		bool initialize(system::Configuration& config, const SceneContext& context);
+		bool initialize(system::Configuration& config, const std::shared_ptr<SceneContext> context);
 
 		/**
 		 * Update the scene manager
@@ -47,17 +49,12 @@ namespace wase::scene
 		 * @return if the scene manager has a scene with the given name
 		 */
 		bool hasScene(const std::string& name) const;
-		
-		/**
-		 * Add multiple scenes at once to the scene manager
-		 *
-		 * @param scenes: a map with scenes(with string name) to add
-		 */
-		void addScenes(std::unordered_map<std::string, std::shared_ptr<Scene>>& scenes);
 
 	private:
-		std::unordered_map<std::string, std::shared_ptr<Scene>> m_Scenes;
+		std::unordered_map<std::string, std::function<std::shared_ptr<Scene>()>> m_SceneFunctions;
+		std::shared_ptr<Scene> m_NextScene;
 		std::shared_ptr<Scene> m_CurrentScene;
 		bool m_NewCurrentScene = true;
+		std::shared_ptr<SceneContext> m_Context;
 	};
 }

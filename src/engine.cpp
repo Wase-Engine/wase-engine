@@ -106,7 +106,8 @@ namespace wase
 	{
 		m_SceneManager = std::make_unique<wase::scene::SceneManager>();
 		
-		if (!m_SceneManager->initialize(m_Config, { m_SceneManager, m_Input, m_ResourcePool, m_Window }))
+		std::shared_ptr<scene::SceneContext> context = std::make_shared<scene::SceneContext>(m_SceneManager, m_Input, m_ResourcePool, m_Window);
+		if (!m_SceneManager->initialize(m_Config, context))
 		{
 			WASE_CORE_CRITICAL("Failed to initialize the SceneManager");
 			

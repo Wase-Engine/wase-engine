@@ -15,7 +15,7 @@ namespace wase::rendering
 		/**
 		 * Unbind the index buffer
 		 */
-		void unbind() const;
+		static void unbind();
 
 		/**
 		 * Set the data of the index buffer

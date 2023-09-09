@@ -14,7 +14,7 @@ namespace wase::rendering
 		glBindVertexArray(m_ID);
 	}
 
-	void VAO::unbind() const
+	void VAO::unbind()
 	{
 		glBindVertexArray(0);
 	}

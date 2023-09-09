@@ -18,7 +18,7 @@ namespace wase::rendering
 		/**
 		 * Unbind the VAO
 		 */
-		void unbind() const;
+		static void unbind();
 
 		/**
 		 * Add a buffer to the VAO

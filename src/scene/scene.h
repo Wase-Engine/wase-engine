@@ -15,7 +15,7 @@ namespace wase::scene
 		/**
 		 * Initialize the scene with a context
 		 */
-		void initialize(const SceneContext& context);
+		void initialize(const std::shared_ptr<SceneContext> context);
 
 		/**
 		 * Update the ECS systems
@@ -41,7 +41,7 @@ namespace wase::scene
 		Scene(Scene&&) = default;
 		Scene& operator=(Scene&&) = default;
 
-		SceneContext m_Context;
+		std::shared_ptr<SceneContext> m_Context;
 		ecs::World m_World;
 		std::shared_ptr<rendering::OrthographicCamera> m_Camera;
 	};

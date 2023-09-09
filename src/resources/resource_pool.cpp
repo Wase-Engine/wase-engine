@@ -10,6 +10,12 @@ namespace wase::resources
 {
 	void ResourcePool::loadImage(const std::string& name, const char* path)
 	{
+		if (m_Images.count(name) > 0)
+		{
+			WASE_CORE_WARN("Image already loaded: {0}", name);
+			return;
+		}
+		
 		stbi_set_flip_vertically_on_load(true);
 		
 		int width, height, channels;
@@ -33,12 +39,6 @@ namespace wase::resources
 		else
 		{
 			WASE_CORE_WARN("Failed to load image: {0}", name);
-			return;
-		}
-		
-		if (m_Images.count(name) > 0)
-		{
-			WASE_CORE_WARN("Image already loaded: {0}", name);
 			return;
 		}
 		

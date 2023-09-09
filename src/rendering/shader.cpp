@@ -51,7 +51,7 @@ namespace wase::rendering
 		glUseProgram(m_ID);
 	}
 
-	void Shader::unbind() const
+	void Shader::unbind()
 	{
 		glUseProgram(0);
 	}

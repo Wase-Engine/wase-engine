@@ -1,11 +1,17 @@
 #include <scene/scene_manager.h>
 #include <debugging/log.h>
+#include <rendering/vao.h>
+#include <rendering/vbo.h>
+#include <rendering/ibo.h>
+#include <rendering/texture.h>
+#include <rendering/shader.h>
 
 namespace wase::scene
 {
-	bool SceneManager::initialize(system::Configuration& config, const SceneContext& context)
+	bool SceneManager::initialize(system::Configuration& config, const std::shared_ptr<SceneContext> context)
 	{
-		this->addScenes(config.scenes);
+		this->m_Context = context;
+		this->m_SceneFunctions = config.scenes;
 
 		if (!this->hasScene(config.startScene))
 		{
@@ -15,9 +21,6 @@ namespace wase::scene
 		}
 
 		this->setActiveScene(config.startScene);
-		
-		for (auto& [name, scene] : m_Scenes)
-			scene->initialize(context);
 
 		return true;
 	}
@@ -26,6 +29,13 @@ namespace wase::scene
 	{
 		if (m_NewCurrentScene)
 		{
+			rendering::Texture::unbind();
+			rendering::VAO::unbind();
+			rendering::VBO::unbind();
+			rendering::IBO::unbind();
+			rendering::Shader::unbind();
+			
+			m_CurrentScene = m_NextScene;
 			m_CurrentScene->start();
 			m_NewCurrentScene = false;
 		}
@@ -34,19 +44,23 @@ namespace wase::scene
 		m_CurrentScene->updateWorld(deltaTime);
 	}
 
-	void SceneManager::addScenes(std::unordered_map<std::string, std::shared_ptr<Scene>>& scenes)
-	{
-		m_Scenes = std::move(scenes);
-	}
-
 	void SceneManager::setActiveScene(const std::string& name)
 	{
-		m_CurrentScene = m_Scenes[name];
+		m_NextScene = m_SceneFunctions[name]();
+		
+		if (!this->hasScene(name))
+		{
+			WASE_CORE_CRITICAL("Failed to find {0} scene", name);
+
+			return;
+		}
+
 		m_NewCurrentScene = true;
+		m_NextScene->initialize(m_Context);
 	}
 
 	bool SceneManager::hasScene(const std::string& name) const
 	{
-		return m_Scenes.count(name);
+		return m_SceneFunctions.count(name);
 	}
 }
