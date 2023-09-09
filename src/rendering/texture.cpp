@@ -33,7 +33,7 @@ namespace wase::rendering
 		glBindTexture(GL_TEXTURE_2D, m_Id);
 	}
 
-	void Texture::unbind() const
+	void Texture::unbind()
 	{
 		glActiveTexture(0);
 		glBindTexture(GL_TEXTURE_2D, 0);

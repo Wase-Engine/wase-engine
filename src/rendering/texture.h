@@ -12,7 +12,7 @@ namespace wase::rendering
 		Texture(resources::Image* image, const unsigned int textureUnit);
 
 		void bind() const;
-		void unbind() const;
+		static void unbind();
 
 	private:
 		unsigned int m_Id;

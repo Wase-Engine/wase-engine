@@ -15,7 +15,7 @@ namespace wase::rendering
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ID);
 	}
 
-	void IBO::unbind() const
+	void IBO::unbind()
 	{
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}

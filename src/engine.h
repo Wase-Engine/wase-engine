@@ -3,11 +3,13 @@
 #define STB_IMAGE_IMPLEMENTATION
 
 #include <memory>
+#include <vector>
 
 #include <system/configuration.h>
 #include <system/window.h>
 #include <scene/scene_manager.h>
 #include <resources/resource_pool.h>
+#include <resources/resource.h>
 #include <input/input.h>
 #include <time/time.h>
 
@@ -67,7 +69,12 @@ namespace wase
 		 */
 		bool initializeSceneManager();
 
-		void initializeResourcePool();
+		/**
+		 * Initialize the resource pool
+		 * 
+		 * @param resources: the resources to load
+		 */
+		void initializeResourcePool(const std::vector<resources::Resource>& resources);
 
 		system::Configuration m_Config;
 

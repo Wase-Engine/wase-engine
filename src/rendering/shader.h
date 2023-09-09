@@ -28,7 +28,7 @@ namespace wase::rendering
 		/**
 		 * Unbind the shader
 		 */
-		void unbind() const;
+		static void unbind();
 		
 		/**
 		 * Set an integer uniform

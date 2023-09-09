@@ -9,11 +9,11 @@ namespace wase::scene
 
 	}
 	
-	void Scene::initialize(const SceneContext& context)
+	void Scene::initialize(const std::shared_ptr<SceneContext> context)
 	{
 		m_Context = context;
 		
-		m_World.registerSystem<ecs::systems::SpriteRenderer>(m_Context.resourcePool, m_Camera);
+		m_World.registerSystem<ecs::systems::SpriteRenderer>(m_Context->resourcePool, m_Camera);
 	}
 
 	void Scene::updateWorld(const float deltaTime)
