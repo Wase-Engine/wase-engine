@@ -15,7 +15,6 @@ namespace wase
 		m_Config = config;
 
 		this->initializeLogger();
-		this->initializeResourcePool();
 
 		if (!this->initializeGLFW())
 			return;
@@ -39,6 +38,7 @@ namespace wase
 		while (m_Window->isOpen())
 		{
 			m_Time.update();
+			// Logic here
 			m_SceneManager->update(m_Time.getDeltaTime());
 			m_Input->update();
 			m_Window->update();
@@ -88,7 +88,7 @@ namespace wase
 
 	bool Engine::initializeWindow()
 	{
-		m_Window = std::make_shared<wase::system::Window>();
+		m_Window = std::make_unique<wase::system::Window>();
 		if (!m_Window->initialize(m_Config))
 		{
 			WASE_CORE_CRITICAL("Failed to initialize window");
@@ -106,7 +106,7 @@ namespace wase
 	{
 		m_SceneManager = std::make_unique<wase::scene::SceneManager>();
 		
-		if (!m_SceneManager->initialize(m_Config, { m_SceneManager, m_Input, m_ResourcePool, m_Window }))
+		if (!m_SceneManager->initialize(m_Config, { m_SceneManager, m_Input }))
 		{
 			WASE_CORE_CRITICAL("Failed to initialize the SceneManager");
 			
@@ -114,10 +114,5 @@ namespace wase
 		}
 
 		return true;
-	}
-
-	void Engine::initializeResourcePool()
-	{
-		m_ResourcePool = std::make_shared<wase::resources::ResourcePool>();
 	}
 }

@@ -92,7 +92,7 @@ namespace wase::input
 		 * 
 		 * @return The mouse position
 		 */
-		math::Vector2 getMousePosition();
+		wase::math::Vector2 getMousePosition();
 
 		/**
 		 * Get the amount the mouse moved in the x axis since the last frame

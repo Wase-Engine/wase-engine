@@ -1,7 +1,5 @@
 #pragma once
 
-#include <glm/glm.hpp>
-
 namespace wase::math
 {
 	class Vector3
@@ -11,15 +9,11 @@ namespace wase::math
 		float y = 0;
 		float z = 0;
 
-		Vector3();
 		Vector3(const float x, const float y, const float z);
 
 		bool operator==(const Vector3& other) const;
 		Vector3 operator+(const Vector3& other) const;
 		Vector3 operator-(const Vector3& other) const;
-		bool operator==(const glm::vec3& other) const;
-		Vector3 operator+(const glm::vec3& other) const;
-		Vector3 operator-(const glm::vec3& other) const;
 		Vector3 operator*(const float scalar) const;
 		Vector3 operator/(const float scalar) const;
 
@@ -113,12 +107,5 @@ namespace wase::math
 		 * @return the normalized vector
 		 */
 		Vector3 getNormalized() const;
-
-		/**
-		 * Convert the vector to a glm vector
-		 * 
-		 * @return the glm vector
-		 */
-		glm::vec3 toGlmVec3() const;
 	};
 }
