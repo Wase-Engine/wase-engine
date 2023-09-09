@@ -10,6 +10,3 @@
 [submodule "vendor/glm"]
 	path = vendor/glm
 	url = https://github.com/g-truc/glm
-[submodule "vendor/wase-ecs"]
-	path = vendor/wase-ecs
-	url = https://github.com/Wase-Engine/wase-ecs

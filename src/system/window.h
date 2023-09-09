@@ -4,12 +4,9 @@
 #include <GLFW/glfw3.h>
 
 #include <system/configuration.h>
-#include <math/vector2.h>
 
 namespace wase::system
 {
-	struct Configuration;
-
 	class Window
 	{
 	public:
@@ -39,22 +36,13 @@ namespace wase::system
 		bool isOpen() const;
 
 		/**
-		 * Get the width and height of the window
-		 * 
-		 * @return the width and height of the window
-		 */
-		math::Vector2 getWindowSize() const;
-
-		/**
 		 * Get the GLFWwindow
 		 * 
 		 * @return the GLFWwindow
 		 */
 		GLFWwindow* getGLFWWindow() const;
 			
-	private:		
+	private:
 		GLFWwindow* m_Window = nullptr;
 	};
-
-	void framebufferSizeCallback(GLFWwindow* window, int width, int height);
 }

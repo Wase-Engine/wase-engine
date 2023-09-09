@@ -19,9 +19,9 @@ namespace wase::rendering
 		glBindVertexArray(0);
 	}
 
-	void VAO::addBuffer(const VBO* vbo, const VertexBufferLayout& vbl) const
+	void VAO::addBuffer(const VBO& vbo, const VertexBufferLayout& vbl) const
 	{
-		vbo->bind();
+		vbo.bind();
 
 		unsigned int offset = 0;
 

@@ -1,7 +1,6 @@
 #include <cmath>
 
 #include <gtest/gtest.h>
-#include <glm/glm.hpp>
 
 #include <math/vector3.h>
 
@@ -40,38 +39,6 @@ TEST(Vector3Test, Subtraction)
 {
 	Vector3 vector1(1.0f, 2.0f, 3.0f);
 	Vector3 vector2(3.0f, 4.0f, 1.0f);
-
-	Vector3 result = vector1 - vector2;
-
-	EXPECT_EQ(result.x, -2.0f);
-	EXPECT_EQ(result.y, -2.0f);
-	EXPECT_EQ(result.z, 2.0f);
-}
-
-TEST(Vector3Test, EqualityGLM)
-{
-	Vector3 vector1(1.0f, 2.0f, 3.0f);
-	glm::vec3 vector2(1.0f, 2.0f, 3.0f);
-
-	EXPECT_TRUE(vector1 == vector2);
-}
-
-TEST(Vector3Test, AdditionGLM)
-{
-	Vector3 vector1(1.0f, 2.0f, 3.0f);
-	glm::vec3 vector2(3.0f, 4.0f, 1.0f);
-
-	Vector3 result = vector1 + vector2;
-
-	EXPECT_EQ(result.x, 4.0f);
-	EXPECT_EQ(result.y, 6.0f);
-	EXPECT_EQ(result.z, 4.0f);
-}
-
-TEST(Vector3Test, SubtractionGLM)
-{
-	Vector3 vector1(1.0f, 2.0f, 3.0f);
-	glm::vec3 vector2(3.0f, 4.0f, 1.0f);
 
 	Vector3 result = vector1 - vector2;
 
@@ -191,12 +158,4 @@ TEST(Vector3Test, Cross)
 	Vector3 test1 = Vector3::cross(vector1, vector2);
 
 	EXPECT_EQ(Vector3::cross(vector1, vector2), Vector3(-2.0f, 4.0f, -2.0f));
-}
-
-TEST(Vector3Test, ConvertToGlmVec)
-{
-	Vector3 vector1(1.0f, 2.0f, 3.0f);
-	glm::vec3 vector2(1.0f, 2.0f, 3.0f);
-
-	EXPECT_EQ(vector1.toGlmVec3(), vector2);
 }

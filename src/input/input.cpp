@@ -121,9 +121,9 @@ namespace wase::input
 		return m_MouseY;
 	}
 
-	math::Vector2 Input::getMousePosition()
+	wase::math::Vector2 Input::getMousePosition()
 	{
-		return math::Vector2(m_MouseX, m_MouseY);
+		return wase::math::Vector2(m_MouseX, m_MouseY);
 	}
 
 	float Input::getMouseMovedX()
