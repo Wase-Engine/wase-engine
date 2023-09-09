@@ -4,6 +4,10 @@
 
 namespace wase::math
 {
+	Vector3::Vector3()
+	{
+
+	}
 	
 	Vector3::Vector3(const float x, const float y, const float z)
 		: x(x), y(y), z(z)
@@ -22,6 +26,21 @@ namespace wase::math
 	}
 
 	Vector3 Vector3::operator-(const Vector3& other) const
+	{
+		return Vector3(x - other.x, y - other.y, z - other.z);
+	}
+
+	bool Vector3::operator==(const glm::vec3& other) const
+	{
+		return x == other.x && y == other.y && z == other.z;
+	}
+
+	Vector3 Vector3::operator+(const glm::vec3& other) const
+	{
+		return Vector3(x + other.x, y + other.y, z + other.z);
+	}
+
+	Vector3 Vector3::operator-(const glm::vec3& other) const
 	{
 		return Vector3(x - other.x, y - other.y, z - other.z);
 	}
@@ -108,5 +127,10 @@ namespace wase::math
 	Vector3 Vector3::getNormalized() const
 	{
 		return *this / getMagnitude();
+	}
+
+	glm::vec3 Vector3::toGlmVec3() const
+	{
+		return glm::vec3(x, y, z);
 	}
 }

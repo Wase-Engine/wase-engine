@@ -71,7 +71,7 @@ namespace wase
 
 		system::Configuration m_Config;
 
-		std::unique_ptr<system::Window> m_Window = nullptr;
+		std::shared_ptr<system::Window> m_Window = nullptr;
 		std::shared_ptr<scene::SceneManager> m_SceneManager = nullptr;
 		std::shared_ptr<input::Input> m_Input = nullptr;
 		std::shared_ptr<resources::ResourcePool> m_ResourcePool = nullptr;

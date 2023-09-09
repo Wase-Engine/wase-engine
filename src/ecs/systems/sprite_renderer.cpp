@@ -1,4 +1,5 @@
 #include <GL/glew.h>
+#include <glm/gtc/matrix_transform.hpp>
 
 #include <ecs/systems/sprite_renderer.h>
 #include <ecs/components/transform.h>
@@ -7,8 +8,8 @@
 
 namespace wase::ecs::systems
 {
-	SpriteRenderer::SpriteRenderer(const std::shared_ptr<resources::ResourcePool> resourcePool)
-		: m_ResourcePool(resourcePool)
+	SpriteRenderer::SpriteRenderer(const std::shared_ptr<resources::ResourcePool> resourcePool, const std::shared_ptr<rendering::OrthographicCamera> camera)
+		: m_ResourcePool(resourcePool), m_Camera(camera)
 	{
 		getFilter().require<components::TransformComponent>();
 		getFilter().require<components::TextureComponent>();
@@ -20,10 +21,10 @@ namespace wase::ecs::systems
 
 		float vertices[] = {
 			// Positions  // TexCoords
-			 0.5f,  0.5f, 1.0f, 1.0f,  // TR
-			 0.5f, -0.5f, 1.0f, 0.0f,  // BR
-			-0.5f, -0.5f, 0.0f, 0.0f,  // BL
-			-0.5f,  0.5f, 0.0f, 1.0f   // TL 
+			 0.1f,  0.1f, 1.0f, 1.0f,  // TR
+			 0.1f, -0.1f, 1.0f, 0.0f,  // BR
+			-0.1f, -0.1f, 0.0f, 0.0f,  // BL
+			-0.1f,  0.1f, 0.0f, 1.0f   // TL 
 		};
 
 		unsigned int indices[] = {
@@ -61,6 +62,16 @@ namespace wase::ecs::systems
 			components::TextureComponent& texture = m_ComponentPool->getComponent<components::TextureComponent>(entity->getId());
 
 			texture.shader->bind();
+			texture.shader->setMat4("u_ViewProjection", m_Camera->getViewProjectionMatrix());
+			
+			glm::mat4 model = glm::mat4(1.0f);
+			model = glm::scale(model, transform.scale.toGlmVec3());
+			model = glm::translate(model, glm::vec3(transform.position.x, transform.position.y, transform.position.z));
+			model = glm::rotate(model, glm::radians(transform.rotation.x), glm::vec3(1, 0, 0));
+			model = glm::rotate(model, glm::radians(transform.rotation.y), glm::vec3(0, 1, 0));
+			model = glm::rotate(model, glm::radians(transform.rotation.z), glm::vec3(0, 0, 1));
+			texture.shader->setMat4("u_Model", model);
+			
 			texture.vao->bind();
 			texture.texture->bind();
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

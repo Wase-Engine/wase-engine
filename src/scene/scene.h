@@ -1,8 +1,11 @@
 #pragma once
 
+#include <memory>
+
 #include <ecs.h>
 
 #include <scene/scene_context.h>
+#include <rendering/orthographic_camera.h>
 
 namespace wase::scene
 {
@@ -32,7 +35,7 @@ namespace wase::scene
 		virtual void update(const float deltaTime);
 
 	protected:
-		Scene() = default;
+		Scene();
 		Scene(const Scene&) = default;
 		Scene& operator=(const Scene&) = delete;
 		Scene(Scene&&) = default;
@@ -40,5 +43,6 @@ namespace wase::scene
 
 		SceneContext m_Context;
 		ecs::World m_World;
+		std::shared_ptr<rendering::OrthographicCamera> m_Camera;
 	};
 }
