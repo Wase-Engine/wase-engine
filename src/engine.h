@@ -1,6 +1,7 @@
 #pragma once
 
 #define STB_IMAGE_IMPLEMENTATION
+#define STB_VORBIS_IMPLEMENTATION
 
 #include <memory>
 #include <vector>
