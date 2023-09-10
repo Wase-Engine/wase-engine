@@ -13,3 +13,6 @@
 [submodule "vendor/wase-ecs"]
 	path = vendor/wase-ecs
 	url = https://github.com/Wase-Engine/wase-ecs
+[submodule "vendor/openal-soft"]
+	path = vendor/openal-soft
+	url = https://github.com/kcat/openal-soft.git
