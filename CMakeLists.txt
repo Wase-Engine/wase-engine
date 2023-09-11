@@ -29,7 +29,6 @@ add_library(wase-engine ${sources})
 target_include_directories(wase-engine PUBLIC 
     ${PROJECT_SOURCE_DIR}/src
     ${PROJECT_SOURCE_DIR}/vendor/stb_image
-    ${PROJECT_SOURCE_DIR}/vendor/stb_vorbis
 )
 
 foreach(source IN LISTS sources)
@@ -73,6 +72,10 @@ target_link_libraries(wase-engine wase-ecs)
 # OpenAL
 add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/openal-soft EXCLUDE_FROM_ALL)
 target_link_libraries(wase-engine OpenAL)
+
+# Libsndfile
+add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/libsndfile EXCLUDE_FROM_ALL)
+target_link_libraries(wase-engine sndfile)
 
 # Tests
 if(DEFINED enable_test)

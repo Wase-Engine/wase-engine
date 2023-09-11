@@ -10,7 +10,7 @@
 
 namespace wase
 {
-	void Engine::initialize(const wase::system::Configuration& config)
+	void Engine::initialize(const system::Configuration& config)
 	{
 		m_Config = config;
 
@@ -22,6 +22,8 @@ namespace wase
 		if (!this->initializeWindow())
 			return;
 		if (!this->initializeGLEW())
+			return;
+		if (!this->initializeSoundDevice())
 			return;
 		if (!this->initializeSceneManager())
 			return;
@@ -53,7 +55,7 @@ namespace wase
 			m_Window->shutdown();
 
 		glfwTerminate();
-		wase::debugging::LogManager::shutdown();
+		debugging::LogManager::shutdown();
 	}
 
 	bool Engine::initializeGLFW()
@@ -82,13 +84,13 @@ namespace wase
 
 	void Engine::initializeLogger()
 	{
-		wase::debugging::LogManager::initialize();
+		debugging::LogManager::initialize();
 		WASE_CORE_INFO("Started initializing Wase Engine");
 	}
 
 	bool Engine::initializeWindow()
 	{
-		m_Window = std::make_shared<wase::system::Window>();
+		m_Window = std::make_shared<system::Window>();
 		if (!m_Window->initialize(m_Config))
 		{
 			WASE_CORE_CRITICAL("Failed to initialize window");
@@ -96,15 +98,28 @@ namespace wase
 			return false;
 		}
 		
-		m_Input = std::make_shared<wase::input::Input>();
+		m_Input = std::make_shared<input::Input>();
 		m_Input->initialize(m_Window->getGLFWWindow());
+
+		return true;
+	}
+
+	bool Engine::initializeSoundDevice()
+	{
+		m_SoundDevice = std::make_shared<audio::SoundDevice>();
+		if (!m_SoundDevice->initialize())
+		{
+			WASE_CORE_CRITICAL("Failed to initialize the SoundDevice");
+
+			return false;
+		}
 
 		return true;
 	}
 
 	bool Engine::initializeSceneManager()
 	{
-		m_SceneManager = std::make_unique<wase::scene::SceneManager>();
+		m_SceneManager = std::make_unique<scene::SceneManager>();
 		
 		std::shared_ptr<scene::SceneContext> context = std::make_shared<scene::SceneContext>(m_SceneManager, m_Input, m_ResourcePool, m_Window);
 		if (!m_SceneManager->initialize(m_Config, context))
@@ -119,7 +134,7 @@ namespace wase
 
 	void Engine::initializeResourcePool(const std::vector<resources::Resource>& resources)
 	{
-		m_ResourcePool = std::make_shared<wase::resources::ResourcePool>();
+		m_ResourcePool = std::make_shared<resources::ResourcePool>();
 		m_ResourcePool->initialize(resources);
 	}
 }
