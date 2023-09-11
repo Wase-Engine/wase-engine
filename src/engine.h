@@ -10,6 +10,7 @@
 #include <scene/scene_manager.h>
 #include <resources/resource_pool.h>
 #include <resources/resource.h>
+#include <audio/sound_device.h>
 #include <input/input.h>
 #include <time/time.h>
 
@@ -63,6 +64,13 @@ namespace wase
 		bool initializeWindow();
 		
 		/**
+		 * Initialize the sound device
+		 *
+		 * @return if the sound device was initialized successfully
+		 */
+		bool initializeSoundDevice();
+
+		/**
 		 * Initialize the scene manager
 		 * 
 		 * @return if the scene manager was initialized successfully
@@ -82,6 +90,7 @@ namespace wase
 		std::shared_ptr<scene::SceneManager> m_SceneManager = nullptr;
 		std::shared_ptr<input::Input> m_Input = nullptr;
 		std::shared_ptr<resources::ResourcePool> m_ResourcePool = nullptr;
+		std::shared_ptr<audio::SoundDevice> m_SoundDevice = nullptr;
 		time::Time m_Time;
 
 		bool m_Initialized = false;

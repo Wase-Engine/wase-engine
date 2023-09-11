@@ -69,6 +69,14 @@ target_link_libraries(wase-engine glm)
 add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/wase-ecs EXCLUDE_FROM_ALL)
 target_link_libraries(wase-engine wase-ecs)
 
+# OpenAL
+add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/openal-soft EXCLUDE_FROM_ALL)
+target_link_libraries(wase-engine OpenAL)
+
+# Libsndfile
+add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/libsndfile EXCLUDE_FROM_ALL)
+target_link_libraries(wase-engine sndfile)
+
 # Tests
 if(DEFINED enable_test)
   add_subdirectory(tests)
