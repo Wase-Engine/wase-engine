@@ -1,3 +1,5 @@
+#include <climits>
+
 #include <sndfile.h>
 
 #include <audio/sound_buffer.h>
