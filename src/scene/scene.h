@@ -3,6 +3,7 @@
 #include <memory>
 
 #include <ecs.h>
+#include <box2d/box2d.h>
 
 #include <scene/scene_context.h>
 #include <rendering/orthographic_camera.h>
@@ -42,7 +43,8 @@ namespace wase::scene
 		Scene& operator=(Scene&&) = default;
 
 		std::shared_ptr<SceneContext> m_Context;
-		ecs::World m_World;
 		std::shared_ptr<rendering::OrthographicCamera> m_Camera;
+		ecs::World m_ECSWorld;
+		b2World m_PhysicsWorld;
 	};
 }

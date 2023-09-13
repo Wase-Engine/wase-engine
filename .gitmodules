@@ -19,3 +19,6 @@
 [submodule "vendor/libsndfile"]
 	path = vendor/libsndfile
 	url = https://github.com/libsndfile/libsndfile.git
+[submodule "vendor/box2d"]
+	path = vendor/box2d
+	url = https://github.com/erincatto/box2d.git

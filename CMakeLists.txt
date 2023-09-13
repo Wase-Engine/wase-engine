@@ -77,6 +77,12 @@ target_link_libraries(wase-engine OpenAL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/libsndfile EXCLUDE_FROM_ALL)
 target_link_libraries(wase-engine sndfile)
 
+# Box2D
+set(BOX2D_BUILD_TESTBED OFF CACHE BOOL "Testing environment" FORCE)
+set(BOX2D_BUILD_UNIT_TESTS OFF CACHE BOOL "Unit tests" FORCE)
+add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/box2d EXCLUDE_FROM_ALL)
+target_link_libraries(wase-engine box2d)
+
 # Tests
 if(DEFINED enable_test)
   add_subdirectory(tests)

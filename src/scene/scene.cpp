@@ -4,7 +4,7 @@
 namespace wase::scene
 {
 	Scene::Scene()
-		: m_Camera(std::make_shared<rendering::OrthographicCamera>(-1.6f, 1.6f, -0.9f, 0.9f))
+		: m_Camera(std::make_shared<rendering::OrthographicCamera>(-1.6f, 1.6f, -0.9f, 0.9f)), m_PhysicsWorld(b2Vec2(0.0f, -9.81f))
 	{
 
 	}
@@ -13,12 +13,12 @@ namespace wase::scene
 	{
 		m_Context = context;
 		
-		m_World.registerSystem<ecs::systems::SpriteRenderer>(m_Context->resourcePool, m_Camera);
+		m_ECSWorld.registerSystem<ecs::systems::SpriteRenderer>(m_Context->resourcePool, m_Camera);
 	}
 
 	void Scene::updateWorld(const float deltaTime)
 	{
-		m_World.update(deltaTime);
+		m_ECSWorld.update(deltaTime);
 	}
 
 	void Scene::start()
